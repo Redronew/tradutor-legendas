@@ -11,22 +11,18 @@
     <style>
         /* --- VARIÁVEIS DE TEMA --- */
         :root {
-            /* Tema Escuro (Padrão) */
             --bg-base: #0a0a0f;
             --bg-panel: rgba(25, 25, 35, 0.7);
             --text-main: #ffffff;
             --text-muted: #8b8b9e;
             --border-color: rgba(255, 255, 255, 0.1);
             --input-bg: rgba(0, 0, 0, 0.3);
-            
-            /* Cores Fixas (Cabeçalho e Rodapé) */
-            --header-bg: #0f172a; /* Azul escuro profundo */
+            --header-bg: #0f172a; 
             --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
             --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --shadow: rgba(0,0,0,0.4);
         }
 
-        /* Tema Claro */
         [data-theme="light"] {
             --bg-base: #f4f6f9;
             --bg-panel: rgba(255, 255, 255, 0.9);
@@ -34,7 +30,6 @@
             --text-muted: #666677;
             --border-color: rgba(0, 0, 0, 0.1);
             --input-bg: #ffffff;
-            
             --header-bg: #0f172a; 
             --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
             --gradient-secondary: linear-gradient(135deg, #5b247a 0%, #1bcedf 100%);
@@ -44,107 +39,46 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         
         body { 
-            background-color: var(--bg-base); 
-            color: var(--text-main); 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh;
+            background-color: var(--bg-base); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(118, 75, 162, 0.05), transparent 25%);
+            background-image: radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%), radial-gradient(circle at 85% 30%, rgba(118, 75, 162, 0.05), transparent 25%);
         }
         
-        /* --- CABEÇALHO FIXO --- */
         header { 
-            background-color: var(--header-bg); 
-            padding: 20px 40px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+            background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
         }
         
-        /* LOGO ATUALIZADO */
+        /* LOGO CLICÁVEL */
         .logo { 
-            font-size: 26px; 
-            font-weight: 800; 
-            letter-spacing: -0.5px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
+            font-size: 26px; font-weight: 800; letter-spacing: -0.5px; 
+            background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
+            display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none;
         }
-        .logo span { 
-            font-weight: 300; 
-            color: #8b8b9e; 
-            -webkit-text-fill-color: #8b8b9e;
-        }
+        .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
         
         .header-controls { display: flex; gap: 15px; align-items: center; }
         
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            width: 40px; height: 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 18px;
-            transition: 0.3s;
-        }
+        .theme-toggle { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 18px; transition: 0.3s; }
         .theme-toggle:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
-        .lang-selector select { 
-            padding: 8px 12px; 
-            border-radius: 8px; 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: rgba(255, 255, 255, 0.1); 
-            color: #ffffff; 
-            cursor: pointer; 
-            outline: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+        .lang-selector select { padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.1); color: #ffffff; cursor: pointer; outline: none; font-weight: 600; transition: 0.3s; }
         .lang-selector select option { color: #000; }
 
-        /* --- CONTEÚDO PRINCIPAL --- */
         .main-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; flex: 1; width: 100%; }
         
         h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s; }
         .subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 50px; font-weight: 300; transition: color 0.3s; }
 
         .wizard-box { 
-            background: var(--bg-panel); 
-            border: 1px solid var(--border-color); 
-            border-radius: 24px; 
-            padding: 60px 40px; 
-            position: relative; 
-            min-height: 450px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px var(--shadow);
-            display: flex; flex-direction: column; justify-content: center;
-            transition: all 0.3s;
+            background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 24px; padding: 60px 40px; position: relative; min-height: 450px;
+            backdrop-filter: blur(20px); box-shadow: 0 20px 40px var(--shadow); display: flex; flex-direction: column; justify-content: center; transition: all 0.3s;
         }
         
         .steps { position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 12px; font-weight: 600; }
         .step { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.3s; }
-        .step-circle { 
-            width: 32px; height: 32px; border-radius: 50%; 
-            border: 2px solid var(--border-color); 
-            display: flex; justify-content: center; align-items: center; 
-            background: transparent; color: var(--text-muted);
-            transition: 0.3s;
-        }
-        .step.active .step-circle { 
-            border-color: transparent; background: var(--gradient-primary); color: #000; font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
-        }
+        .step-circle { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; background: transparent; color: var(--text-muted); transition: 0.3s; }
+        .step.active .step-circle { border-color: transparent; background: var(--gradient-primary); color: #000; font-weight: bold; box-shadow: 0 0 15px rgba(0, 242, 254, 0.5); }
         .step.active { color: var(--text-main); }
         
         .screen { display: none; }
@@ -154,28 +88,17 @@
         .screen h2 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
         .screen p { color: var(--text-muted); margin-bottom: 40px; font-size: 15px; }
 
-        .btn-primary { 
-            background: var(--gradient-primary); color: #000; padding: 16px 40px; font-size: 16px; border: none; 
-            cursor: pointer; border-radius: 12px; font-weight: 800; transition: 0.3s; display: inline-block;
-        }
+        .btn-primary { background: var(--gradient-primary); color: #000; padding: 16px 40px; font-size: 16px; border: none; cursor: pointer; border-radius: 12px; font-weight: 800; transition: 0.3s; display: inline-block; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
         
-        .btn-secondary { 
-            background: transparent; color: var(--text-muted); padding: 16px 30px; font-size: 14px; 
-            border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s;
-        }
+        .btn-secondary { background: transparent; color: var(--text-muted); padding: 16px 30px; font-size: 14px; border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .btn-secondary:hover { background: var(--border-color); color: var(--text-main); }
         
         input[type="file"] { display: none; }
 
-        .select-lang { 
-            width: 100%; max-width: 300px; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; 
-            font-size: 16px; background: var(--input-bg); color: var(--text-main); margin-bottom: 30px; outline: none; transition: 0.3s;
-        }
-        
+        .select-lang { width: 100%; max-width: 300px; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 16px; background: var(--input-bg); color: var(--text-main); margin-bottom: 30px; outline: none; transition: 0.3s; }
         .actions-row { display: flex; justify-content: space-between; margin-top: 40px; align-items: center;}
 
-        /* --- OVERLAY DE CARREGAMENTO --- */
         .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .overlay.active { display: flex; }
         .loading-box { background: var(--bg-panel); border: 1px solid var(--border-color); padding: 40px; border-radius: 24px; text-align: center; width: 400px; box-shadow: 0 20px 40px var(--shadow); }
@@ -186,58 +109,34 @@
         .progress-bar-fill { height: 100%; background: var(--gradient-primary); width: 0%; transition: width 0.3s ease; }
         .progress-text { color: #00f2fe; font-weight: bold; margin-bottom: 20px; font-size: 14px; }
 
-        .btn-download { 
-            display: inline-block; padding: 16px 40px; background: var(--gradient-secondary); color: white; text-decoration: none; 
-            border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 20px; transition: 0.3s;
-        }
+        .btn-download { display: inline-block; padding: 16px 40px; background: var(--gradient-secondary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 20px; transition: 0.3s; }
         .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3); }
 
-        /* --- RODAPÉ FIXO E VISÍVEL --- */
-        footer { 
-            background-color: var(--header-bg);
-            padding: 20px; 
-            text-align: center; 
-            color: #d1d5db;
-            font-size: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1); 
-            margin-top: auto; 
-            font-weight: 400;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.1); 
-        }
-        footer a { 
-            color: #00f2fe;
-            text-decoration: none; 
-            font-weight: 600;
-            margin: 0 5px;
-        }
-        footer a:hover { 
-            text-decoration: underline; 
-            color: #ffffff;
-        }
+        footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; font-weight: 400; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }
+        footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
+        footer a:hover { text-decoration: underline; color: #ffffff; }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO AZUL ESCURO -->
     <header>
-        <div class="logo">
+        <!-- Logo como link para a página inicial -->
+        <a href="/" class="logo">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/>
                 <path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
                 <path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
                 <defs>
                     <linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#00f2fe"/>
-                        <stop offset="1" stop-color="#4facfe"/>
+                        <stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/>
                     </linearGradient>
                 </defs>
             </svg>
             Subtitle<span>AI</span>
-        </div>
+        </a>
         
         <div class="header-controls">
             <button class="theme-toggle" id="theme-toggle" title="Alternar Tema">🌙</button>
-            
             <div class="lang-selector">
                 <select id="ui-lang" onchange="mudarIdioma(this.value)">
                     <option value="pt">🇧🇷 PT</option>
@@ -254,162 +153,143 @@
 
         <div class="wizard-box">
             <div class="steps">
-                <div class="step active" id="step-indicator-1">
-                    <div class="step-circle" id="circle-1">1</div><span>Upload</span>
-                </div>
-                <div class="step" id="step-indicator-2">
-                    <div class="step-circle" id="circle-2">2</div><span>Config</span>
-                </div>
-                <div class="step" id="step-indicator-3">
-                    <div class="step-circle" id="circle-3">3</div><span>Download</span>
-                </div>
+                <div class="step active" id="step-indicator-1"><div class="step-circle" id="circle-1">1</div><span id="step1-text">Upload</span></div>
+                <div class="step" id="step-indicator-2"><div class="step-circle" id="circle-2">2</div><span id="step2-text">Config</span></div>
+                <div class="step" id="step-indicator-3"><div class="step-circle" id="circle-3">3</div><span id="step3-text">Download</span></div>
             </div>
 
+            <!-- TELA 1 -->
             <div class="screen active" id="screen-1">
-                <h2>Comece por aqui</h2>
-                <p>Selecione o seu arquivo .srt para iniciar o processamento.</p>
-                <label for="file-upload" class="btn-primary" style="cursor:pointer;">
-                    ⬆ Selecionar Arquivo
-                </label>
+                <h2 id="t1-title">Comece por aqui</h2>
+                <p id="t1-desc">Selecione o seu arquivo .srt para iniciar o processamento.</p>
+                <label for="file-upload" class="btn-primary" style="cursor:pointer;" id="btn-upload-label">⬆ Selecionar Arquivo</label>
                 <input id="file-upload" type="file" accept=".srt" />
             </div>
 
+            <!-- TELA 2 (Config) -->
             <div class="screen" id="screen-3">
-                <h2>Configurar Tradução</h2>
-                <p>Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.</p>
-
+                <h2 id="t2-title">Configurar Tradução</h2>
+                <p id="t2-desc">Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.</p>
                 <select class="select-lang" id="target-lang">
                     <optgroup label="América e Europa">
-                        <option value="pt">Português</option>
-                        <option value="en">Inglês</option>
-                        <option value="es">Espanhol</option>
-                        <option value="fr">Francês</option>
-                        <option value="de">Alemão</option>
-                        <option value="it">Italiano</option>
-                        <option value="nl">Holandês</option>
-                        <option value="sv">Sueco</option>
-                        <option value="pl">Polonês</option>
-                        <option value="da">Dinamarquês</option>
-                        <option value="no">Norueguês</option>
-                        <option value="fi">Finlandês</option>
-                        <option value="el">Grego</option>
-                        <option value="hu">Húngaro</option>
-                        <option value="cs">Tcheco</option>
-                        <option value="ro">Romeno</option>
-                        <option value="uk">Ucraniano</option>
-                        <option value="ru">Russo</option>
+                        <option value="pt">Português</option><option value="en">Inglês</option><option value="es">Espanhol</option><option value="fr">Francês</option><option value="de">Alemão</option><option value="it">Italiano</option><option value="nl">Holandês</option><option value="sv">Sueco</option><option value="pl">Polonês</option><option value="da">Dinamarquês</option><option value="no">Norueguês</option><option value="fi">Finlandês</option><option value="el">Grego</option><option value="hu">Húngaro</option><option value="cs">Tcheco</option><option value="ro">Romeno</option><option value="uk">Ucraniano</option><option value="ru">Russo</option>
                     </optgroup>
-
                     <optgroup label="Ásia">
-                        <option value="ja">Japonês</option>
-                        <option value="ko">Coreano</option>
-                        <option value="zh-CN">Chinês (Simplificado)</option>
-                        <option value="zh-TW">Chinês (Tradicional)</option>
-                        <option value="hi">Hindi</option>
-                        <option value="bn">Bengali</option>
-                        <option value="th">Tailandês</option>
-                        <option value="vi">Vietnamita</option>
-                        <option value="id">Indonésio</option>
-                        <option value="ms">Malaio</option>
-                        <option value="tl">Filipino (Tagalo)</option>
+                        <option value="ja">Japonês</option><option value="ko">Coreano</option><option value="zh-CN">Chinês (Simplificado)</option><option value="zh-TW">Chinês (Tradicional)</option><option value="hi">Hindi</option><option value="bn">Bengali</option><option value="th">Tailandês</option><option value="vi">Vietnamita</option><option value="id">Indonésio</option><option value="ms">Malaio</option><option value="tl">Filipino (Tagalo)</option>
                     </optgroup>
-
                     <optgroup label="Oriente Médio e África">
-                        <option value="ar">Árabe</option>
-                        <option value="he">Hebraico</option>
-                        <option value="tr">Turco</option>
-                        <option value="fa">Persa (Farsi)</option>
-                        <option value="ur">Urdu</option>
-                        <option value="sw">Suaíli</option>
-                        <option value="af">Africâner</option>
-                        <option value="am">Amárico</option>
+                        <option value="ar">Árabe</option><option value="he">Hebraico</option><option value="tr">Turco</option><option value="fa">Persa (Farsi)</option><option value="ur">Urdu</option><option value="sw">Suaíli</option><option value="af">Africâner</option><option value="am">Amárico</option>
                     </optgroup>
-
                     <optgroup label="Outros">
-                        <option value="ca">Catalão</option>
-                        <option value="gl">Galego</option>
-                        <option value="eu">Basco</option>
-                        <option value="is">Islandês</option>
-                        <option value="ga">Irlandês</option>
-                        <option value="cy">Galês</option>
-                        <option value="lt">Lituano</option>
-                        <option value="lv">Letão</option>
-                        <option value="et">Estoniano</option>
-                        <option value="sl">Esloveno</option>
-                        <option value="sk">Eslovaco</option>
-                        <option value="bg">Búlgaro</option>
-                        <option value="hr">Croata</option>
-                        <option value="sr">Sérvio</option>
-                        <option value="sq">Albanês</option>
-                        <option value="mk">Macedônio</option>
+                        <option value="ca">Catalão</option><option value="gl">Galego</option><option value="eu">Basco</option><option value="is">Islandês</option><option value="ga">Irlandês</option><option value="cy">Galês</option><option value="lt">Lituano</option><option value="lv">Letão</option><option value="et">Estoniano</option><option value="sl">Esloveno</option><option value="sk">Eslovaco</option><option value="bg">Búlgaro</option><option value="hr">Croata</option><option value="sr">Sérvio</option><option value="sq">Albanês</option><option value="mk">Macedônio</option>
                     </optgroup>
                 </select>
-                                    
+                
                 <div class="actions-row">
-                    <button class="btn-secondary" onclick="mudarTela(1)">← Voltar</button>
-                    <button class="btn-primary" onclick="iniciarTraducao()">Iniciar Tradução</button>
+                    <button class="btn-secondary" onclick="mudarTela(1)" id="btn-back-1">← Voltar</button>
+                    <button class="btn-primary" onclick="iniciarTraducao()" id="btn-start">Iniciar Tradução</button>
                 </div>
             </div>
 
+            <!-- TELA 3 (Download) -->
             <div class="screen" id="screen-4">
-                <h2>Processamento Concluído</h2>
-                <p>A IA finalizou a tradução com sucesso. O arquivo está pronto.</p>
+                <h2 id="t3-title">Processamento Concluído</h2>
+                <p id="t3-desc">A IA finalizou a tradução com sucesso. O arquivo está pronto.</p>
+                
                 <div id="download-container"></div>
+                
+                <!-- NOVO BOTÃO PARA REINICIAR -->
+                <div style="margin-top: 30px;">
+                    <button class="btn-secondary" onclick="novaTraducao()" id="btn-new-translation">← Traduzir outro arquivo</button>
+                </div>
             </div>
         </div>
     </main>
 
     <div class="overlay" id="loading-overlay">
         <div class="loading-box">
-            <h3>Processando Dados...</h3>
-            <p>Analisando contexto e traduzindo blocos.</p>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-            </div>
+            <h3 id="loading-title">Processando Dados...</h3>
+            <p id="loading-desc">Analisando contexto e traduzindo blocos.</p>
+            <div class="progress-bar-container"><div class="progress-bar-fill" id="progress-fill"></div></div>
             <div class="progress-text" id="progress-text">0%</div>
         </div>
     </div>
 
     <footer>
-        <p>Desenvolvido por Isaac &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
     </footer>
 
     <script>
-        // --- LÓGICA DO TEMA CLARO/ESCURO ---
+        // --- LÓGICA DO TEMA ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const rootElement = document.documentElement;
         const savedTheme = localStorage.getItem('theme');
         
-        if (savedTheme === 'light') {
-            rootElement.setAttribute('data-theme', 'light');
-            themeToggleBtn.innerText = '☀️';
-        }
-
+        if (savedTheme === 'light') { rootElement.setAttribute('data-theme', 'light'); themeToggleBtn.innerText = '☀️'; }
+        
         themeToggleBtn.addEventListener('click', () => {
-            if (rootElement.getAttribute('data-theme') === 'light') {
-                rootElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'dark');
-                themeToggleBtn.innerText = '🌙';
-            } else {
-                rootElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                themeToggleBtn.innerText = '☀️';
-            }
+            if (rootElement.getAttribute('data-theme') === 'light') { rootElement.removeAttribute('data-theme'); localStorage.setItem('theme', 'dark'); themeToggleBtn.innerText = '🌙'; } 
+            else { rootElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); themeToggleBtn.innerText = '☀️'; }
         });
 
-        // --- LÓGICA DE IDIOMAS ---
-        let arquivoSelecionado = null;
-        let srtTraduzidoGlobal = "";
-
+        // --- SISTEMA DE IDIOMAS ---
         const textos = {
-            pt: { title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Sem complicações." },
-            en: { title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. No hassle." },
-            es: { title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Sin complicaciones." }
+            pt: { 
+                title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Sem complicações.",
+                step1: "Upload", step2: "Config", step3: "Download",
+                t1: "Comece por aqui", d1: "Selecione o seu arquivo .srt para iniciar o processamento.", btnUpload: "⬆ Selecionar Arquivo",
+                t2: "Configurar Tradução", d2: "Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.", btnBack: "← Voltar", btnStart: "Iniciar Tradução",
+                t3: "Processamento Concluído", d3: "A IA finalizou a tradução com sucesso. O arquivo está pronto.", btnNew: "← Traduzir outro arquivo",
+                loadingTitle: "Processando Dados...", loadingDesc: "Analisando contexto e traduzindo blocos.",
+                btnDownload: "⬇️ Baixar Legenda Traduzida",
+                footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>"
+            },
+            en: { 
+                title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. No hassle.",
+                step1: "Upload", step2: "Config", step3: "Download",
+                t1: "Start here", d1: "Select your .srt file to start processing.", btnUpload: "⬆ Select File",
+                t2: "Configure Translation", d2: "Choose the target language. Our AI will process the subtitle while maintaining sync.", btnBack: "← Back", btnStart: "Start Translation",
+                t3: "Processing Complete", d3: "The AI has finished the translation successfully. The file is ready.", btnNew: "← Translate another file",
+                loadingTitle: "Processing Data...", loadingDesc: "Analyzing context and translating blocks.",
+                btnDownload: "⬇️ Download Translated Subtitle",
+                footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>"
+            },
+            es: { 
+                title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Sin complicaciones.",
+                step1: "Subir", step2: "Config", step3: "Descarga",
+                t1: "Empieza aquí", d1: "Selecciona tu archivo .srt para comenzar el procesamiento.", btnUpload: "⬆ Seleccionar Archivo",
+                t2: "Configurar Traducción", d2: "Elige el idioma de destino. Nuestra IA procesará el subtítulo manteniendo la sincronización.", btnBack: "← Volver", btnStart: "Iniciar Traducción",
+                t3: "Procesamiento Completado", d3: "La IA ha finalizado la traducción con éxito. El archivo está listo.", btnNew: "← Traducir otro archivo",
+                loadingTitle: "Procesando Datos...", loadingDesc: "Analizando contexto y traduciendo bloques.",
+                btnDownload: "⬇️ Descargar Subtítulo Traducido",
+                footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>"
+            }
         };
 
+        let idiomaAtual = 'pt';
+
         function mudarIdioma(lang) {
-            document.getElementById('title').innerText = textos[lang].title;
-            document.getElementById('subtitle').innerText = textos[lang].subtitle;
+            idiomaAtual = lang;
+            localStorage.setItem('lang', lang); 
+            const t = textos[lang];
+
+            document.getElementById('title').innerText = t.title; document.getElementById('subtitle').innerText = t.subtitle;
+            document.getElementById('step1-text').innerText = t.step1; document.getElementById('step2-text').innerText = t.step2; document.getElementById('step3-text').innerText = t.step3;
+            document.getElementById('t1-title').innerText = t.t1; document.getElementById('t1-desc').innerText = t.d1; document.getElementById('btn-upload-label').innerText = t.btnUpload;
+            document.getElementById('t2-title').innerText = t.t2; document.getElementById('t2-desc').innerText = t.d2; document.getElementById('btn-back-1').innerText = t.btnBack; document.getElementById('btn-start').innerText = t.btnStart;
+            document.getElementById('t3-title').innerText = t.t3; document.getElementById('t3-desc').innerText = t.d3;
+            document.getElementById('loading-title').innerText = t.loadingTitle; document.getElementById('loading-desc').innerText = t.loadingDesc;
+            document.getElementById('footer-text').innerHTML = t.footer;
+            
+            const btnDown = document.querySelector('.btn-download'); if(btnDown) btnDown.innerText = t.btnDownload;
+            const btnNew = document.getElementById('btn-new-translation'); if(btnNew) btnNew.innerText = t.btnNew;
+        }
+
+        // Inicializa o idioma salvo
+        const idiomaSalvo = localStorage.getItem('lang');
+        if (idiomaSalvo && textos[idiomaSalvo]) {
+            document.getElementById('ui-lang').value = idiomaSalvo;
+            mudarIdioma(idiomaSalvo);
         }
 
         // --- CONTROLE DE TELAS ---
@@ -419,78 +299,73 @@
             document.getElementById(telaId).classList.add('active');
             
             for(let i=1; i<=3; i++) {
-                const ind = document.getElementById(`step-indicator-${i}`);
-                const circle = document.getElementById(`circle-${i}`);
-                if(i < numero) {
-                    ind.classList.add('done'); ind.classList.remove('active'); circle.innerHTML = "✓";
-                } else if (i === numero) {
-                    ind.classList.add('active'); ind.classList.remove('done'); circle.innerHTML = i;
-                } else {
-                    ind.classList.remove('active', 'done'); circle.innerHTML = i;
-                }
+                const ind = document.getElementById(`step-indicator-${i}`); const circle = document.getElementById(`circle-${i}`);
+                if(i < numero) { ind.classList.add('done'); ind.classList.remove('active'); circle.innerHTML = "✓"; } 
+                else if (i === numero) { ind.classList.add('active'); ind.classList.remove('done'); circle.innerHTML = i; } 
+                else { ind.classList.remove('active', 'done'); circle.innerHTML = i; }
             }
+            mudarIdioma(idiomaAtual);
+        }
+
+        // --- NOVA FUNÇÃO PARA REINICIAR O FLUXO ---
+        function novaTraducao() {
+            arquivoSelecionado = null;
+            srtTraduzidoGlobal = "";
+            document.getElementById('file-upload').value = ""; // Limpa o arquivo selecionado
+            document.getElementById('download-container').innerHTML = ""; // Limpa o botão de download
+            document.getElementById('target-lang').selectedIndex = 0; // Reseta o select de idiomas
+            mudarTela(1); // Volta para o passo 1
         }
 
         // --- UPLOAD E TRADUÇÃO ---
-        document.getElementById('file-upload').addEventListener('change', function(e) {
-            if (e.target.files[0]) {
-                arquivoSelecionado = e.target.files[0];
+        let arquivoSelecionado = null; 
+        let srtTraduzidoGlobal = "";
+
+        document.getElementById('file-upload').addEventListener('change', function(e) { 
+            if (e.target.files[0]) { 
+                arquivoSelecionado = e.target.files[0]; 
                 mudarTela(2); 
-            }
+            } 
         });
 
         async function iniciarTraducao() {
             if (!arquivoSelecionado) return;
-            document.getElementById('loading-overlay').classList.add('active');
-            simularProgresso();
-
-            const formData = new FormData();
-            formData.append('legenda', arquivoSelecionado);
+            document.getElementById('loading-overlay').classList.add('active'); simularProgresso();
+            
+            const formData = new FormData(); 
+            formData.append('legenda', arquivoSelecionado); 
             formData.append('idiomaDestino', document.getElementById('target-lang').value);
-
+            
             try {
                 const resposta = await fetch('/traduzir', { method: 'POST', body: formData });
                 const dados = await resposta.json();
-
                 if (!resposta.ok) throw new Error(dados.erro || "Erro no servidor");
                 
-                srtTraduzidoGlobal = dados.srtTraduzido;
+                srtTraduzidoGlobal = dados.srtTraduzido; 
                 document.getElementById('loading-overlay').classList.remove('active');
                 
-                const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' });
+                const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' }); 
                 const url = URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = 'legenda-traduzida.srt';
-                link.innerText = "⬇️ Baixar Legenda Traduzida";
+                const link = document.createElement('a'); 
+                link.href = url; 
+                link.download = 'legenda-traduzida.srt'; 
+                link.innerText = textos[idiomaAtual].btnDownload; 
                 link.className = 'btn-download';
                 
-                const container = document.getElementById('download-container');
-                container.innerHTML = "";
-                container.appendChild(link);
-
+                const container = document.getElementById('download-container'); 
+                container.innerHTML = ""; 
+                container.appendChild(link); 
                 mudarTela(3); 
-            } catch (erro) {
-                document.getElementById('loading-overlay').classList.remove('active');
-                alert("Erro: " + erro.message);
+            } catch (erro) { 
+                document.getElementById('loading-overlay').classList.remove('active'); 
+                alert("Erro: " + erro.message); 
             }
         }
 
         function simularProgresso() {
-            let width = 0;
-            const fill = document.getElementById('progress-fill');
-            const text = document.getElementById('progress-text');
-            fill.style.width = '0%'; text.innerText = '0%';
-            
-            const interval = setInterval(() => {
-                if (width >= 90) clearInterval(interval);
-                else {
-                    width += Math.random() * 15;
-                    if (width > 90) width = 90;
-                    fill.style.width = `${width}%`; text.innerText = `${Math.round(width)}%`;
-                }
-            }, 200);
+            let width = 0; const fill = document.getElementById('progress-fill'); const text = document.getElementById('progress-text'); fill.style.width = '0%'; text.innerText = '0%';
+            const interval = setInterval(() => { if (width >= 90) clearInterval(interval); else { width += Math.random() * 15; if (width > 90) width = 90; fill.style.width = `${width}%`; text.innerText = `${Math.round(width)}%`; } }, 200);
         }
     </script>
 </body>
-</html>F``ƒ
+</html>

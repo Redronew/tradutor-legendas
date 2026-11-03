@@ -10,33 +10,15 @@
         :root { --bg-base: #0a0a0f; --text-main: #ffffff; --text-muted: #8b8b9e; --header-bg: #0f172a; --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-        
         header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        /* LOGO ATUALIZADO */
-        .logo { 
-            font-size: 26px; 
-            font-weight: 800; 
-            letter-spacing: -0.5px;
-            background: var(--gradient-primary); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px;
-        }
+        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: center; gap: 12px; }
         .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
-        
         .btn-back { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; }
         .btn-back:hover { color: var(--text-main); }
-
         .content { max-width: 800px; margin: 60px auto; padding: 0 20px; flex: 1; }
         h1 { font-size: 32px; margin-bottom: 30px; color: var(--text-main); }
         p { color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
         .highlight { color: #00f2fe; font-weight: 600; }
-
-        /* Rodapé Padronizado */
         footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto; }
         footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
         footer a:hover { color: #ffffff; }
@@ -51,31 +33,58 @@
                 <path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
                 <defs>
                     <linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#00f2fe"/>
-                        <stop offset="1" stop-color="#4facfe"/>
+                        <stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/>
                     </linearGradient>
                 </defs>
             </svg>
             Subtitle<span>AI</span>
         </a>
-        <a href="/" class="btn-back">← Voltar ao Início</a>
+        <a href="/" class="btn-back" id="back-btn">← Voltar ao Início</a>
     </header>
 
     <div class="content">
-        <h1>Sobre o Subtitle AI</h1>
-        
-        <p>Olá! Meu nome é <span class="highlight">Isaac</span> e eu criei o Subtitle AI.</p>
-        
-        <p>Sempre fui fã de filmes, séries e animes, mas muitas vezes me deparei com legendas apenas em inglês e sem tempo (ou paciência) para traduzi-las manualmente. Foi aí que decidi construir uma ferramenta simples, rápida e gratuita para resolver esse problema.</p>
-
-        <p>Este site foi desenvolvido do zero para ser leve, seguro e fácil de usar. Espero que ele ajude você a aproveitar ainda mais o seu conteúdo favorito!</p>
-
-        <h2>Contato</h2>
-        <p>Se você tiver sugestões, encontrar algum bug ou quiser apenas dizer "oi", entre em contato pelo e-mail: <strong class="highlight">retronewfilms@gmail.com</strong></p>
+        <h1 id="title">Sobre o Subtitle AI</h1>
+        <div id="body-content">
+            <p>Olá! Meu nome é <span class="highlight">Fabio</span> e eu criei o Subtitle AI.</p>
+            <p>Sempre fui fã de filmes, séries e animes, mas muitas vezes me deparei com legendas apenas em inglês e sem tempo (ou paciência) para traduzi-las manualmente. Foi aí que decidi construir uma ferramenta simples, rápida e gratuita para resolver esse problema.</p>
+            <p>Este site foi desenvolvido do zero para ser leve, seguro e fácil de usar. Espero que ele ajude você a aproveitar ainda mais o seu conteúdo favorito!</p>
+            <h2>Contato</h2>
+            <p>Se você tiver sugestões, encontrar algum bug ou quiser apenas dizer "oi", entre em contato pelo e-mail: <strong class="highlight">seuemail@exemplo.com</strong></p>
+        </div>
     </div>
 
     <footer>
-        <p>Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
     </footer>
+
+    <script>
+        const traducoes = {
+            pt: { title: "Sobre o Subtitle AI", back: "← Voltar ao Início", content: document.getElementById('body-content').innerHTML, footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>" },
+            en: { title: "About Subtitle AI", back: "← Back to Home", content: `
+                <p>Hello! My name is <span class="highlight">Fabio</span> and I created Subtitle AI.</p>
+                <p>I've always been a fan of movies, series, and anime, but I often found subtitles only in English and didn't have the time (or patience) to translate them manually. That's when I decided to build a simple, fast, and free tool to solve this problem.</p>
+                <p>This site was developed from scratch to be lightweight, secure, and easy to use. I hope it helps you enjoy your favorite content even more!</p>
+                <h2>Contact</h2>
+                <p>If you have suggestions, find a bug, or just want to say "hi", contact me by email: <strong class="highlight">seuemail@exemplo.com</strong></p>
+            `, footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>" },
+            es: { title: "Sobre Subtitle AI", back: "← Volver al Inicio", content: `
+                <p>¡Hola! Mi nombre es <span class="highlight">Fabio</span> y creé Subtitle AI.</p>
+                <p>Siempre he sido fanático de las películas, series y anime, pero muchas veces me encontré con subtítulos solo en inglés y sin tiempo (o paciencia) para traducirlos manualmente. Fue entonces cuando decidí construir una herramienta simple, rápida y gratuita para resolver este problema.</p>
+                <p>Este sitio fue desarrollado desde cero para ser ligero, seguro y fácil de usar. ¡Espero que te ayude a disfrutar aún más tu contenido favorito!</p>
+                <h2>Contacto</h2>
+                <p>Si tienes sugerencias, encuentras un error o simplemente quieres decir "hola", contáctame por correo electrónico: <strong class="highlight">seuemail@exemplo.com</strong></p>
+            `, footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>" }
+        };
+
+        // Verifica o idioma na URL ou no localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
+        if (!traducoes[lang]) lang = 'pt';
+
+        document.getElementById('title').innerText = traducoes[lang].title;
+        document.getElementById('back-btn').innerText = traducoes[lang].back;
+        document.getElementById('body-content').innerHTML = traducoes[lang].content;
+        document.getElementById('footer-text').innerHTML = traducoes[lang].footer;
+    </script>
 </body>
 </html>

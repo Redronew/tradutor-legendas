@@ -10,35 +10,17 @@
         :root { --bg-base: #0a0a0f; --text-main: #ffffff; --text-muted: #8b8b9e; --header-bg: #0f172a; --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-        
         header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        
-        /* LOGO ATUALIZADO */
-        .logo { 
-            font-size: 26px; 
-            font-weight: 800; 
-            letter-spacing: -0.5px;
-            background: var(--gradient-primary); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            text-decoration: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px;
-        }
+        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: center; gap: 12px; }
         .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
-        
         .btn-back { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; }
         .btn-back:hover { color: var(--text-main); }
-
         .content { max-width: 800px; margin: 60px auto; padding: 0 20px; flex: 1; }
         h1 { font-size: 32px; margin-bottom: 30px; color: var(--text-main); }
         h2 { font-size: 20px; margin-top: 30px; margin-bottom: 10px; color: #00f2fe; font-weight: 600; }
         p { color: var(--text-muted); margin-bottom: 15px; }
         a { color: #00f2fe; text-decoration: none; }
         a:hover { text-decoration: underline; }
-
-        /* Rodapé Padronizado */
         footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: auto; }
         footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
         footer a:hover { color: #ffffff; }
@@ -53,36 +35,73 @@
                 <path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
                 <defs>
                     <linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#00f2fe"/>
-                        <stop offset="1" stop-color="#4facfe"/>
+                        <stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/>
                     </linearGradient>
                 </defs>
             </svg>
             Subtitle<span>AI</span>
         </a>
-        <a href="/" class="btn-back">← Voltar ao Início</a>
+        <a href="/" class="btn-back" id="back-btn">← Voltar ao Início</a>
     </header>
 
     <div class="content">
-        <h1>Política de Privacidade</h1>
-        <p>Última atualização: Novembro de 2026</p>
-        <p>O <strong>Subtitle AI</strong> valoriza a sua privacidade. Esta página explica como lidamos com as informações quando você usa nossa ferramenta.</p>
-
-        <h2>1. Arquivos Enviados</h2>
-        <p>Os arquivos de legenda (.srt) que você faz o upload são processados temporariamente em nosso servidor apenas para realizar a tradução. Nós <strong>não armazenamos, não lemos e não compartilhamos</strong> o conteúdo das suas legendas. Assim que o download é gerado, o arquivo é descartado.</p>
-
-        <h2>2. Cookies e Anúncios (Google AdSense)</h2>
-        <p>Este site pode usar cookies para melhorar sua experiência. Se anúncios forem exibidos (via Google AdSense), o Google pode usar cookies para veicular anúncios com base nas suas visitas anteriores a este ou a outros sites. Você pode desativar a publicidade personalizada nas <a href="https://adssettings.google.com" target="_blank">Configurações de Anúncios do Google</a>.</p>
-
-        <h2>3. Ferramenta de Tradução</h2>
-        <p>Utilizamos serviços de terceiros (como Google Tradutor) para processar o texto das legendas. Ao usar nossa ferramenta, você concorda com o envio do texto para esses serviços realizarem a tradução.</p>
-
-        <h2>4. Seus Direitos</h2>
-        <p>Como não coletamos dados pessoais (como nome, e-mail ou telefone), não há dados para serem excluídos. O uso do site é totalmente anônimo.</p>
+        <h1 id="title">Política de Privacidade</h1>
+        <div id="body-content">
+            <p>Última atualização: Novembro de 2026</p>
+            <p>O <strong>Subtitle AI</strong> valoriza a sua privacidade. Esta página explica como lidamos com as informações quando você usa nossa ferramenta.</p>
+            <h2>1. Arquivos Enviados</h2>
+            <p>Os arquivos de legenda (.srt) que você faz o upload são processados temporariamente em nosso servidor apenas para realizar a tradução. Nós <strong>não armazenamos, não lemos e não compartilhamos</strong> o conteúdo das suas legendas. Assim que o download é gerado, o arquivo é descartado.</p>
+            <h2>2. Cookies e Anúncios (Google AdSense)</h2>
+            <p>Este site pode usar cookies para melhorar sua experiência. Se anúncios forem exibidos (via Google AdSense), o Google pode usar cookies para veicular anúncios com base nas suas visitas anteriores a este ou a outros sites. Você pode desativar a publicidade personalizada nas <a href="https://adssettings.google.com" target="_blank">Configurações de Anúncios do Google</a>.</p>
+            <h2>3. Ferramenta de Tradução</h2>
+            <p>Utilizamos serviços de terceiros (como Google Tradutor) para processar o texto das legendas. Ao usar nossa ferramenta, você concorda com o envio do texto para esses serviços realizarem a tradução.</p>
+            <h2>4. Seus Direitos</h2>
+            <p>Como não coletamos dados pessoais (como nome, e-mail ou telefone), não há dados para serem excluídos. O uso do site é totalmente anônimo.</p>
+        </div>
     </div>
 
     <footer>
-        <p>Desenvolvido por Isaac &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
     </footer>
+
+    <script>
+        const traducoes = {
+            pt: { title: "Política de Privacidade", back: "← Voltar ao Início", content: document.getElementById('body-content').innerHTML, footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>" },
+            en: { title: "Privacy Policy", back: "← Back to Home", content: `
+                <p>Last updated: November 2026</p>
+                <p><strong>Subtitle AI</strong> values your privacy. This page explains how we handle information when you use our tool.</p>
+                <h2>1. Uploaded Files</h2>
+                <p>The subtitle files (.srt) you upload are temporarily processed on our server solely for translation. We <strong>do not store, read, or share</strong> the content of your subtitles. Once the download is generated, the file is discarded.</p>
+                <h2>2. Cookies and Ads (Google AdSense)</h2>
+                <p>This site may use cookies to improve your experience. If ads are displayed (via Google AdSense), Google may use cookies to serve ads based on your prior visits to this or other websites. You can disable personalized advertising in <a href="https://adssettings.google.com" target="_blank">Google Ad Settings</a>.</p>
+                <h2>3. Translation Tool</h2>
+                <p>We use third-party services (such as Google Translate) to process the subtitle text. By using our tool, you agree to send the text to these services for translation.</p>
+                <h2>4. Your Rights</h2>
+                <p>Since we do not collect personal data (such as name, email, or phone), there is no data to be deleted. Use of the site is completely anonymous.</p>
+            `, footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>" },
+            es: { title: "Política de Privacidad", back: "← Volver al Inicio", content: `
+                <p>Última actualización: Noviembre de 2026</p>
+                <p><strong>Subtitle AI</strong> valora su privacidad. Esta página explica cómo manejamos la información cuando utiliza nuestra herramienta.</p>
+                <h2>1. Archivos Subidos</h2>
+                <p>Los archivos de subtítulos (.srt) que sube se procesan temporalmente en nuestro servidor únicamente para la traducción. <strong>No almacenamos, leemos ni compartimos</strong> el contenido de sus subtítulos. Una vez que se genera la descarga, el archivo se descarta.</p>
+                <h2>2. Cookies y Anuncios (Google AdSense)</h2>
+                <p>Este sitio puede utilizar cookies para mejorar su experiencia. Si se muestran anuncios (a través de Google AdSense), Google puede utilizar cookies para publicar anuncios basados en sus visitas anteriores a este u otros sitios web. Puede desactivar la publicidad personalizada en <a href="https://adssettings.google.com" target="_blank">Configuración de anuncios de Google</a>.</p>
+                <h2>3. Herramienta de Traducción</h2>
+                <p>Utilizamos servicios de terceros (como Google Translate) para procesar el texto de los subtítulos. Al utilizar nuestra herramienta, acepta enviar el texto a estos servicios para su traducción.</p>
+                <h2>4. Sus Derechos</h2>
+                <p>Como no recopilamos datos personales (como nombre, correo electrónico o teléfono), no hay datos para eliminar. El uso del sitio es completamente anónimo.</p>
+            `, footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>" }
+        };
+
+        // Verifica o idioma na URL ou no localStorage
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
+        if (!traducoes[lang]) lang = 'pt';
+
+        document.getElementById('title').innerText = traducoes[lang].title;
+        document.getElementById('back-btn').innerText = traducoes[lang].back;
+        document.getElementById('body-content').innerHTML = traducoes[lang].content;
+        document.getElementById('footer-text').innerHTML = traducoes[lang].footer;
+    </script>
 </body>
 </html>
