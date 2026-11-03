@@ -3,334 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subtitle Translator</title>
+    <title>Subtitle AI - Tradução Inteligente</title>
     
-    <!-- Favicon -->
-   <link rel="icon" href="srt_fav.png" type="image/png">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        :root { --primary: #d32f2f; --primary-hover: #b71c1c; --bg: #ffffff; --text: #333333; --border: #dddddd; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body { background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
+        /* --- VARIÁVEIS DE TEMA --- */
+        :root {
+            /* Tema Escuro (Padrão) */
+            --bg-base: #0a0a0f;
+            --bg-panel: rgba(25, 25, 35, 0.7);
+            --text-main: #ffffff;
+            --text-muted: #8b8b9e;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.3);
+            
+            /* Cores Fixas (Cabeçalho e Rodapé) */
+            --header-bg: #0f172a; /* Azul escuro profundo */
+            --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: rgba(0,0,0,0.4);
+        }
+
+        /* Tema Claro */
+        [data-theme="light"] {
+            --bg-base: #f4f6f9;
+            --bg-panel: rgba(255, 255, 255, 0.9);
+            --text-main: #1a1a24;
+            --text-muted: #666677;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --input-bg: #ffffff;
+            
+            --header-bg: #0f172a; 
+            --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #5b247a 0%, #1bcedf 100%);
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         
-        header { background: var(--primary); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 24px; font-weight: bold; }
-        .logo span { font-weight: normal; font-size: 16px; }
-        .lang-selector select { padding: 6px; border-radius: 4px; border: none; cursor: pointer; }
-
-        .main-content { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; flex: 1; }
-        h1 { font-size: 32px; font-weight: 400; margin-bottom: 10px; }
-        .subtitle { color: #666; font-size: 15px; margin-bottom: 30px; }
-
-        /* A Caixa Principal */
-        .wizard-box { border: 1px solid var(--border); padding: 60px 20px; background: #fff; position: relative; min-height: 400px; }
+        body { 
+            background-color: var(--bg-base); 
+            color: var(--text-main); 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(118, 75, 162, 0.05), transparent 25%);
+        }
         
-        /* Passos no canto */
-        .steps { position: absolute; top: 20px; right: 20px; display: flex; align-items: center; gap: 5px; color: #999; font-size: 13px; }
-        .step { display: flex; flex-direction: column; align-items: center; }
-        .step-circle { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #ccc; display: flex; justify-content: center; align-items: center; margin-bottom: 4px; background: white; }
-        .step.active .step-circle { background: var(--primary); color: white; border-color: var(--primary); }
-        .step.done .step-circle { background: var(--primary); color: white; border-color: var(--primary); content: "✓"; }
-        .step.active { color: var(--primary); font-weight: bold; }
+        /* --- CABEÇALHO FIXO --- */
+        header { 
+            background-color: var(--header-bg); 
+            padding: 20px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky; top: 0; z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+        }
+        
+        /* LOGO ATUALIZADO */
+        .logo { 
+            font-size: 26px; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        .logo span { 
+            font-weight: 300; 
+            color: #8b8b9e; 
+            -webkit-text-fill-color: #8b8b9e;
+        }
+        
+        .header-controls { display: flex; gap: 15px; align-items: center; }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            width: 40px; height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .theme-toggle:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
 
-        /* Telas */
+        .lang-selector select { 
+            padding: 8px 12px; 
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            background: rgba(255, 255, 255, 0.1); 
+            color: #ffffff; 
+            cursor: pointer; 
+            outline: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .lang-selector select option { color: #000; }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .main-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; flex: 1; width: 100%; }
+        
+        h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s; }
+        .subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 50px; font-weight: 300; transition: color 0.3s; }
+
+        .wizard-box { 
+            background: var(--bg-panel); 
+            border: 1px solid var(--border-color); 
+            border-radius: 24px; 
+            padding: 60px 40px; 
+            position: relative; 
+            min-height: 450px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px var(--shadow);
+            display: flex; flex-direction: column; justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .steps { position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 12px; font-weight: 600; }
+        .step { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.3s; }
+        .step-circle { 
+            width: 32px; height: 32px; border-radius: 50%; 
+            border: 2px solid var(--border-color); 
+            display: flex; justify-content: center; align-items: center; 
+            background: transparent; color: var(--text-muted);
+            transition: 0.3s;
+        }
+        .step.active .step-circle { 
+            border-color: transparent; background: var(--gradient-primary); color: #000; font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+        }
+        .step.active { color: var(--text-main); }
+        
         .screen { display: none; }
-        .screen.active { display: block; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .screen.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .screen h2 { font-size: 26px; font-weight: 400; margin-bottom: 15px; }
-        .screen p { color: #555; margin-bottom: 25px; }
+        .screen h2 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+        .screen p { color: var(--text-muted); margin-bottom: 40px; font-size: 15px; }
 
-        /* Botões */
-        .btn-red { background: var(--primary); color: white; padding: 12px 30px; font-size: 16px; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; }
-        .btn-red:hover { background: var(--primary-hover); }
-        .btn-green { background: #4caf50; color: white; padding: 10px 20px; font-size: 14px; border: none; cursor: pointer; border-radius: 3px; font-weight: bold; }
-        .btn-outline { background: transparent; color: #555; padding: 10px 20px; font-size: 14px; border: none; cursor: pointer; font-weight: bold; }
+        .btn-primary { 
+            background: var(--gradient-primary); color: #000; padding: 16px 40px; font-size: 16px; border: none; 
+            cursor: pointer; border-radius: 12px; font-weight: 800; transition: 0.3s; display: inline-block;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
+        
+        .btn-secondary { 
+            background: transparent; color: var(--text-muted); padding: 16px 30px; font-size: 14px; 
+            border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s;
+        }
+        .btn-secondary:hover { background: var(--border-color); color: var(--text-main); }
         
         input[type="file"] { display: none; }
 
-        /* Tabela */
-        .file-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; text-align: left; }
-        .file-table th, .file-table td { border-bottom: 1px solid var(--border); padding: 12px; }
-        .file-table th { background: #f9f9f9; font-weight: bold; }
-        .btn-delete { background: none; border: none; cursor: pointer; color: #d32f2f; font-size: 18px; }
+        .select-lang { 
+            width: 100%; max-width: 300px; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; 
+            font-size: 16px; background: var(--input-bg); color: var(--text-main); margin-bottom: 30px; outline: none; transition: 0.3s;
+        }
         
-        .file-info { display: flex; justify-content: flex-start; gap: 20px; font-size: 13px; color: #555; margin-bottom: 10px; }
-        .actions-row { display: flex; justify-content: space-between; margin-top: 30px; }
+        .actions-row { display: flex; justify-content: space-between; margin-top: 40px; align-items: center;}
 
-        .select-lang { width: 100%; max-width: 400px; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; margin-bottom: 30px; }
-        .google-badge { font-size: 12px; color: #777; margin-bottom: 30px; }
-
-        /* Overlay de Carregamento */
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        /* --- OVERLAY DE CARREGAMENTO --- */
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .overlay.active { display: flex; }
-        .loading-box { background: white; padding: 40px; border-radius: 8px; text-align: center; width: 500px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .loading-box h3 { font-size: 24px; font-weight: 400; margin-bottom: 10px; }
-        .loading-box p { color: #666; margin-bottom: 20px; font-size: 14px; }
+        .loading-box { background: var(--bg-panel); border: 1px solid var(--border-color); padding: 40px; border-radius: 24px; text-align: center; width: 400px; box-shadow: 0 20px 40px var(--shadow); }
+        .loading-box h3 { font-size: 20px; margin-bottom: 10px; }
+        .loading-box p { color: var(--text-muted); margin-bottom: 20px; font-size: 13px; }
         
-        .progress-bar-container { width: 100%; height: 20px; background: #eee; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
-        .progress-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
-        .progress-text { color: var(--primary); font-weight: bold; margin-bottom: 30px; }
+        .progress-bar-container { width: 100%; height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+        .progress-bar-fill { height: 100%; background: var(--gradient-primary); width: 0%; transition: width 0.3s ease; }
+        .progress-text { color: #00f2fe; font-weight: bold; margin-bottom: 20px; font-size: 14px; }
 
-        /* Modal de Edição */
-        .modal-edit { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1001; justify-content: center; align-items: center; }
-        .modal-edit.active { display: flex; }
-        .modal-box { background: white; padding: 30px; border-radius: 8px; width: 600px; text-align: left; }
-        .modal-box h3 { font-size: 20px; margin-bottom: 15px; }
-        .modal-box p { color: #555; margin-bottom: 25px; font-size: 15px; }
-        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
+        .btn-download { 
+            display: inline-block; padding: 16px 40px; background: var(--gradient-secondary); color: white; text-decoration: none; 
+            border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 20px; transition: 0.3s;
+        }
+        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3); }
 
-        .btn-download { display: inline-block; padding: 14px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 16px; }
-
-        /* Rodapé */
-        footer { margin-top: 50px; padding: 20px; text-align: center; color: #888; font-size: 13px; border-top: 1px solid var(--border); background: white; }
-        footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
-        
-        /* Seção de SEO (Texto explicativo) */
-        .seo-section { max-width: 900px; margin: 40px auto; text-align: left; padding: 0 20px; color: #555; line-height: 1.6; }
-        .seo-section h2 { font-size: 22px; color: #333; margin-bottom: 15px; margin-top: 30px; }
-        .seo-section p { margin-bottom: 15px; }
+        /* --- RODAPÉ FIXO E VISÍVEL --- */
+        footer { 
+            background-color: var(--header-bg);
+            padding: 20px; 
+            text-align: center; 
+            color: #d1d5db;
+            font-size: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            margin-top: auto; 
+            font-weight: 400;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1); 
+        }
+        footer a { 
+            color: #00f2fe;
+            text-decoration: none; 
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        footer a:hover { 
+            text-decoration: underline; 
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
 
+    <!-- CABEÇALHO AZUL ESCURO -->
     <header>
-        <div class="logo">Subtitles <span>TRANSLATOR</span></div>
-        <div class="lang-selector">
-            <select id="ui-lang" onchange="mudarIdioma(this.value)">
-                <option value="pt">Português</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-            </select>
+        <div class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/>
+                <path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                    <linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#00f2fe"/>
+                        <stop offset="1" stop-color="#4facfe"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            Subtitle<span>AI</span>
+        </div>
+        
+        <div class="header-controls">
+            <button class="theme-toggle" id="theme-toggle" title="Alternar Tema">🌙</button>
+            
+            <div class="lang-selector">
+                <select id="ui-lang" onchange="mudarIdioma(this.value)">
+                    <option value="pt">🇧🇷 PT</option>
+                    <option value="en">🇺🇸 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+            </div>
         </div>
     </header>
 
     <main class="main-content">
-        <h1 id="title">Ferramenta online gratuita de tradução de legendas</h1>
-        <p class="subtitle" id="subtitle">Traduza arquivos .srt de forma rápida e fácil.</p>
+        <h1 id="title">Tradução de Legendas com IA</h1>
+        <p class="subtitle" id="subtitle">Rápido, preciso e direto ao ponto. Sem complicações.</p>
 
         <div class="wizard-box">
-            <!-- Indicador de Passos -->
             <div class="steps">
                 <div class="step active" id="step-indicator-1">
                     <div class="step-circle" id="circle-1">1</div><span>Upload</span>
                 </div>
                 <div class="step" id="step-indicator-2">
-                    <div class="step-circle" id="circle-2">2</div><span>Próximo</span>
+                    <div class="step-circle" id="circle-2">2</div><span>Config</span>
                 </div>
                 <div class="step" id="step-indicator-3">
-                    <div class="step-circle" id="circle-3">3</div><span>Traduzir</span>
+                    <div class="step-circle" id="circle-3">3</div><span>Download</span>
                 </div>
             </div>
 
-            <!-- TELA 1: UPLOAD -->
             <div class="screen active" id="screen-1">
-                <h2>Vamos Traduzir!</h2>
-                <p>Para começar, clique no botão abaixo para enviar seus arquivos.</p>
-                <label for="file-upload" class="btn-red" style="display:inline-block; cursor:pointer;">
-                    ⬆ UPLOAD
+                <h2>Comece por aqui</h2>
+                <p>Selecione o seu arquivo .srt para iniciar o processamento.</p>
+                <label for="file-upload" class="btn-primary" style="cursor:pointer;">
+                    ⬆ Selecionar Arquivo
                 </label>
                 <input id="file-upload" type="file" accept=".srt" />
             </div>
 
-            <!-- TELA 2: REVISÃO -->
-            <div class="screen" id="screen-2">
-                <h2>Upload</h2>
-                <p>Revise os arquivos! Se tudo estiver certo, clique em "Próximo".</p>
-                
-                <div style="text-align: left; margin-top: 20px;">
-                    <button class="btn-green" style="margin-bottom: 15px;">+ ADICIONAR</button>
-                    <div class="file-info">
-                        <span>Arquivos: 1/20</span>
-                        <span id="t2-info-size">Tamanho: 0/1000 KB</span>
-                    </div>
-                    
-                    <table class="file-table">
-                        <thead>
-                            <tr>
-                                <th>Suporte</th>
-                                <th>Nome</th>
-                                <th>Tamanho</th>
-                                <th>Formato</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="file-list"></tbody>
-                    </table>
-                </div>
-
-                <div class="actions-row">
-                    <button class="btn-outline" onclick="mudarTela(1)">← VOLTAR</button>
-                    <button class="btn-red" onclick="mudarTela(3)">PRÓXIMO →</button>
-                </div>
-            </div>
-
-            <!-- TELA 3: ESCOLHER IDIOMA -->
             <div class="screen" id="screen-3">
-                <button class="btn-outline" style="position: absolute; left: 20px; top: 20px;" onclick="mudarTela(2)">← VOLTAR</button>
-                
-                <h2>Traduzir</h2>
-                <p>Selecione o idioma final e então clique no botão para traduzir.</p>
+                <h2>Configurar Tradução</h2>
+                <p>Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.</p>
 
                 <select class="select-lang" id="target-lang">
-                    <option value="pt">Português</option>
-                    <option value="en">Inglês</option>
-                    <option value="es">Espanhol</option>
-                    <option value="ru">Russo</option>
-                    <option value="ja">Japonês</option>
-                    <option value="cs">Tcheco</option>
-                </select>
-                <div class="google-badge">Powered by Google Tradutor</div>
+                    <optgroup label="América e Europa">
+                        <option value="pt">Português</option>
+                        <option value="en">Inglês</option>
+                        <option value="es">Espanhol</option>
+                        <option value="fr">Francês</option>
+                        <option value="de">Alemão</option>
+                        <option value="it">Italiano</option>
+                        <option value="nl">Holandês</option>
+                        <option value="sv">Sueco</option>
+                        <option value="pl">Polonês</option>
+                        <option value="da">Dinamarquês</option>
+                        <option value="no">Norueguês</option>
+                        <option value="fi">Finlandês</option>
+                        <option value="el">Grego</option>
+                        <option value="hu">Húngaro</option>
+                        <option value="cs">Tcheco</option>
+                        <option value="ro">Romeno</option>
+                        <option value="uk">Ucraniano</option>
+                        <option value="ru">Russo</option>
+                    </optgroup>
 
-                <button class="btn-red" onclick="iniciarTraducao()" style="width: 200px;">TRADUZIR</button>
+                    <optgroup label="Ásia">
+                        <option value="ja">Japonês</option>
+                        <option value="ko">Coreano</option>
+                        <option value="zh-CN">Chinês (Simplificado)</option>
+                        <option value="zh-TW">Chinês (Tradicional)</option>
+                        <option value="hi">Hindi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="th">Tailandês</option>
+                        <option value="vi">Vietnamita</option>
+                        <option value="id">Indonésio</option>
+                        <option value="ms">Malaio</option>
+                        <option value="tl">Filipino (Tagalo)</option>
+                    </optgroup>
+
+                    <optgroup label="Oriente Médio e África">
+                        <option value="ar">Árabe</option>
+                        <option value="he">Hebraico</option>
+                        <option value="tr">Turco</option>
+                        <option value="fa">Persa (Farsi)</option>
+                        <option value="ur">Urdu</option>
+                        <option value="sw">Suaíli</option>
+                        <option value="af">Africâner</option>
+                        <option value="am">Amárico</option>
+                    </optgroup>
+
+                    <optgroup label="Outros">
+                        <option value="ca">Catalão</option>
+                        <option value="gl">Galego</option>
+                        <option value="eu">Basco</option>
+                        <option value="is">Islandês</option>
+                        <option value="ga">Irlandês</option>
+                        <option value="cy">Galês</option>
+                        <option value="lt">Lituano</option>
+                        <option value="lv">Letão</option>
+                        <option value="et">Estoniano</option>
+                        <option value="sl">Esloveno</option>
+                        <option value="sk">Eslovaco</option>
+                        <option value="bg">Búlgaro</option>
+                        <option value="hr">Croata</option>
+                        <option value="sr">Sérvio</option>
+                        <option value="sq">Albanês</option>
+                        <option value="mk">Macedônio</option>
+                    </optgroup>
+                </select>
+                                    
+                <div class="actions-row">
+                    <button class="btn-secondary" onclick="mudarTela(1)">← Voltar</button>
+                    <button class="btn-primary" onclick="iniciarTraducao()">Iniciar Tradução</button>
+                </div>
             </div>
 
-            <!-- TELA 4: DOWNLOAD -->
             <div class="screen" id="screen-4">
-                <h2>Download</h2>
-                <p>Tradução feita com sucesso! Clique no botão abaixo para fazer o download do seu arquivo.</p>
-                <div id="download-container" style="margin-top: 40px;"></div>
+                <h2>Processamento Concluído</h2>
+                <p>A IA finalizou a tradução com sucesso. O arquivo está pronto.</p>
+                <div id="download-container"></div>
             </div>
         </div>
     </main>
 
-    <!-- Seção de SEO -->
-    <section class="seo-section" id="seo-section">
-        <h2>Sobre o Tradutor de Legendas</h2>
-        <p>Nossa ferramenta é a solução definitiva para quem precisa traduzir arquivos de legenda (SRT) de forma rápida, gratuita e sem complicação. Se você baixou uma série ou filme e a legenda está em inglês, espanhol ou qualquer outro idioma, basta fazer o upload do arquivo aqui e escolher a língua desejada.</p>
-        
-        <h2>Como usar?</h2>
-        <p>O processo é dividido em três passos simples: 1. Clique no botão de Upload e envie seu arquivo .srt. 2. Revise o arquivo carregado na tabela. 3. Escolha o idioma de destino e clique em traduzir. Em segundos, você poderá baixar o arquivo traduzido, mantendo a sincronia perfeita dos tempos originais.</p>
-        
-        <h2>Formatos Suportados</h2>
-        <p>Atualmente, nossa ferramenta suporta o formato SubRip (.srt), que é o padrão mais utilizado por players de vídeo e softwares de edição.</p>
-    </section>
-
-    <!-- Rodapé -->
-    <footer>
-        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. Gostou da ferramenta? <a href="#" target="_blank">Apoie o projeto!</a></p>
-        <p style="margin-top: 10px; font-size: 12px;">
-            <a href="/privacidade.html" style="color: #666; margin: 0 10px;">Política de Privacidade</a> | 
-            <a href="/sobre.html" style="color: #666; margin: 0 10px;">Sobre / Contato</a>
-        </p>
-    </footer>
-
-    <!-- OVERLAY DE CARREGAMENTO -->
     <div class="overlay" id="loading-overlay">
         <div class="loading-box">
-            <h3>Traduzindo...</h3>
-            <p>O tempo de tradução depende do seu dispositivo e da sua velocidade de conexão.</p>
+            <h3>Processando Dados...</h3>
+            <p>Analisando contexto e traduzindo blocos.</p>
             <div class="progress-bar-container">
                 <div class="progress-bar-fill" id="progress-fill"></div>
             </div>
             <div class="progress-text" id="progress-text">0%</div>
-            <p>Por favor, fique nesta página.</p>
         </div>
     </div>
 
-    <!-- MODAL DE EDIÇÃO -->
-    <div class="modal-edit" id="edit-modal">
-        <div class="modal-box">
-            <h3>Você gostaria de editar as legendas?</h3>
-            <p>Clique em "ACEITAR" se você deseja editar o arquivo traduzido ou clique em "CANCELAR" para ir direto para o download.</p>
-            <div class="modal-actions">
-                <button class="btn-outline" onclick="finalizarTraducao()">CANCELAR</button>
-                <button class="btn-outline" onclick="alert('A edição será implementada no futuro!')">ACEITAR</button>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>Desenvolvido por Isaac &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+    </footer>
 
     <script>
+        // --- LÓGICA DO TEMA CLARO/ESCURO ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const rootElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'light') {
+            rootElement.setAttribute('data-theme', 'light');
+            themeToggleBtn.innerText = '☀️';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (rootElement.getAttribute('data-theme') === 'light') {
+                rootElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeToggleBtn.innerText = '🌙';
+            } else {
+                rootElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggleBtn.innerText = '☀️';
+            }
+        });
+
+        // --- LÓGICA DE IDIOMAS ---
         let arquivoSelecionado = null;
         let srtTraduzidoGlobal = "";
 
-        // --- SISTEMA DE TRADUÇÃO DA INTERFACE ---
         const textos = {
-            pt: { title: "Ferramenta online gratuita de tradução de legendas", subtitle: "Traduza arquivos .srt de forma rápida e fácil.", seo1: "Sobre o Tradutor de Legendas", seo2: "Como usar?", seo3: "Formatos Suportados", footer: "Desenvolvido por Fabio &copy; 2026. Gostou da ferramenta? <a href='#'>Apoie o projeto!</a>" },
-            en: { title: "Free online subtitle translation tool", subtitle: "Translate .srt files quickly and easily.", seo1: "About the Subtitle Translator", seo2: "How to use?", seo3: "Supported Formats", footer: "Developed by Fabio &copy; 2026. Liked the tool? <a href='#'>Support the project!</a>" },
-            es: { title: "Herramienta gratuita de traducción de subtítulos", subtitle: "Traduce archivos .srt de forma rápida y sencilla.", seo1: "Sobre el Traductor de Subtítulos", seo2: "¿Cómo usar?", seo3: "Formatos Soportados", footer: "Desarrollado por Fabio &copy; 2026. ¿Te gustó la herramienta? <a href='#'>¡Apoya el proyecto!</a>" }
-        };
-
-        let idiomaAtual = 'pt';
-
-        // Detecção automática
-        window.onload = function() {
-            const navLang = navigator.language.split('-')[0];
-            if (navLang === 'en' || navLang === 'es') {
-                document.getElementById('ui-lang').value = navLang;
-                mudarIdioma(navLang);
-            }
+            pt: { title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Sem complicações." },
+            en: { title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. No hassle." },
+            es: { title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Sin complicaciones." }
         };
 
         function mudarIdioma(lang) {
-            idiomaAtual = lang;
             document.getElementById('title').innerText = textos[lang].title;
             document.getElementById('subtitle').innerText = textos[lang].subtitle;
-            
-            // Traduz a seção de SEO e o Rodapé
-            const seoH2s = document.querySelectorAll('.seo-section h2');
-            if (seoH2s.length >= 3) {
-                seoH2s[0].innerText = textos[lang].seo1;
-                seoH2s[1].innerText = textos[lang].seo2;
-                seoH2s[2].innerText = textos[lang].seo3;
-            }
-            document.getElementById('footer-text').innerHTML = textos[lang].footer;
         }
 
-        // --- CONTROLE DAS TELAS E PASSOS ---
+        // --- CONTROLE DE TELAS ---
         function mudarTela(numero) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(`screen-${numero}`).classList.add('active');
+            const telaId = numero === 2 ? 'screen-3' : (numero === 3 ? 'screen-4' : 'screen-1');
+            document.getElementById(telaId).classList.add('active');
             
             for(let i=1; i<=3; i++) {
                 const ind = document.getElementById(`step-indicator-${i}`);
                 const circle = document.getElementById(`circle-${i}`);
-                if(i < numero && numero !== 4) {
-                    ind.classList.add('done');
-                    ind.classList.remove('active');
-                    circle.innerHTML = "✓";
-                } else if (i === numero || (numero === 4 && i === 3)) {
-                    ind.classList.add('active');
-                    ind.classList.remove('done');
-                    circle.innerHTML = i;
+                if(i < numero) {
+                    ind.classList.add('done'); ind.classList.remove('active'); circle.innerHTML = "✓";
+                } else if (i === numero) {
+                    ind.classList.add('active'); ind.classList.remove('done'); circle.innerHTML = i;
                 } else {
-                    ind.classList.remove('active', 'done');
-                    circle.innerHTML = i;
+                    ind.classList.remove('active', 'done'); circle.innerHTML = i;
                 }
             }
         }
 
-        // --- UPLOAD ---
+        // --- UPLOAD E TRADUÇÃO ---
         document.getElementById('file-upload').addEventListener('change', function(e) {
             if (e.target.files[0]) {
                 arquivoSelecionado = e.target.files[0];
-                const sizeKB = Math.round(arquivoSelecionado.size / 1024);
-                
-                document.getElementById('file-list').innerHTML = `
-                    <tr>
-                        <td style="color: #4caf50;">✔</td>
-                        <td>${arquivoSelecionado.name}</td>
-                        <td>${sizeKB} KB</td>
-                        <td>.srt</td>
-                        <td><button class="btn-delete" onclick="removerArquivo()">🗑</button></td>
-                    </tr>
-                `;
-                document.getElementById('t2-info-size').innerText = `Tamanho: ${sizeKB}/1000 KB`;
-                mudarTela(2);
+                mudarTela(2); 
             }
         });
 
-        function removerArquivo() {
-            arquivoSelecionado = null;
-            document.getElementById('file-upload').value = "";
-            document.getElementById('file-list').innerHTML = "";
-            document.getElementById('t2-info-size').innerText = `Tamanho: 0/1000 KB`;
-            mudarTela(1);
-        }
-
-        // --- TRADUÇÃO E OVERLAY ---
         async function iniciarTraducao() {
             if (!arquivoSelecionado) return;
-
             document.getElementById('loading-overlay').classList.add('active');
             simularProgresso();
 
@@ -345,51 +455,42 @@
                 if (!resposta.ok) throw new Error(dados.erro || "Erro no servidor");
                 
                 srtTraduzidoGlobal = dados.srtTraduzido;
-                
                 document.getElementById('loading-overlay').classList.remove('active');
-                document.getElementById('edit-modal').classList.add('active');
+                
+                const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'legenda-traduzida.srt';
+                link.innerText = "⬇️ Baixar Legenda Traduzida";
+                link.className = 'btn-download';
+                
+                const container = document.getElementById('download-container');
+                container.innerHTML = "";
+                container.appendChild(link);
 
+                mudarTela(3); 
             } catch (erro) {
                 document.getElementById('loading-overlay').classList.remove('active');
                 alert("Erro: " + erro.message);
             }
         }
 
-        function finalizarTraducao() {
-            document.getElementById('edit-modal').classList.remove('active');
-            
-            const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'legenda-traduzida.srt';
-            link.innerText = "⬇️ Download";
-            link.className = 'btn-download';
-            
-            const container = document.getElementById('download-container');
-            container.innerHTML = "";
-            container.appendChild(link);
-
-            mudarTela(4);
-        }
-
         function simularProgresso() {
             let width = 0;
             const fill = document.getElementById('progress-fill');
             const text = document.getElementById('progress-text');
-            fill.style.width = '0%';
-            text.innerText = '0%';
+            fill.style.width = '0%'; text.innerText = '0%';
             
             const interval = setInterval(() => {
                 if (width >= 90) clearInterval(interval);
                 else {
-                    width += Math.random() * 10;
+                    width += Math.random() * 15;
                     if (width > 90) width = 90;
-                    fill.style.width = `${width}%`;
-                    text.innerText = `${Math.round(width)}%`;
+                    fill.style.width = `${width}%`; text.innerText = `${Math.round(width)}%`;
                 }
-            }, 300);
+            }, 200);
         }
     </script>
 </body>
-</html>
+</html>F``ƒ
