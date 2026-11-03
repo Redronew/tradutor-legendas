@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subtitle Translator</title>
+    
+    <!-- Favicon -->
+   <link rel="icon" href="srt_fav.png" type="image/png">
     <style>
         :root { --primary: #d32f2f; --primary-hover: #b71c1c; --bg: #ffffff; --text: #333333; --border: #dddddd; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        body { background: var(--bg); color: var(--text); }
+        body { background: var(--bg); color: var(--text); display: flex; flex-direction: column; min-height: 100vh; }
         
         header { background: var(--primary); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 24px; font-weight: bold; }
         .logo span { font-weight: normal; font-size: 16px; }
         .lang-selector select { padding: 6px; border-radius: 4px; border: none; cursor: pointer; }
 
-        .main-content { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; }
+        .main-content { max-width: 900px; margin: 40px auto; padding: 0 20px; text-align: center; flex: 1; }
         h1 { font-size: 32px; font-weight: 400; margin-bottom: 10px; }
         .subtitle { color: #666; font-size: 15px; margin-bottom: 30px; }
 
@@ -77,6 +80,15 @@
         .modal-actions { display: flex; justify-content: flex-end; gap: 10px; }
 
         .btn-download { display: inline-block; padding: 14px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 16px; }
+
+        /* Rodapé */
+        footer { margin-top: 50px; padding: 20px; text-align: center; color: #888; font-size: 13px; border-top: 1px solid var(--border); background: white; }
+        footer a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        
+        /* Seção de SEO (Texto explicativo) */
+        .seo-section { max-width: 900px; margin: 40px auto; text-align: left; padding: 0 20px; color: #555; line-height: 1.6; }
+        .seo-section h2 { font-size: 22px; color: #333; margin-bottom: 15px; margin-top: 30px; }
+        .seo-section p { margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -181,6 +193,23 @@
         </div>
     </main>
 
+    <!-- Seção de SEO -->
+    <section class="seo-section" id="seo-section">
+        <h2>Sobre o Tradutor de Legendas</h2>
+        <p>Nossa ferramenta é a solução definitiva para quem precisa traduzir arquivos de legenda (SRT) de forma rápida, gratuita e sem complicação. Se você baixou uma série ou filme e a legenda está em inglês, espanhol ou qualquer outro idioma, basta fazer o upload do arquivo aqui e escolher a língua desejada.</p>
+        
+        <h2>Como usar?</h2>
+        <p>O processo é dividido em três passos simples: 1. Clique no botão de Upload e envie seu arquivo .srt. 2. Revise o arquivo carregado na tabela. 3. Escolha o idioma de destino e clique em traduzir. Em segundos, você poderá baixar o arquivo traduzido, mantendo a sincronia perfeita dos tempos originais.</p>
+        
+        <h2>Formatos Suportados</h2>
+        <p>Atualmente, nossa ferramenta suporta o formato SubRip (.srt), que é o padrão mais utilizado por players de vídeo e softwares de edição.</p>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. Gostou da ferramenta? <a href="#" target="_blank">Apoie o projeto!</a></p>
+    </footer>
+
     <!-- OVERLAY DE CARREGAMENTO -->
     <div class="overlay" id="loading-overlay">
         <div class="loading-box">
@@ -209,6 +238,39 @@
     <script>
         let arquivoSelecionado = null;
         let srtTraduzidoGlobal = "";
+
+        // --- SISTEMA DE TRADUÇÃO DA INTERFACE ---
+        const textos = {
+            pt: { title: "Ferramenta online gratuita de tradução de legendas", subtitle: "Traduza arquivos .srt de forma rápida e fácil.", seo1: "Sobre o Tradutor de Legendas", seo2: "Como usar?", seo3: "Formatos Suportados", footer: "Desenvolvido por Fabio &copy; 2026. Gostou da ferramenta? <a href='#'>Apoie o projeto!</a>" },
+            en: { title: "Free online subtitle translation tool", subtitle: "Translate .srt files quickly and easily.", seo1: "About the Subtitle Translator", seo2: "How to use?", seo3: "Supported Formats", footer: "Developed by Fabio &copy; 2026. Liked the tool? <a href='#'>Support the project!</a>" },
+            es: { title: "Herramienta gratuita de traducción de subtítulos", subtitle: "Traduce archivos .srt de forma rápida y sencilla.", seo1: "Sobre el Traductor de Subtítulos", seo2: "¿Cómo usar?", seo3: "Formatos Soportados", footer: "Desarrollado por Fabio &copy; 2026. ¿Te gustó la herramienta? <a href='#'>¡Apoya el proyecto!</a>" }
+        };
+
+        let idiomaAtual = 'pt';
+
+        // Detecção automática
+        window.onload = function() {
+            const navLang = navigator.language.split('-')[0];
+            if (navLang === 'en' || navLang === 'es') {
+                document.getElementById('ui-lang').value = navLang;
+                mudarIdioma(navLang);
+            }
+        };
+
+        function mudarIdioma(lang) {
+            idiomaAtual = lang;
+            document.getElementById('title').innerText = textos[lang].title;
+            document.getElementById('subtitle').innerText = textos[lang].subtitle;
+            
+            // Traduz a seção de SEO e o Rodapé
+            const seoH2s = document.querySelectorAll('.seo-section h2');
+            if (seoH2s.length >= 3) {
+                seoH2s[0].innerText = textos[lang].seo1;
+                seoH2s[1].innerText = textos[lang].seo2;
+                seoH2s[2].innerText = textos[lang].seo3;
+            }
+            document.getElementById('footer-text').innerHTML = textos[lang].footer;
+        }
 
         // --- CONTROLE DAS TELAS E PASSOS ---
         function mudarTela(numero) {
@@ -265,9 +327,8 @@
         async function iniciarTraducao() {
             if (!arquivoSelecionado) return;
 
-            // Mostra o Overlay de carregamento
             document.getElementById('loading-overlay').classList.add('active');
-            simularProgresso(); // Apenas visual
+            simularProgresso();
 
             const formData = new FormData();
             formData.append('legenda', arquivoSelecionado);
@@ -281,7 +342,6 @@
                 
                 srtTraduzidoGlobal = dados.srtTraduzido;
                 
-                // Esconde o carregamento e mostra o modal de edição
                 document.getElementById('loading-overlay').classList.remove('active');
                 document.getElementById('edit-modal').classList.add('active');
 
@@ -294,7 +354,6 @@
         function finalizarTraducao() {
             document.getElementById('edit-modal').classList.remove('active');
             
-            // Cria o botão de download na Tela 4
             const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -307,10 +366,9 @@
             container.innerHTML = "";
             container.appendChild(link);
 
-            mudarTela(4); // Vai para a tela final
+            mudarTela(4);
         }
 
-        // Simulação da barra de progresso (apenas estética, para o usuário não achar que travou)
         function simularProgresso() {
             let width = 0;
             const fill = document.getElementById('progress-fill');
@@ -319,7 +377,7 @@
             text.innerText = '0%';
             
             const interval = setInterval(() => {
-                if (width >= 90) clearInterval(interval); // Para em 90% até a API responder
+                if (width >= 90) clearInterval(interval);
                 else {
                     width += Math.random() * 10;
                     if (width > 90) width = 90;
