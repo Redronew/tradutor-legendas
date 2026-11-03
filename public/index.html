@@ -198,7 +198,7 @@
                 
                 <div id="download-container"></div>
                 
-                <!-- NOVO BOTÃO PARA REINICIAR -->
+                <!-- BOTÃO PARA REINICIAR -->
                 <div style="margin-top: 30px;">
                     <button class="btn-secondary" onclick="novaTraducao()" id="btn-new-translation">← Traduzir outro arquivo</button>
                 </div>
@@ -285,11 +285,29 @@
             const btnNew = document.getElementById('btn-new-translation'); if(btnNew) btnNew.innerText = t.btnNew;
         }
 
-        // Inicializa o idioma salvo
+        // --- DETECÇÃO AUTOMÁTICA DE IDIOMA ---
         const idiomaSalvo = localStorage.getItem('lang');
+        
         if (idiomaSalvo && textos[idiomaSalvo]) {
+            // 1. Se o usuário já escolheu um idioma antes, respeita a escolha dele
             document.getElementById('ui-lang').value = idiomaSalvo;
             mudarIdioma(idiomaSalvo);
+        } else {
+            // 2. Se for a primeira visita, verifica o idioma do navegador
+            const langNavegador = navigator.language || navigator.userLanguage; 
+            const langCode = langNavegador.split('-')[0].toLowerCase(); 
+
+            if (langCode === 'pt') {
+                document.getElementById('ui-lang').value = 'pt';
+                mudarIdioma('pt');
+            } else if (langCode === 'es') {
+                document.getElementById('ui-lang').value = 'es';
+                mudarIdioma('es');
+            } else {
+                // Qualquer outro idioma abre em inglês
+                document.getElementById('ui-lang').value = 'en';
+                mudarIdioma('en');
+            }
         }
 
         // --- CONTROLE DE TELAS ---
@@ -311,10 +329,10 @@
         function novaTraducao() {
             arquivoSelecionado = null;
             srtTraduzidoGlobal = "";
-            document.getElementById('file-upload').value = ""; // Limpa o arquivo selecionado
-            document.getElementById('download-container').innerHTML = ""; // Limpa o botão de download
-            document.getElementById('target-lang').selectedIndex = 0; // Reseta o select de idiomas
-            mudarTela(1); // Volta para o passo 1
+            document.getElementById('file-upload').value = ""; 
+            document.getElementById('download-container').innerHTML = ""; 
+            document.getElementById('target-lang').selectedIndex = 0; 
+            mudarTela(1); 
         }
 
         // --- UPLOAD E TRADUÇÃO ---
