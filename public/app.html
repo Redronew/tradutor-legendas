@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Subtitle AI - App Prototype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIÁVEIS DE TEMA (Inicia no Dark) --- */
+        :root {
+            --bg-app: #0a0a0f;
+            --text-main: #ffffff;
+            --text-muted: #8b8b9e;
+            --box-bg: rgba(255, 255, 255, 0.02);
+            --border-color: #2a2a35;
+            --input-bg: #1a1a24;
+            --header-bg: #0f172a;
+        }
+
+        [data-theme="light"] {
+            --bg-app: #f4f6f9;
+            --text-main: #1a1a24;
+            --text-muted: #666677;
+            --box-bg: #ffffff;
+            --border-color: #d1d5db;
+            --input-bg: #ffffff;
+            --header-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a24; /* Fundo fora do celular */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Moldura do Celular */
+        .phone-mockup {
+            width: 375px;
+            height: 812px;
+            background-color: var(--bg-app);
+            border-radius: 40px;
+            box-shadow: 0 0 0 10px #000, 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            transition: background-color 0.3s;
+        }
+
+        .notch {
+            width: 150px;
+            height: 30px;
+            background-color: #000;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 100;
+        }
+
+        /* --- HEADER DO APP --- */
+        .app-header {
+            padding: 50px 20px 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Botão de Tema */
+        .theme-btn {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        /* --- CONTEÚDO DO APP --- */
+        .app-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        h2 { font-size: 24px; margin-bottom: 10px; font-weight: 600; }
+        p { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.5; }
+
+        /* Botão Principal (Gradient) */
+        .btn-app {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            color: #000;
+            padding: 18px;
+            font-size: 16px;
+            border: none;
+            border-radius: 100px;
+            font-weight: 800;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Área de Upload */
+        .upload-box {
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 20px;
+            background: var(--box-bg);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        /* Select de Idioma */
+        .lang-select {
+            width: 100%;
+            padding: 16px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 12px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+            appearance: none;
+            transition: all 0.3s;
+        }
+
+        /* Tela de Carregamento */
+        .loading-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid #00f2fe;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Tela de Sucesso */
+        .success-icon { font-size: 60px; margin-bottom: 20px; }
+
+        .btn-download-app {
+            background: transparent;
+            color: #00f2fe;
+            border: 2px solid #00f2fe;
+            padding: 16px;
+            border-radius: 100px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        /* Barra Inferior */
+        .bottom-bar {
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--header-bg);
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-mockup">
+        <div class="notch"></div>
+
+        <div class="app-header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/>
+                    <path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                SubtitleAI
+            </div>
+            
+            <!-- BOTÃO DE TEMA AQUI -->
+            <button class="theme-btn" id="theme-toggle">🌙</button>
+        </div>
+
+        <!-- TELA 1: INÍCIO -->
+        <div class="app-content" id="screen-1">
+            <h2>Traduza Legendas</h2>
+            <p>Selecione o arquivo .srt do seu celular para começar.</p>
+            
+            <div class="upload-box" onclick="simularUpload()">
+                <div style="font-size: 40px; margin-bottom: 10px;">📁</div>
+                <div style="font-weight: 600;">Toque para selecionar</div>
+                <div style="font-size: 12px; color: var(--text-muted); margin-top: 5px;">Apenas arquivos .srt</div>
+            </div>
+        </div>
+
+        <!-- TELA 2: CONFIGURAÇÃO -->
+        <div class="app-content" id="screen-2" style="display: none;">
+            <h2>Configurar</h2>
+            <p>Arquivo selecionado: <br><strong style="color: #00f2fe;">The.Blues.Brothers.srt</strong></p>
+            
+            <select class="lang-select">
+                <option>Traduzir para: Português</option>
+                <option>Traduzir para: Inglês</option>
+                <option>Traduzir para: Espanhol</option>
+            </select>
+
+            <button class="btn-app" onclick="simularTraducao()">
+                🚀 Iniciar Tradução
+            </button>
+        </div>
+
+        <!-- TELA 3: CARREGAMENTO -->
+        <div class="app-content loading-screen" id="screen-3">
+            <div class="spinner"></div>
+            <h2>Traduzindo...</h2>
+            <p>Aguarde enquanto a IA processa.</p>
+        </div>
+
+        <!-- TELA 4: SUCESSO -->
+        <div class="app-content" id="screen-4" style="display: none;">
+            <div class="success-icon">✅</div>
+            <h2>Concluído!</h2>
+            <p>O arquivo traduzido está pronto para ser salvo na sua pasta de Downloads.</p>
+            
+            <button class="btn-app" onclick="alert('Simulação: Download iniciado!')">
+                ⬇️ Salvar Legenda
+            </button>
+            <button class="btn-download-app" onclick="location.reload()">
+                Traduzir Outro
+            </button>
+        </div>
+
+        <div class="bottom-bar">
+            Powered by Subtitle AI
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DO TEMA CLARO/ESCURO ---
+        const themeBtn = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+
+        themeBtn.addEventListener('click', () => {
+            if (root.getAttribute('data-theme') === 'light') {
+                root.removeAttribute('data-theme');
+                themeBtn.innerText = '🌙';
+            } else {
+                root.setAttribute('data-theme', 'light');
+                themeBtn.innerText = '☀️';
+            }
+        });
+
+        // --- INTERATIVIDADE DO PROTÓTIPO ---
+        function simularUpload() {
+            document.getElementById('screen-1').style.display = 'none';
+            document.getElementById('screen-2').style.display = 'block';
+        }
+
+        function simularTraducao() {
+            document.getElementById('screen-2').style.display = 'none';
+            document.getElementById('screen-3').style.display = 'flex';
+            
+            setTimeout(() => {
+                document.getElementById('screen-3').style.display = 'none';
+                document.getElementById('screen-4').style.display = 'block';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

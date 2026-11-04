@@ -4,7 +4,15 @@ const { translate } = require('@vitalets/google-translate-api');
 const app = express();
 const port = 3000;
 
+// Mantém a página web (index.html, sobre.html, etc) funcionando
 app.use(express.static('public'));
+
+// --- NOVA ROTA PARA O PROTÓTIPO DO APP ---
+// Cria o link /app para visualizar o app.html
+app.get('/app', (req, res) => {
+    res.sendFile(__dirname + '/public/app.html');
+});
+
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.post('/traduzir', upload.single('legenda'), async (req, res) => {
@@ -19,10 +27,8 @@ app.post('/traduzir', upload.single('legenda'), async (req, res) => {
 
         let srtContent = req.file.buffer.toString('utf-8');
         
-        // AQUI ESTÁ O PULO DO GATO: Lendo o idioma que o front-end envia
         const idiomaDestino = req.body.idiomaDestino || 'pt';
         
-        // ESSA MENSAGEM TEM QUE APARECER NO TERMINAL
         console.log(`\n--- NOVA REQUISIÇÃO ---`);
         console.log(`Arquivo: ${req.file.originalname}`);
         console.log(`Idioma escolhido: ${idiomaDestino}`);
@@ -38,7 +44,6 @@ app.post('/traduzir', upload.single('legenda'), async (req, res) => {
 
         const textoBruto = textosParaTraduzir.join(' ||| ');
         
-        // Chama a API passando o idioma escolhido
         const resultado = await translate(textoBruto, { to: idiomaDestino });
         const textoTraduzido = resultado.text;
 
