@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-wave"></div> <!-- Efeito Onda -->
+    <div class="bg-wave"></div>
 
     <header>
         <a href="/" class="logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
             Subtitle<span>AI</span>
         </a>
         <div class="header-controls">
@@ -38,7 +38,6 @@
     </header>
 
     <main class="main-content">
-        <!-- PROVA SOCIAL -->
         <div class="social-proof">
             <div class="avatar-group">
                 <div class="avatar av1"></div>
@@ -53,14 +52,12 @@
         <p id="subtitle" style="color: var(--text-main); font-size: 18px; font-weight: 600; margin-bottom: 50px;">Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.</p>
 
         <div class="wizard-box">
-            <!-- PASSOS -->
             <div class="steps">
                 <div class="step active" id="step-indicator-1"><div class="step-circle" id="circle-1">1</div><span id="step1-text">Upload</span></div>
                 <div class="step" id="step-indicator-2"><div class="step-circle" id="circle-2">2</div><span id="step2-text">Config</span></div>
                 <div class="step" id="step-indicator-3"><div class="step-circle" id="circle-3">3</div><span id="step3-text">Download</span></div>
             </div>
 
-            <!-- TELA 1 -->
             <div class="screen active" id="screen-1">
                 <h2 id="t1-title">Comece por aqui</h2>
                 <p id="t1-desc">Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.</p>
@@ -68,7 +65,6 @@
                 <input id="file-upload" type="file" accept=".srt, .vtt, .ass" />
             </div>
 
-            <!-- TELA 2 -->
             <div class="screen" id="screen-3">
                 <h2 id="t2-title">Configurar Tradução</h2>
                 <p id="t2-desc">Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.</p>
@@ -85,7 +81,6 @@
                 </div>
             </div>
 
-            <!-- TELA 3 -->
             <div class="screen" id="screen-4">
                 <h2 id="t3-title">Processamento Concluído</h2>
                 <p id="t3-desc">A IA finalizou a tradução com sucesso. O arquivo está pronto.</p>
@@ -131,7 +126,7 @@
                 <a href="/artigos.html" id="f-link-artigos">Artigos</a>
                 <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
                 <a href="/sobre.html" id="f-link-sobre">Sobre</a>
-                <a href="#" id="f-link-doar">Apoie o projeto</a>
+                <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
             </div>
         </div>
     </footer>
@@ -143,10 +138,21 @@
         <p id="donation-thanks" style="color: var(--text-main); font-size: 14px; margin-bottom: 15px; font-weight: 600;">Obrigado por fazer parte da nossa comunidade!</p>
         <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: var(--text-main); font-weight: bold;"><span id="donation-raised-label">Arrecadado</span><span id="donation-values">US$ 0 / US$ 200</span></div>
         <div style="background: var(--border-color); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;"><div style="background: var(--gradient-primary); width: 1%; height: 10px; border-radius: 5px;"></div></div>
-        <a href="SEU_LINK_DE_DOACAO_AQUI" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
+        
+        <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
     </div>
 
     <script>
+        // --- CONFIGURAÇÃO DOS LINKS DO PAYPAL (Mágica para trocar a mensagem) ---
+        const basePayPalLink = "https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=";
+        const moeda = "&currency_code=USD";
+        
+        const mensagens = {
+            pt: "Ajude+a+manter+o+site+no+ar%21+Sua+doa%C3%A7%C3%A3o+paga+os+servidores+e+mant%C3%A9m+a+ferramenta+gratuita+para+todos.",
+            en: "Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.",
+            es: "%C2%A1Ayuda+a+mantener+el+sitio+en+l%C3%ADnea%21+Tu+donaci%C3%B3n+paga+los+servidores+y+mantiene+la+herramienta+gratuita+para+todos."
+        };
+
         const banner = document.getElementById('banner-doacao');
         if(banner) banner.style.display = 'block';
         function fecharBanner() { document.getElementById('banner-doacao').style.display = 'none'; }
@@ -195,6 +201,11 @@
             document.getElementById('f-link-privacidade').innerText = lang === 'en' ? "Privacy" : (lang === 'es' ? "Privacidad" : "Privacidade");
             document.getElementById('f-link-sobre').innerText = lang === 'en' ? "About" : (lang === 'es' ? "Sobre" : "Sobre");
             document.getElementById('f-link-doar').innerText = lang === 'en' ? "Support" : (lang === 'es' ? "Apoyar" : "Apoie o projeto");
+
+            // --- MÁGICA DO PAYPAL: Troca a mensagem no link baseado no idioma ---
+            const linkFinal = basePayPalLink + mensagens[lang] + moeda;
+            document.getElementById('donation-btn').href = linkFinal;
+            document.getElementById('f-link-doar').href = linkFinal;
         }
 
         const idiomaSalvo = localStorage.getItem('lang');
