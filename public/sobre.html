@@ -5,58 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre - Subtitle AI</title>
 
-    <!-- SCRIPT DO GOOGLE ADSENSE AQUI -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5239064510583999" crossorigin="anonymous"></script>
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <script>
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
-    </script>
-
-    <style>
-        :root { --bg-base: #0a0a0f; --text-main: #ffffff; --text-muted: #8b8b9e; --header-bg: #0f172a; --accent-color: #00f2fe; --border-color: rgba(255,255,255,0.1); --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
-        [data-theme="light"] { --bg-base: #f4f6f9; --text-main: #1a1a24; --text-muted: #666677; --header-bg: #0f172a; --accent-color: #0072ff; --border-color: rgba(0,0,0,0.1); --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%); }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; transition: background-color 0.3s; }
-        
-        header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-        .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
-        
-        .btn-back { color: #ffffff; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
-        .btn-back:hover { color: #00f2fe; }
-        
-        .content { max-width: 800px; margin: 60px auto; padding: 0 20px; flex: 1; }
-        h1 { font-size: 32px; margin-bottom: 30px; color: var(--text-main); }
-        p { color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
-        .highlight { color: var(--accent-color); font-weight: 600; }
-        
-        footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; }
-        footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
-        footer a:hover { color: #ffffff; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <a href="/" class="logo"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient></defs></svg>Subtitle<span>AI</span></a>
+        <a href="/" class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+            Subtitle<span>AI</span>
+        </a>
         <a href="/" class="btn-back" id="back-btn">← Voltar ao Início</a>
     </header>
-    
-    <div class="content" id="body-content">
-        <h1>Sobre o Subtitle AI</h1>
-        <p>Olá! Meu nome é <span class="highlight">Fabio</span> e eu criei o Subtitle AI.</p>
-        <p>Sempre fui fã de filmes, séries e animes, mas muitas vezes me deparei com legendas apenas em inglês e sem tempo (ou paciência) para traduzi-las manualmente. Foi aí que decidi construir uma ferramenta simples, rápida e gratuita para resolver esse problema.</p>
-        <p>Este site foi desenvolvido do zero para ser leve, seguro e fácil de usar. Espero que ele ajude você a aproveitar ainda mais o seu conteúdo favorito!</p>
-        <h2 style="color: var(--accent-color); margin-top: 30px;">Contato</h2>
-        <p>Se você tiver sugestões, encontrar algum bug ou quiser apenas dizer "oi", entre em contato pelo e-mail: <strong class="highlight">retronewfilms@gmail.com</strong></p>
+
+    <div class="content-page">
+        <div id="body-content">
+            <h1>Sobre o Subtitle AI</h1>
+            <p>Olá! Meu nome é <span style="color: var(--accent-color); font-weight: 600;">Fabio</span> e eu criei o Subtitle AI.</p>
+            <p>Sempre fui fã de filmes, séries e animes, mas muitas vezes me deparei com legendas apenas em inglês e sem tempo (ou paciência) para traduzi-las manualmente. Foi aí que decidi construir uma ferramenta simples, rápida e gratuita para resolver esse problema.</p>
+            <p>Este site foi desenvolvido do zero para ser leve, seguro e fácil de usar. Espero que ele ajude você a aproveitar ainda mais o seu conteúdo favorito!</p>
+            <h2>Contato</h2>
+            <p>Se você tiver sugestões, encontrar algum bug ou quiser apenas dizer "oi", entre em contato pelo e-mail: <strong style="color: var(--accent-color);">retronewfilms@gmail.com</strong></p>
+        </div>
     </div>
 
     <footer>
-        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/artigos.html">Artigos</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="/" class="logo" style="font-size: 20px; gap: 8px; margin-bottom: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+                    Subtitle<span>AI</span>
+                </a>
+                <p id="footer-text" style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">&copy; 2026 Subtitle AI. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-right">
+                <a href="/artigos.html" id="f-link-artigos">Artigos</a>
+                <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
+                <a href="/sobre.html" id="f-link-sobre">Sobre</a>
+                <a href="#" id="f-link-doar">Apoie o projeto</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -64,27 +54,23 @@
             pt: null,
             en: `
                 <h1>About Subtitle AI</h1>
-                <p>Hello! My name is <span class="highlight">Fabio</span> and I created Subtitle AI.</p>
+                <p>Hello! My name is <span style="color: var(--accent-color); font-weight: 600;">Fabio</span> and I created Subtitle AI.</p>
                 <p>I've always been a fan of movies, series, and anime, but I often found subtitles only in English and didn't have the time (or patience) to translate them manually. That's when I decided to build a simple, fast, and free tool to solve this problem.</p>
                 <p>This site was developed from scratch to be lightweight, secure, and easy to use. I hope it helps you enjoy your favorite content even more!</p>
-                <h2 style="color: var(--accent-color); margin-top: 30px;">Contact</h2>
-                <p>If you have suggestions, find a bug, or just want to say "hi", contact me by email: <strong class="highlight">retronewfilms@gmail.com</strong></p>
+                <h2>Contact</h2>
+                <p>If you have suggestions, find a bug, or just want to say "hi", contact me by email: <strong style="color: var(--accent-color);">retronewfilms@gmail.com</strong></p>
             `,
             es: `
                 <h1>Sobre Subtitle AI</h1>
-                <p>¡Hola! Mi nombre es <span class="highlight">Fabio</span> y creé Subtitle AI.</p>
+                <p>¡Hola! Mi nombre es <span style="color: var(--accent-color); font-weight: 600;">Fabio</span> y creé Subtitle AI.</p>
                 <p>Siempre he sido fanático de las películas, series y anime, pero muchas veces me encontré con subtítulos solo en inglés y sin tiempo (o paciencia) para traducirlos manualmente. Fue entonces cuando decidí construir una herramienta simple, rápida y gratuita para resolver este problema.</p>
                 <p>Este sitio fue desarrollado desde cero para ser ligero, seguro y fácil de usar. ¡Espero que te ayude a disfrutar aún más tu contenido favorito!</p>
-                <h2 style="color: var(--accent-color); margin-top: 30px;">Contacto</h2>
-                <p>Si tienes sugerencias, encuentras un error o simplemente quieres decir "hola", contáctame por correo electrónico: <strong class="highlight">retronewfilms@gmail.com</strong></p>
+                <h2>Contacto</h2>
+                <p>Si tienes sugerencias, encuentras un error o simplemente quieres decir "hola", contáctame por correo electrónico: <strong style="color: var(--accent-color);">retronewfilms@gmail.com</strong></p>
             `
         };
 
-        const textosFooter = {
-            pt: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/artigos.html'>Artigos</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>",
-            en: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/artigos.html?lang=en'>Articles</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>",
-            es: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/artigos.html?lang=es'>Artículos</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>"
-        };
+        const textosFooter = { pt: "&copy; 2026 Subtitle AI. Todos os direitos reservados.", en: "&copy; 2026 Subtitle AI. All rights reserved.", es: "&copy; 2026 Subtitle AI. Todos los derechos reservados." };
 
         const urlParams = new URLSearchParams(window.location.search);
         let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
@@ -95,6 +81,11 @@
             document.getElementById('back-btn').innerText = lang === 'en' ? "← Back to Home" : "← Volver al Inicio";
         }
         document.getElementById('footer-text').innerHTML = textosFooter[lang];
+
+        document.getElementById('f-link-artigos').innerText = lang === 'en' ? "Articles" : (lang === 'es' ? "Artículos" : "Artigos");
+        document.getElementById('f-link-privacidade').innerText = lang === 'en' ? "Privacy" : (lang === 'es' ? "Privacidad" : "Privacidade");
+        document.getElementById('f-link-sobre').innerText = lang === 'en' ? "About" : (lang === 'es' ? "Sobre" : "Sobre");
+        document.getElementById('f-link-doar').innerText = lang === 'en' ? "Support" : (lang === 'es' ? "Apoyar" : "Apoie o projeto");
     </script>
 </body>
 </html>

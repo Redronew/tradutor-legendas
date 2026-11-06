@@ -5,113 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subtitle AI - Tradutor de Legendas Grátis (SRT, VTT, ASS)</title>
 
-    <!-- SCRIPT DO GOOGLE ADSENSE AQUI -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5239064510583999" crossorigin="anonymous"></script>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Traduza seus arquivos de legenda (SRT, VTT, ASS) para mais de 50 idiomas de forma gratuita, rápida e sem cadastro. A melhor ferramenta de tradução de legendas com Inteligência Artificial.">
-    <meta name="keywords" content="traduzir legenda, tradutor de srt, traduzir srt, traduzir vtt, traduzir ass, legenda online, tradutor de legendas grátis">
+    <meta name="description" content="Traduza seus arquivos de legenda (SRT, VTT, ASS) para mais de 50 idiomas de forma gratuita, rápida e sem cadastro.">
+    <meta name="keywords" content="traduzir legenda, tradutor de srt, traduzir vtt, traduzir ass, legenda online, tradutor de legendas grátis">
     
-    <!-- Dados Estruturados (Schema) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Subtitle AI",
-      "url": "https://tradutor-legendas.onrender.com/",
-      "applicationCategory": "UtilitiesApplication",
-      "operatingSystem": "Web",
-      "description": "Ferramenta online gratuita para traduzir arquivos de legenda (.srt, .vtt, .ass) usando Inteligência Artificial.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "BRL"
-      }
-    }
+    { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Subtitle AI", "url": "https://tradutor-legendas.onrender.com/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "BRL"} }
     </script>
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-base: #0a0a0f; --bg-panel: rgba(25, 25, 35, 0.7); --text-main: #ffffff; --text-muted: #8b8b9e;
-            --border-color: rgba(255, 255, 255, 0.1); --input-bg: rgba(0, 0, 0, 0.3); --header-bg: #0f172a; 
-            --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); --gradient-secondary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --shadow: rgba(0,0,0,0.4); --accent-color: #00f2fe;
-        }
-        [data-theme="light"] {
-            --bg-base: #f4f6f9; --bg-panel: rgba(255, 255, 255, 0.9); --text-main: #1a1a24; --text-muted: #666677;
-            --border-color: rgba(0, 0, 0, 0.1); --input-bg: #ffffff; --header-bg: #0f172a; 
-            --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%); --gradient-secondary: linear-gradient(135deg, #5b247a 0%, #1bcedf 100%);
-            --shadow: rgba(0,0,0,0.1); --accent-color: #0072ff;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-base); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; transition: background-color 0.3s, color 0.3s; background-image: radial-gradient(circle at 15% 50%, rgba(0, 242, 254, 0.05), transparent 25%), radial-gradient(circle at 85% 30%, rgba(118, 75, 162, 0.05), transparent 25%); }
-        header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
-        .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
-        .header-controls { display: flex; gap: 15px; align-items: center; }
-        .theme-toggle { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 18px; transition: 0.3s; }
-        .theme-toggle:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.05); }
-        .lang-selector select { padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.1); color: #ffffff; cursor: pointer; outline: none; font-weight: 600; transition: 0.3s; }
-        .lang-selector select option { color: #000; }
-        .main-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; flex: 1; width: 100%; }
-        h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s; }
-        
-        .subtitle { color: var(--text-main); font-size: 16px; font-weight: 800; margin-bottom: 50px; transition: color 0.3s; }
-        
-        .wizard-box { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 24px; padding: 60px 40px; position: relative; min-height: 450px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 40px var(--shadow); display: flex; flex-direction: column; justify-content: center; transition: all 0.3s; }
-        .steps { position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 12px; font-weight: 600; }
-        .step { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.3s; }
-        .step-circle { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border-color); display: flex; justify-content: center; align-items: center; background: transparent; color: var(--text-muted); transition: 0.3s; }
-        .step.active .step-circle { border-color: transparent; background: var(--gradient-primary); color: #000; font-weight: bold; box-shadow: 0 0 15px rgba(0, 242, 254, 0.5); }
-        .step.active { color: var(--text-main); }
-        .screen { display: none; }
-        .screen.active { display: block; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .screen h2 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
-        .screen p { color: var(--text-muted); margin-bottom: 40px; font-size: 15px; }
-        .btn-primary { background: var(--gradient-primary); color: #000; padding: 16px 40px; font-size: 16px; border: none; cursor: pointer; border-radius: 12px; font-weight: 800; transition: 0.3s; display: inline-block; text-decoration: none; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3); }
-        .btn-secondary { background: transparent; color: var(--text-muted); padding: 16px 30px; font-size: 14px; border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn-secondary:hover { background: var(--border-color); color: var(--text-main); }
-        input[type="file"] { display: none; }
-        .select-lang { width: 100%; max-width: 300px; padding: 16px; border: 1px solid var(--border-color); border-radius: 12px; font-size: 16px; background: var(--input-bg); color: var(--text-main); margin-bottom: 30px; outline: none; transition: 0.3s; }
-        .actions-row { display: flex; justify-content: space-between; margin-top: 40px; align-items: center;}
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
-        .overlay.active { display: flex; }
-        .loading-box { background: var(--bg-panel); border: 1px solid var(--border-color); padding: 40px; border-radius: 24px; text-align: center; width: 400px; box-shadow: 0 20px 40px var(--shadow); }
-        .loading-box h3 { font-size: 20px; margin-bottom: 10px; }
-        .loading-box p { color: var(--text-muted); margin-bottom: 20px; font-size: 13px; }
-        .progress-bar-container { width: 100%; height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
-        .progress-bar-fill { height: 100%; background: var(--gradient-primary); width: 0%; transition: width 0.3s ease; }
-        .progress-text { color: #00f2fe; font-weight: bold; margin-bottom: 20px; font-size: 14px; }
-        .btn-download { display: inline-block; padding: 16px 40px; background: var(--gradient-secondary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 20px; transition: 0.3s; }
-        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3); }
-        
-        .seo-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: left; color: var(--text-muted); }
-        .seo-content h2 { color: var(--accent-color); font-size: 24px; margin-bottom: 15px; margin-top: 30px; }
-        .seo-content p { font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
-        .seo-content strong { color: var(--text-main); }
-        
-        .faq-item { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 15px; transition: 0.3s; }
-        .faq-item summary { font-weight: 600; color: var(--text-main); cursor: pointer; font-size: 17px; }
-        .faq-item p { margin-top: 15px; margin-bottom: 0; }
-
-        footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; font-weight: 400; box-shadow: 0 -4px 12px rgba(0,0,0,0.1); }
-        footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
-        footer a:hover { text-decoration: underline; color: #ffffff; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="bg-wave"></div> <!-- Efeito Onda -->
+
     <header>
         <a href="/" class="logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient></defs></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
             Subtitle<span>AI</span>
         </a>
         <div class="header-controls">
-            <button class="theme-toggle" id="theme-toggle" title="Alternar Tema">🌙</button>
             <div class="lang-selector">
                 <select id="ui-lang" onchange="mudarIdioma(this.value)">
                     <option value="pt">🇧🇷 PT</option>
@@ -123,16 +38,29 @@
     </header>
 
     <main class="main-content">
-        <h1 id="title">Tradução de Legendas com IA</h1>
-        <p class="subtitle" id="subtitle">Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.</p>
+        <!-- PROVA SOCIAL -->
+        <div class="social-proof">
+            <div class="avatar-group">
+                <div class="avatar av1"></div>
+                <div class="avatar av2"></div>
+                <div class="avatar av3"></div>
+                <div class="avatar av4"></div>
+            </div>
+            <span id="social-proof-text">Usado por mais de 10 mil pessoas</span>
+        </div>
+
+        <h1 id="title">Tradução de Legendas com <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">IA</span></h1>
+        <p id="subtitle" style="color: var(--text-main); font-size: 18px; font-weight: 600; margin-bottom: 50px;">Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.</p>
 
         <div class="wizard-box">
+            <!-- PASSOS -->
             <div class="steps">
                 <div class="step active" id="step-indicator-1"><div class="step-circle" id="circle-1">1</div><span id="step1-text">Upload</span></div>
                 <div class="step" id="step-indicator-2"><div class="step-circle" id="circle-2">2</div><span id="step2-text">Config</span></div>
                 <div class="step" id="step-indicator-3"><div class="step-circle" id="circle-3">3</div><span id="step3-text">Download</span></div>
             </div>
 
+            <!-- TELA 1 -->
             <div class="screen active" id="screen-1">
                 <h2 id="t1-title">Comece por aqui</h2>
                 <p id="t1-desc">Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.</p>
@@ -140,6 +68,7 @@
                 <input id="file-upload" type="file" accept=".srt, .vtt, .ass" />
             </div>
 
+            <!-- TELA 2 -->
             <div class="screen" id="screen-3">
                 <h2 id="t2-title">Configurar Tradução</h2>
                 <p id="t2-desc">Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.</p>
@@ -156,6 +85,7 @@
                 </div>
             </div>
 
+            <!-- TELA 3 -->
             <div class="screen" id="screen-4">
                 <h2 id="t3-title">Processamento Concluído</h2>
                 <p id="t3-desc">A IA finalizou a tradução com sucesso. O arquivo está pronto.</p>
@@ -164,36 +94,18 @@
             </div>
         </div>
 
-        <section class="seo-content">
+        <section style="max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: left; color: var(--text-muted);">
             <h2 id="seo-title-1">Sobre a Ferramenta de Tradução</h2>
-            <p id="seo-desc-1">A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt, .vtt e .ass</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.</p>
-
+            <p id="seo-desc-1">A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt, .vtt e .ass</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador.</p>
             <h2 id="seo-title-2">Quais formatos são suportados?</h2>
-            <p id="seo-desc-2">Nossa ferramenta suporta os três formatos mais populares do mundo: <strong>.srt</strong> (SubRip, o mais comum em players de vídeo), <strong>.vtt</strong> (WebVTT, usado no YouTube e sites de streaming) e <strong>.ass</strong> (Advanced SubStation Alpha, o padrão da maioria dos animes e fansubs).</p>
-
+            <p id="seo-desc-2">Nossa ferramenta suporta os três formatos mais populares do mundo: <strong>.srt</strong> (SubRip), <strong>.vtt</strong> (WebVTT) e <strong>.ass</strong> (Advanced SubStation Alpha).</p>
             <h2 id="seo-title-3">Por que traduzir suas legendas?</h2>
-            <p id="seo-desc-3">Se você produz vídeos para a internet, traduzir as legendas é a forma mais eficaz de alcançar um público global. Um vídeo em português pode ser assistido por pessoas na Europa, Ásia ou América Latina, desde que tenha legendas no idioma local. Para quem consome conteúdo, a tradução permite assistir a filmes, séries, animes e documentários de qualquer país sem depender de legendas oficiais ou de terceiros.</p>
-
-            <h2 style="margin-top: 50px;" id="faq-title">Perguntas Frequentes</h2>
-            
-            <details class="faq-item">
-                <summary id="faq1-q">O serviço é realmente gratuito?</summary>
-                <p id="faq1-a">Sim! A ferramenta é 100% gratuita. Você pode traduzir quantos arquivos quiser sem pagar nada.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary id="faq2-q">Quais formatos de arquivo posso enviar?</summary>
-                <p id="faq2-a">Você pode enviar arquivos nos formatos .srt, .vtt (WebVTT) e .ass (Advanced SubStation Alpha).</p>
-            </details>
-
-            <details class="faq-item">
-                <summary id="faq3-q">Meus arquivos ficam salvos no servidor de vocês?</summary>
-                <p id="faq3-a">Não. O arquivo é processado em tempo real e descartado imediatamente após a tradução. Nós não armazenamos o conteúdo das suas legendas.</p>
-            </details>
-
-            <div class="btn-wrapper" style="margin-top: 40px; text-align: center;">
-                <a href="/artigos.html" class="btn-primary" id="btn-see-articles">📚 Ver Tutoriais e Artigos</a>
-            </div>
+            <p id="seo-desc-3">Se você produz vídeos para a internet, traduzir as legendas é a forma mais eficaz de alcançar um público global. Para quem consome conteúdo, a tradução permite assistir a filmes, séries e animes de qualquer país.</p>
+            <h2 id="faq-title" style="margin-top: 50px;">Perguntas Frequentes</h2>
+            <details class="faq-item"><summary id="faq1-q">O serviço é realmente gratuito?</summary><p id="faq1-a">Sim! A ferramenta é 100% gratuita.</p></details>
+            <details class="faq-item"><summary id="faq2-q">Quais formatos de arquivo posso enviar?</summary><p id="faq2-a">Você pode enviar arquivos .srt, .vtt e .ass.</p></details>
+            <details class="faq-item"><summary id="faq3-q">Meus arquivos ficam salvos no servidor de vocês?</summary><p id="faq3-a">Não. O arquivo é processado em tempo real e descartado.</p></details>
+            <div style="margin-top: 40px; text-align: center;"><a href="/artigos.html" class="btn-primary" id="btn-see-articles">📚 Ver Tutoriais e Artigos</a></div>
         </section>
     </main>
 
@@ -207,140 +119,42 @@
     </div>
 
     <footer>
-        <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/artigos.html">Artigos</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="/" class="logo" style="font-size: 20px; gap: 8px; margin-bottom: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+                    Subtitle<span>AI</span>
+                </a>
+                <p id="footer-text" style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">&copy; 2026 Subtitle AI. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-right">
+                <a href="/artigos.html" id="f-link-artigos">Artigos</a>
+                <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
+                <a href="/sobre.html" id="f-link-sobre">Sobre</a>
+                <a href="#" id="f-link-doar">Apoie o projeto</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- BANNER DE META DE DOAÇÕES -->
-    <div id="banner-doacao" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #0f172a; border: 1px solid #00f2fe; padding: 25px; border-radius: 16px; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.6); width: 380px; max-width: 90%; text-align: left;">
-        <button onclick="fecharBanner()" style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: #8b8b9e; font-size: 20px; cursor: pointer; transition: 0.2s;">X</button>
-        
-        <h3 id="donation-title" style="color: #ffffff; font-size: 20px; margin-bottom: 12px; font-weight: 800;">Meta Mensal de Doações</h3>
-        
-        <p id="donation-text" style="color: #8b8b9e; font-size: 15px; margin-bottom: 15px; line-height: 1.6;">
-            Caros usuários,<br><br>
-            Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações. Sua contribuição irá diretamente para a manutenção e melhoria de nossos serviços.
-        </p>
-        
-        <p id="donation-thanks" style="color: #ffffff; font-size: 14px; margin-bottom: 15px; font-weight: 600;">
-            Obrigado por fazer parte da nossa comunidade!
-        </p>
-
-        <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: #ffffff; font-weight: bold;">
-            <span id="donation-raised-label">Arrecadado</span>
-            <span id="donation-values">US$ 0 / US$ 200</span>
-        </div>
-        
-        <!-- Barra de Progresso -->
-        <div style="background: rgba(255,255,255,0.1); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;">
-            <div style="background: var(--gradient-primary); width: 1%; height: 10px; border-radius: 5px;"></div>
-        </div>
-        
-        <a href="SEU_LINK_DE_DOACAO_AQUI" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #000; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 16px; transition: 0.3s;">
-            ☕ Apoiar o Projeto
-        </a>
+    <div id="banner-doacao" style="display: none; position: fixed; bottom: 20px; right: 20px; background: var(--bg-panel); border: 1px solid var(--accent-color); padding: 25px; border-radius: 24px; z-index: 999; box-shadow: 0 10px 30px var(--shadow); width: 380px; max-width: 90%; text-align: left; transition: background-color 0.3s; backdrop-filter: blur(10px);">
+        <button onclick="fecharBanner()" style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;">X</button>
+        <h3 id="donation-title" style="color: var(--text-main); font-size: 20px; margin-bottom: 12px; font-weight: 800;">Meta Mensal de Doações</h3>
+        <p id="donation-text" style="color: var(--text-muted); font-size: 15px; margin-bottom: 15px; line-height: 1.6;">Caros usuários,<br><br>Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações.</p>
+        <p id="donation-thanks" style="color: var(--text-main); font-size: 14px; margin-bottom: 15px; font-weight: 600;">Obrigado por fazer parte da nossa comunidade!</p>
+        <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: var(--text-main); font-weight: bold;"><span id="donation-raised-label">Arrecadado</span><span id="donation-values">US$ 0 / US$ 200</span></div>
+        <div style="background: var(--border-color); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;"><div style="background: var(--gradient-primary); width: 1%; height: 10px; border-radius: 5px;"></div></div>
+        <a href="SEU_LINK_DE_DOACAO_AQUI" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
     </div>
 
     <script>
-        // --- LÓGICA DO TEMA ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const rootElement = document.documentElement;
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') { rootElement.setAttribute('data-theme', 'light'); themeToggleBtn.innerText = '☀️'; }
-        themeToggleBtn.addEventListener('click', () => {
-            if (rootElement.getAttribute('data-theme') === 'light') { rootElement.removeAttribute('data-theme'); localStorage.setItem('theme', 'dark'); themeToggleBtn.innerText = '🌙'; } 
-            else { rootElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); themeToggleBtn.innerText = '☀️'; }
-        });
-
-               // --- LÓGICA DO BANNER DE DOAÇÃO ---
-        // Mostra o banner sempre que a página carregar
         const banner = document.getElementById('banner-doacao');
         if(banner) banner.style.display = 'block';
+        function fecharBanner() { document.getElementById('banner-doacao').style.display = 'none'; }
 
-        function fecharBanner() {
-            // Apenas esconde o banner na tela, sem salvar no navegador
-            document.getElementById('banner-doacao').style.display = 'none';
-        }
-
-        // --- SISTEMA DE IDIOMAS ---
         const textos = {
-            pt: { 
-                title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.",
-                step1: "Upload", step2: "Config", step3: "Download",
-                t1: "Comece por aqui", d1: "Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.", btnUpload: "⬆ Selecionar Arquivo",
-                t2: "Configurar Tradução", d2: "Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.", btnBack: "← Voltar", btnStart: "Iniciar Tradução",
-                t3: "Processamento Concluído", d3: "A IA finalizou a tradução com sucesso. O arquivo está pronto.", btnNew: "← Traduzir outro arquivo",
-                loadingTitle: "Processando Dados...", loadingDesc: "Analisando contexto e traduzindo blocos.",
-                btnDownload: "⬇️ Baixar Legenda Traduzida", btnArticles: "📚 Ver Tutoriais e Artigos",
-                seoTitle1: "Sobre a Ferramenta de Tradução",
-                seoDesc1: "A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt, .vtt e .ass</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.",
-                seoTitle2: "Quais formatos são suportados?",
-                seoDesc2: "Nossa ferramenta suporta os três formatos mais populares do mundo: <strong>.srt</strong> (SubRip, o mais comum em players de vídeo), <strong>.vtt</strong> (WebVTT, usado no YouTube e sites de streaming) e <strong>.ass</strong> (Advanced SubStation Alpha, o padrão da maioria dos animes e fansubs).",
-                seoTitle3: "Por que traduzir suas legendas?",
-                seoDesc3: "Se você produz vídeos para a internet, traduzir as legendas é a forma mais eficaz de alcançar um público global. Um vídeo em português pode ser assistido por pessoas na Europa, Ásia ou América Latina, desde que tenha legendas no idioma local. Para quem consome conteúdo, a tradução permite assistir a filmes, séries, animes e documentários de qualquer país sem depender de legendas oficiais ou de terceiros.",
-                faqTitle: "Perguntas Frequentes",
-                faq1q: "O serviço é realmente gratuito?", faq1a: "Sim! A ferramenta é 100% gratuita. Você pode traduzir quantos arquivos quiser sem pagar nada.",
-                faq2q: "Quais formatos de arquivo posso enviar?", faq2a: "Você pode enviar arquivos nos formatos .srt, .vtt (WebVTT) e .ass (Advanced SubStation Alpha).",
-                faq3q: "Meus arquivos ficam salvos no servidor de vocês?", faq3a: "Não. O arquivo é processado em tempo real e descartado imediatamente após a tradução. Nós não armazenamos o conteúdo das suas legendas.",
-                banner_title: "Meta Mensal de Doações",
-                banner_text: "Caros usuários,<br><br>Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações. Sua contribuição irá diretamente para a manutenção e melhoria de nossos serviços.",
-                banner_thanks: "Obrigado por fazer parte da nossa comunidade!",
-                banner_raised: "Arrecadado",
-                banner_values: "US$ 0 / US$ 200",
-                banner_btn: "☕ Apoiar o Projeto",
-                footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/artigos.html'>Artigos</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>"
-            },
-            en: { 
-                title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. Supports .srt, .vtt and .ass.",
-                step1: "Upload", step2: "Config", step3: "Download",
-                t1: "Start here", d1: "Select your .srt, .vtt, or .ass file to start processing.", btnUpload: "⬆ Select File",
-                t2: "Configure Translation", d2: "Choose the target language. Our AI will process the subtitle while maintaining sync.", btnBack: "← Back", btnStart: "Start Translation",
-                t3: "Processing Complete", d3: "The AI has finished the translation successfully. The file is ready.", btnNew: "← Translate another file",
-                loadingTitle: "Processing Data...", loadingDesc: "Analyzing context and translating blocks.",
-                btnDownload: "⬇️ Download Translated Subtitle", btnArticles: "📚 View Tutorials and Articles",
-                seoTitle1: "About the Translation Tool",
-                seoDesc1: "The <strong>Subtitle AI</strong> tool was created to solve a common problem for consumers of international content: the language barrier. With it, you can translate <strong>.srt, .vtt, and .ass</strong> subtitle files quickly, for free, and without installing any software on your computer. Just upload the file, choose the language, and download the translated subtitle with perfectly synchronized timings.",
-                seoTitle2: "Which formats are supported?",
-                seoDesc2: "Our tool supports the three most popular formats in the world: <strong>.srt</strong> (SubRip, the most common in video players), <strong>.vtt</strong> (WebVTT, used on YouTube and streaming sites), and <strong>.ass</strong> (Advanced SubStation Alpha, the standard for most anime and fansubs).",
-                seoTitle3: "Why translate your subtitles?",
-                seoDesc3: "If you produce videos for the internet, translating subtitles is the most effective way to reach a global audience. A video in Portuguese can be watched by people in Europe, Asia, or Latin America, as long as it has subtitles in the local language. For content consumers, translation allows you to watch movies, series, anime, and documentaries from any country without relying on official or third-party subtitles.",
-                faqTitle: "Frequently Asked Questions",
-                faq1q: "Is the service really free?", faq1a: "Yes! The tool is 100% free. You can translate as many files as you want without paying anything.",
-                faq2q: "Which file formats can I upload?", faq2a: "You can upload files in .srt, .vtt (WebVTT), and .ass (Advanced SubStation Alpha) formats.",
-                faq3q: "Are my files saved on your server?", faq3a: "No. The file is processed in real-time and discarded immediately after translation. We do not store the content of your subtitles.",
-                banner_title: "Monthly Donation Goal",
-                banner_text: "Dear users,<br><br>To ensure the continuous operation and improvement of our website, we are introducing a monthly donation goal. Your contribution will go directly to the maintenance and improvement of our services.",
-                banner_thanks: "Thank you for being part of our community!",
-                banner_raised: "Raised",
-                banner_values: "US$ 0 / US$ 200",
-                banner_btn: "☕ Support the Project",
-                footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/artigos.html?lang=en'>Articles</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>"
-            },
-            es: { 
-                title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Admite .srt, .vtt y .ass.",
-                step1: "Subir", step2: "Config", step3: "Descarga",
-                t1: "Empieza aquí", d1: "Selecciona tu archivo .srt, .vtt o .ass para comenzar el procesamiento.", btnUpload: "⬆ Seleccionar Archivo",
-                t2: "Configurar Traducción", d2: "Elige el idioma de destino. Nuestra IA procesará el subtítulo manteniendo la sincronización.", btnBack: "← Volver", btnStart: "Iniciar Traducción",
-                t3: "Procesamiento Completado", d3: "La IA ha finalizado la traducción con éxito. El archivo está listo.", btnNew: "← Traducir otro archivo",
-                loadingTitle: "Procesando Datos...", loadingDesc: "Analizando contexto y traduciendo bloques.",
-                btnDownload: "⬇️ Descargar Subtítulo Traducido", btnArticles: "📚 Ver Tutoriales y Artículos",
-                seoTitle1: "Sobre la Herramienta de Traducción",
-                seoDesc1: "La herramienta <strong>Subtitle AI</strong> fue creada para resolver un problema común de quienes consumen contenido internacional: la barrera del idioma. Con ella, puedes traducir archivos de subtítulos <strong>.srt, .vtt y .ass</strong> de forma rápida, gratuita y sin necesidad de instalar ningún programa en tu computadora. Solo tienes que subir el archivo, elegir el idioma y descargar el subtítulo traducido con los tiempos perfectamente sincronizados.",
-                seoTitle2: "¿Qué formatos son compatibles?",
-                seoDesc2: "Nuestra herramienta admite los tres formatos más populares del mundo: <strong>.srt</strong> (SubRip, el más común en reproductores de video), <strong>.vtt</strong> (WebVTT, utilizado en YouTube y sitios de streaming) y <strong>.ass</strong> (Advanced SubStation Alpha, el estándar de la mayoría de los animes y fansubs).",
-                seoTitle3: "¿Por qué traducir tus subtítulos?",
-                seoDesc3: "Si produces videos para internet, traducir los subtítulos es la forma más eficaz de llegar a un público global. Un video en portugués puede ser visto por personas en Europa, Asia o América Latina, siempre que tenga subtítulos en el idioma local. Para los consumidores de contenido, la traducción permite ver películas, series, anime y documentales de cualquier país sin depender de subtítulos oficiales o de terceros.",
-                faqTitle: "Preguntas Frecuentes",
-                faq1q: "¿El servicio es realmente gratuito?", faq1a: "¡Sí! La herramienta es 100% gratuita. Puedes traducir tantos archivos como quieras sin pagar nada.",
-                faq2q: "¿Qué formatos de archivo puedo subir?", faq2a: "Puedes subir archivos en formatos .srt, .vtt (WebVTT) y .ass (Advanced SubStation Alpha).",
-                faq3q: "¿Mis archivos se guardan en su servidor?", faq3a: "No. El archivo se procesa en tiempo real y se descarta inmediatamente después de la traducción. No almacenamos el contenido de tus subtítulos.",
-                banner_title: "Meta Mensual de Donaciones",
-                banner_text: "Estimados usuarios,<br><br>Para garantizar el funcionamiento continuo y la mejora de nuestro sitio web, estamos introduciendo una meta mensual de donaciones. Su contribución irá directamente al mantenimiento y mejora de nuestros servicios.",
-                banner_thanks: "¡Gracias por ser parte de nuestra comunidad!",
-                banner_raised: "Recaudado",
-                banner_values: "US$ 0 / US$ 200",
-                banner_btn: "☕ Apoyar el Proyecto",
-                footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/artigos.html?lang=es'>Artículos</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>"
-            }
+            pt: { title: "Tradução de Legendas com <span style='background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>IA</span>", subtitle: "Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.", social: "Usado por mais de 10 mil pessoas", step1: "Upload", step2: "Config", step3: "Download", t1: "Comece por aqui", d1: "Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.", btnUpload: "⬆ Selecionar Arquivo", t2: "Configurar Tradução", d2: "Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.", btnBack: "← Voltar", btnStart: "Iniciar Tradução", t3: "Processamento Concluído", d3: "A IA finalizou a tradução com sucesso. O arquivo está pronto.", btnNew: "← Traduzir outro arquivo", loadingTitle: "Processando Dados...", loadingDesc: "Analisando contexto e traduzindo blocos.", btnDownload: "⬇️ Baixar Legenda Traduzida", btnArticles: "📚 Ver Tutoriais e Artigos", seoTitle1: "Sobre a Ferramenta de Tradução", seoDesc1: "A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum...", seoTitle2: "Quais formatos são suportados?", seoDesc2: "Nossa ferramenta suporta os três formatos mais populares...", seoTitle3: "Por que traduzir suas legendas?", seoDesc3: "Se você produz vídeos para a internet...", faqTitle: "Perguntas Frequentes", faq1q: "O serviço é realmente gratuito?", faq1a: "Sim! A ferramenta é 100% gratuita.", faq2q: "Quais formatos de arquivo posso enviar?", faq2a: "Você pode enviar arquivos .srt, .vtt e .ass.", faq3q: "Meus arquivos ficam salvos no servidor de vocês?", faq3a: "Não. O arquivo é processado em tempo real e descartado.", banner_title: "Meta Mensal de Doações", banner_text: "Caros usuários,<br><br>Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações.", banner_thanks: "Obrigado por fazer parte da nossa comunidade!", banner_raised: "Arrecadado", banner_values: "US$ 0 / US$ 200", banner_btn: "☕ Apoiar o Projeto", footer: "&copy; 2026 Subtitle AI. Todos os direitos reservados." },
+            en: { title: "AI-Powered Subtitle Translation <span style='background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>AI</span>", subtitle: "Fast, accurate, and straight to the point. Supports .srt, .vtt and .ass.", social: "Trusted by 10k+ users", step1: "Upload", step2: "Config", step3: "Download", t1: "Start here", d1: "Select your .srt, .vtt, or .ass file to start processing.", btnUpload: "⬆ Select File", t2: "Configure Translation", d2: "Choose the target language. Our AI will process the subtitle while maintaining sync.", btnBack: "← Back", btnStart: "Start Translation", t3: "Processing Complete", d3: "The AI has finished the translation successfully. The file is ready.", btnNew: "← Translate another file", loadingTitle: "Processing Data...", loadingDesc: "Analyzing context and translating blocks.", btnDownload: "⬇️ Download Translated Subtitle", btnArticles: "📚 View Tutorials and Articles", seoTitle1: "About the Translation Tool", seoDesc1: "The <strong>Subtitle AI</strong> tool was created to solve a common problem...", seoTitle2: "Which formats are supported?", seoDesc2: "Our tool supports the three most popular formats...", seoTitle3: "Why translate your subtitles?", seoDesc3: "If you produce videos for the internet...", faqTitle: "Frequently Asked Questions", faq1q: "Is the service really free?", faq1a: "Yes! The tool is 100% free.", faq2q: "Which file formats can I upload?", faq2a: "You can upload files in .srt, .vtt, and .ass formats.", faq3q: "Are my files saved on your server?", faq3a: "No. The file is processed in real-time and discarded.", banner_title: "Monthly Donation Goal", banner_text: "Dear users,<br><br>To ensure the continuous operation and improvement of our website, we are introducing a monthly donation goal.", banner_thanks: "Thank you for being part of our community!", banner_raised: "Raised", banner_values: "US$ 0 / US$ 200", banner_btn: "☕ Support the Project", footer: "&copy; 2026 Subtitle AI. All rights reserved." },
+            es: { title: "Traducción de Subtítulos con <span style='background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>IA</span>", subtitle: "Rápido, preciso y directo al grano. Admite .srt, .vtt y .ass.", social: "Con la confianza de más de 10 mil usuarios", step1: "Subir", step2: "Config", step3: "Descarga", t1: "Empieza aquí", d1: "Selecciona tu archivo .srt, .vtt o .ass para comenzar el procesamiento.", btnUpload: "⬆ Seleccionar Archivo", t2: "Configurar Traducción", d2: "Elige el idioma de destino. Nuestra IA procesará el subtítulo manteniendo la sincronización.", btnBack: "← Volver", btnStart: "Iniciar Traducción", t3: "Procesamiento Completado", d3: "La IA ha finalizado la traducción con éxito. El archivo está listo.", btnNew: "← Traducir otro archivo", loadingTitle: "Procesando Datos...", loadingDesc: "Analizando contexto y traduciendo bloques.", btnDownload: "⬇️ Descargar Subtítulo Traducido", btnArticles: "📚 Ver Tutoriales y Artículos", seoTitle1: "Sobre la Herramienta de Traducción", seoDesc1: "La herramienta <strong>Subtitle AI</strong> fue creada para resolver un problema común...", seoTitle2: "¿Qué formatos son compatibles?", seoDesc2: "Nuestra herramienta admite los tres formatos más populares...", seoTitle3: "¿Por qué traducir tus subtítulos?", seoDesc3: "Si produces videos para internet...", faqTitle: "Preguntas Frecuentes", faq1q: "¿El servicio es realmente gratuito?", faq1a: "¡Sí! La herramienta es 100% gratuita.", faq2q: "¿Qué formatos de archivo puedo subir?", faq2a: "Puedes subir archivos en formatos .srt, .vtt y .ass.", faq3q: "¿Mis archivos se guardan en su servidor?", faq3a: "No. El archivo se procesa en tiempo real y se descarta.", banner_title: "Meta Mensual de Donaciones", banner_text: "Estimados usuarios,<br><br>Para garantizar el funcionamiento continuo y la mejora de nuestro sitio web, estamos introduciendo una meta mensual de donaciones.", banner_thanks: "¡Gracias por ser parte de nuestra comunidad!", banner_raised: "Recaudado", banner_values: "US$ 0 / US$ 200", banner_btn: "☕ Apoyar el Proyecto", footer: "&copy; 2026 Subtitle AI. Todos los derechos reservados." }
         };
 
         let idiomaAtual = 'pt';
@@ -350,34 +164,37 @@
             localStorage.setItem('lang', lang); 
             const t = textos[lang];
 
-            document.getElementById('title').innerText = t.title; document.getElementById('subtitle').innerText = t.subtitle;
+            document.getElementById('title').innerHTML = t.title; 
+            document.getElementById('subtitle').innerText = t.subtitle;
+            document.getElementById('social-proof-text').innerText = t.social;
             document.getElementById('step1-text').innerText = t.step1; document.getElementById('step2-text').innerText = t.step2; document.getElementById('step3-text').innerText = t.step3;
             document.getElementById('t1-title').innerText = t.t1; document.getElementById('t1-desc').innerText = t.d1; document.getElementById('btn-upload-label').innerText = t.btnUpload;
             document.getElementById('t2-title').innerText = t.t2; document.getElementById('t2-desc').innerText = t.d2; document.getElementById('btn-back-1').innerText = t.btnBack; document.getElementById('btn-start').innerText = t.btnStart;
             document.getElementById('t3-title').innerText = t.t3; document.getElementById('t3-desc').innerText = t.d3;
             document.getElementById('loading-title').innerText = t.loadingTitle; document.getElementById('loading-desc').innerText = t.loadingDesc;
             document.getElementById('footer-text').innerHTML = t.footer;
-            
             document.getElementById('seo-title-1').innerText = t.seoTitle1; document.getElementById('seo-desc-1').innerHTML = t.seoDesc1;
             document.getElementById('seo-title-2').innerText = t.seoTitle2; document.getElementById('seo-desc-2').innerHTML = t.seoDesc2;
             document.getElementById('seo-title-3').innerText = t.seoTitle3; document.getElementById('seo-desc-3').innerHTML = t.seoDesc3;
-            
             document.getElementById('faq-title').innerText = t.faqTitle;
             document.getElementById('faq1-q').innerText = t.faq1q; document.getElementById('faq1-a').innerText = t.faq1a;
             document.getElementById('faq2-q').innerText = t.faq2q; document.getElementById('faq2-a').innerText = t.faq2a;
             document.getElementById('faq3-q').innerText = t.faq3q; document.getElementById('faq3-a').innerText = t.faq3a;
-
             const btnArticles = document.getElementById('btn-see-articles'); if(btnArticles) btnArticles.innerText = t.btnArticles;
             const btnDown = document.querySelector('.btn-download'); if(btnDown) btnDown.innerText = t.btnDownload;
             const btnNew = document.getElementById('btn-new-translation'); if(btnNew) btnNew.innerText = t.btnNew;
 
-            // TRADUÇÃO DO BANNER
             document.getElementById('donation-title').innerText = t.banner_title;
             document.getElementById('donation-text').innerHTML = t.banner_text;
             document.getElementById('donation-thanks').innerText = t.banner_thanks;
             document.getElementById('donation-raised-label').innerText = t.banner_raised;
             document.getElementById('donation-values').innerText = t.banner_values;
             document.getElementById('donation-btn').innerText = t.banner_btn;
+
+            document.getElementById('f-link-artigos').innerText = lang === 'en' ? "Articles" : (lang === 'es' ? "Artículos" : "Artigos");
+            document.getElementById('f-link-privacidade').innerText = lang === 'en' ? "Privacy" : (lang === 'es' ? "Privacidad" : "Privacidade");
+            document.getElementById('f-link-sobre').innerText = lang === 'en' ? "About" : (lang === 'es' ? "Sobre" : "Sobre");
+            document.getElementById('f-link-doar').innerText = lang === 'en' ? "Support" : (lang === 'es' ? "Apoyar" : "Apoie o projeto");
         }
 
         const idiomaSalvo = localStorage.getItem('lang');

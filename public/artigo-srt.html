@@ -5,50 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O que é um arquivo SRT? - Subtitle AI</title>
 
-    <!-- SCRIPT DO GOOGLE ADSENSE AQUI -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5239064510583999" crossorigin="anonymous"></script>
 
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
-    <script>
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
-    </script>
-
-    <style>
-        :root { --bg-base: #0a0a0f; --text-main: #ffffff; --text-muted: #8b8b9e; --header-bg: #0f172a; --accent-color: #00f2fe; --code-bg: #1a1a24; --code-text: #00f2fe; --code-border: rgba(255,255,255,0.1); --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
-        [data-theme="light"] { --bg-base: #f4f6f9; --text-main: #1a1a24; --text-muted: #666677; --header-bg: #0f172a; --accent-color: #0072ff; --code-bg: #e2e8f0; --code-text: #1a1a24; --code-border: rgba(0,0,0,0.1); --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%); }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.8; min-height: 100vh; display: flex; flex-direction: column; transition: background-color 0.3s; }
-        header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-       .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: center; gap: 12px; }
-        .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
-        
-        .btn-back { color: #ffffff; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
-        .btn-back:hover { color: #00f2fe; }
-        
-        .content { max-width: 800px; margin: 60px auto; padding: 0 20px; flex: 1; }
-        h1 { font-size: 36px; margin-bottom: 20px; color: var(--text-main); line-height: 1.2; }
-        .meta { color: var(--text-muted); font-size: 14px; margin-bottom: 40px; border-bottom: 1px solid var(--code-border); padding-bottom: 20px; }
-        h2 { font-size: 24px; color: var(--accent-color); margin-top: 40px; margin-bottom: 15px; }
-        p { color: var(--text-muted); margin-bottom: 20px; font-size: 17px; }
-        .highlight { color: var(--text-main); font-weight: 600; }
-        pre { background: var(--code-bg); padding: 20px; border-radius: 8px; overflow-x: auto; color: var(--code-text); font-family: monospace; margin-bottom: 20px; border: 1px solid var(--code-border); }
-        footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; }
-        footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <a href="/" class="logo"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient></defs></svg>Subtitle<span>AI</span></a>
+        <a href="/" class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+            Subtitle<span>AI</span>
+        </a>
         <a href="/artigos.html" class="btn-back" id="back-btn">← Voltar aos Artigos</a>
     </header>
-    <div class="content">
+
+    <div class="content-page">
         <div id="article-body">
             <h1>O que é um arquivo .SRT e como ele funciona?</h1>
-            <div class="meta">Publicado em Novembro de 2026 • Leitura de 3 min</div>
-            <p>Se você já baixou um filme ou episódio de série na internet, é quase certo que já viu um arquivo com a extensão <span class="highlight">.srt</span>. Mas você sabe exatamente o que ele é e como funciona?</p>
+            <p style="font-size: 14px; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">Publicado em Novembro de 2026 • Leitura de 3 min</p>
+            <p>Se você já baixou um filme ou episódio de série na internet, é quase certo que já viu um arquivo com a extensão <span class="highlight" style="color: var(--text-main); font-weight: 600;">.srt</span>. Mas você sabe exatamente o que ele é e como funciona?</p>
             <p>SRT é a abreviação de <em>SubRip Text</em>. É o formato de arquivo de legenda mais antigo e mais amplamente suportado do mundo. A sua beleza está na simplicidade: ele é basicamente um arquivo de texto puro que segue uma regra muito específica.</p>
             <h2>Como é a estrutura de um arquivo SRT?</h2>
             <p>Se você abrir um arquivo .srt no seu computador usando um Bloco de Notas, verá algo parecido com isso:</p>
@@ -60,22 +36,39 @@ Olá, bem-vindo ao nosso site!
 00:00:15,000 --> 00:00:18,200
 Este é um exemplo de legenda.</pre>
             <p>O arquivo funciona em blocos de três partes:</p>
-            <p><span class="highlight">1. O Número:</span> É apenas a ordem da legenda. Ajuda o player de vídeo a não se perder.</p>
-            <p><span class="highlight">2. O Tempo:</span> Mostra a hora exata em que a legenda deve aparecer e desaparecer.</p>
-            <p><span class="highlight">3. O Texto:</span> É o que você lê na tela.</p>
+            <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">1. O Número:</span> É apenas a ordem da legenda. Ajuda o player de vídeo a não se perder.</p>
+            <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">2. O Tempo:</span> Mostra a hora exata em que a legenda deve aparecer e desaparecer.</p>
+            <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">3. O Texto:</span> É o que você lê na tela.</p>
             <h2>Por que usar o Subtitle AI?</h2>
             <p>Como o SRT é apenas um texto simples, a nossa ferramenta consegue ler os tempos e os textos, traduzir o conteúdo para outro idioma e colar o texto traduzido de volta no lugar exato, mantendo o sincronismo perfeito com o vídeo. Tudo isso em segundos!</p>
         </div>
     </div>
-    <footer><p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="/">Voltar para a Ferramenta</a></p></footer>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="/" class="logo" style="font-size: 20px; gap: 8px; margin-bottom: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+                    Subtitle<span>AI</span>
+                </a>
+                <p id="footer-text" style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">&copy; 2026 Subtitle AI. Todos os direitos reservados.</p>
+            </div>
+            <div class="footer-right">
+                <a href="/artigos.html" id="f-link-artigos">Artigos</a>
+                <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
+                <a href="/sobre.html" id="f-link-sobre">Sobre</a>
+                <a href="#" id="f-link-doar">Apoie o projeto</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         const conteudo = {
             pt: null,
             en: `
                 <h1>What is an .SRT file and how does it work?</h1>
-                <div class="meta">Published in November 2026 • 3 min read</div>
-                <p>If you've ever downloaded a movie or TV show episode from the internet, you've almost certainly seen a file with the <span class="highlight">.srt</span> extension. But do you know exactly what it is and how it works?</p>
+                <p style="font-size: 14px; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">Published in November 2026 • 3 min read</p>
+                <p>If you've ever downloaded a movie or TV show episode from the internet, you've almost certainly seen a file with the <span class="highlight" style="color: var(--text-main); font-weight: 600;">.srt</span> extension. But do you know exactly what it is and how it works?</p>
                 <p>SRT stands for <em>SubRip Text</em>. It is the oldest and most widely supported subtitle file format in the world. Its beauty lies in its simplicity: it is basically a plain text file that follows a very specific rule.</p>
                 <h2>What is the structure of an SRT file?</h2>
                 <p>If you open an .srt file on your computer using Notepad, you will see something like this:</p>
@@ -87,16 +80,16 @@ Hello, welcome to our website!
 00:00:15,000 --> 00:00:18,200
 This is an example of a subtitle.</pre>
                 <p>The file works in blocks of three parts:</p>
-                <p><span class="highlight">1. The Number:</span> It's just the order of the subtitle. It helps the video player not to get lost.</p>
-                <p><span class="highlight">2. The Time:</span> It shows the exact time the subtitle should appear and disappear.</p>
-                <p><span class="highlight">3. The Text:</span> It's what you read on the screen.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">1. The Number:</span> It's just the order of the subtitle. It helps the video player not to get lost.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">2. The Time:</span> It shows the exact time the subtitle should appear and disappear.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">3. The Text:</span> It's what you read on the screen.</p>
                 <h2>Why use Subtitle AI?</h2>
                 <p>Since SRT is just plain text, our tool can read the timings and texts, translate the content into another language, and paste the translated text back into the exact place, maintaining perfect sync with the video. All in seconds!</p>
             `,
             es: `
                 <h1>¿Qué es un archivo .SRT y cómo funciona?</h1>
-                <div class="meta">Publicado en Noviembre de 2026 • Lectura de 3 min</div>
-                <p>Si alguna vez has descargado una película o un episodio de una serie de internet, es casi seguro que has visto un archivo con la extensión <span class="highlight">.srt</span>. Pero, ¿sabes exactamente qué es y cómo funciona?</p>
+                <p style="font-size: 14px; margin-bottom: 40px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">Publicado en Noviembre de 2026 • Lectura de 3 min</p>
+                <p>Si alguna vez has descargado una película o un episodio de una serie de internet, es casi seguro que has visto un archivo con la extensión <span class="highlight" style="color: var(--text-main); font-weight: 600;">.srt</span>. Pero, ¿sabes exactamente qué es y cómo funciona?</p>
                 <p>SRT son las siglas de <em>SubRip Text</em>. Es el formato de archivo de subtítulos más antiguo y ampliamente soportado del mundo. Su belleza radica en su simplicidad: es básicamente un archivo de texto plano que sigue una regla muy específica.</p>
                 <h2>¿Cuál es la estructura de un archivo SRT?</h2>
                 <p>Si abres un archivo .srt en tu computadora usando el Bloc de notas, verás algo como esto:</p>
@@ -108,19 +101,15 @@ This is an example of a subtitle.</pre>
 00:00:15,000 --> 00:00:18,200
 Este es un ejemplo de subtítulo.</pre>
                 <p>El archivo funciona en bloques de tres partes:</p>
-                <p><span class="highlight">1. El Número:</span> Es solo el orden del subtítulo. Ayuda al reproductor de video a no perderse.</p>
-                <p><span class="highlight">2. El Tiempo:</span> Muestra la hora exacta en que el subtítulo debe aparecer y desaparecer.</p>
-                <p><span class="highlight">3. El Texto:</span> Es lo que lees en la pantalla.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">1. El Número:</span> Es solo el orden del subtítulo. Ayuda al reproductor de video a no perderse.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">2. El Tiempo:</span> Muestra la hora exacta en que el subtítulo debe aparecer y desaparecer.</p>
+                <p><span class="highlight" style="color: var(--text-main); font-weight: 600;">3. El Texto:</span> Es lo que lees en la pantalla.</p>
                 <h2>¿Por qué usar Subtitle AI?</h2>
                 <p>Como el SRT es solo texto plano, nuestra herramienta puede leer los tiempos y los textos, traducir el contenido a otro idioma y pegar el texto traducido de vuelta en el lugar exacto, manteniendo una sincronización perfecta con el video. ¡Todo en segundos!</p>
             `
         };
 
-        const textosFooter = {
-            pt: "Desenvolvido por Fabio &copy; 2026. <a href='/'>Voltar para a Ferramenta</a>",
-            en: "Developed by Fabio &copy; 2026. <a href='/?lang=en'>Back to Tool</a>",
-            es: "Desarrollado por Fabio &copy; 2026. <a href='/?lang=es'>Volver a la Herramienta</a>"
-        };
+        const textosFooter = { pt: "&copy; 2026 Subtitle AI. Todos os direitos reservados.", en: "&copy; 2026 Subtitle AI. All rights reserved.", es: "&copy; 2026 Subtitle AI. Todos los derechos reservados." };
 
         const urlParams = new URLSearchParams(window.location.search);
         let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
@@ -131,6 +120,11 @@ Este es un ejemplo de subtítulo.</pre>
             document.getElementById('back-btn').innerText = lang === 'en' ? "← Back to Articles" : "← Volver a los Artículos";
         }
         document.getElementById('footer-text').innerHTML = textosFooter[lang];
+
+        document.getElementById('f-link-artigos').innerText = lang === 'en' ? "Articles" : (lang === 'es' ? "Artículos" : "Artigos");
+        document.getElementById('f-link-privacidade').innerText = lang === 'en' ? "Privacy" : (lang === 'es' ? "Privacidad" : "Privacidade");
+        document.getElementById('f-link-sobre').innerText = lang === 'en' ? "About" : (lang === 'es' ? "Sobre" : "Sobre");
+        document.getElementById('f-link-doar').innerText = lang === 'en' ? "Support" : (lang === 'es' ? "Apoyar" : "Apoie o projeto");
     </script>
 </body>
 </html>
