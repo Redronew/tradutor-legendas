@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artigos e Tutoriais - Subtitle AI</title>
-    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5239064510583999" crossorigin="anonymous"></script>
-    
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -14,7 +12,7 @@
 <body>
     <header>
         <a href="/" class="logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#3b82f6"/></linearGradient></defs></svg>
             Subtitle<span>AI</span>
         </a>
         <a href="/" class="btn-back" id="back-btn">← Voltar ao Início</a>
@@ -22,12 +20,10 @@
 
     <div class="content-page" style="text-align: center;">
         <h1 id="page-title" style="text-align: left;">Artigos e Tutoriais</h1>
-        
         <a href="artigo-srt.html" class="article-card">
             <h2 id="card1-title">O que é um arquivo .SRT e como ele funciona?</h2>
             <p id="card1-desc">Descubra o que está por trás do formato de legenda mais usado do mundo e como ele sincroniza o texto com o vídeo.</p>
         </a>
-        
         <a href="artigo-anime.html" class="article-card">
             <h2 id="card2-title">Como traduzir legendas de animes rapidamente</h2>
             <p id="card2-desc">Um guia passo a passo para fãs de anime que querem assistir aos episódios mais recentes sem esperar pela legenda oficial.</p>
@@ -47,7 +43,7 @@
                 <a href="/artigos.html" id="f-link-artigos">Artigos</a>
                 <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
                 <a href="/sobre.html" id="f-link-sobre">Sobre</a>
-                <a href="#" id="f-link-doar">Apoie o projeto</a>
+                <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
             </div>
         </div>
     </footer>
@@ -56,14 +52,14 @@
         const textos = {
             pt: { title: "Artigos e Tutoriais", back: "← Voltar ao Início", c1_t: "O que é um arquivo .SRT e como ele funciona?", c1_d: "Descubra o que está por trás do formato de legenda mais usado do mundo e como ele sincroniza o texto com o vídeo.", c2_t: "Como traduzir legendas de animes rapidamente", c2_d: "Um guia passo a passo para fãs de anime que querem assistir aos episódios mais recentes sem esperar pela legenda oficial.", footer: "&copy; 2026 Subtitle AI. Todos os direitos reservados." },
             en: { title: "Articles and Tutorials", back: "← Back to Home", c1_t: "What is an .SRT file and how does it work?", c1_d: "Discover what's behind the world's most used subtitle format and how it syncs text with video.", c2_t: "How to translate anime subtitles quickly", c2_d: "A step-by-step guide for anime fans who want to watch the latest episodes without waiting for official subtitles.", footer: "&copy; 2026 Subtitle AI. All rights reserved." },
-            es: { title: "Artículos y Tutoriales", back: "← Volver al Inicio", c1_t: "¿Qué es un archivo .SRT y cómo funciona?", c1_d: "Descubre qué hay detrás del formato de subtítulos más usado del mundo y cómo sincroniza el texto con el video.", c2_t: "Cómo traducir subtítulos de anime rápidamente", c2_d: "Una guía paso a paso para fans de anime que quieren ver los episodios más recientes sin esperar los subtítulos oficiales.", footer: "&copy; 2026 Subtitle AI. Todos los derechos reservados." }
+            es: { title: "Artículos y Tutoriales", back: "← Volver al Inicio", c1_t: "¿Qué es un archivo .SRT y cómo funciona?", c1_d: "Descubre qué hay detrás del formato de subtítulos más usado del mundo y cómo sincroniza el texto con el video.", c2_t: "Cómo traducir subtítulos de anime rápidamente", c2_d: "Una guía paso a paso para fans de anime que quieren ver los episodios más recientes sin esperar los subtítulos oficiales.", footer: "&copy; 2026 Subtitle AI. Todos os derechos reservados." }
         };
 
         const urlParams = new URLSearchParams(window.location.search);
         let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
         if (!textos[lang]) lang = 'pt';
-
         const t = textos[lang];
+
         document.getElementById('page-title').innerText = t.title;
         document.getElementById('back-btn').innerText = t.back;
         document.getElementById('card1-title').innerText = t.c1_t;
