@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos e Tutoriais - Subtitle AI</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2534/2534300.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <script>
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
+    </script>
+
+    <style>
+        :root { --bg-base: #0a0a0f; --text-main: #ffffff; --text-muted: #8b8b9e; --header-bg: #0f172a; --card-bg: rgba(255, 255, 255, 0.03); --card-border: rgba(255, 255, 255, 0.1); --accent-color: #00f2fe; --gradient-primary: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%); }
+        [data-theme="light"] { --bg-base: #f4f6f9; --text-main: #1a1a24; --text-muted: #666677; --header-bg: #0f172a; --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.1); --accent-color: #0072ff; --gradient-primary: linear-gradient(135deg, #0072ff 0%, #00c6ff 100%); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; transition: background-color 0.3s; }
+        header { background-color: var(--header-bg); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .logo { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; display: flex; align-items: center; gap: 12px; }
+        .logo span { font-weight: 300; color: #8b8b9e; -webkit-text-fill-color: #8b8b9e; }
+        
+        /* BOTÃO VOLTAR COM HOVER */
+        .btn-back { color: #ffffff; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+        .btn-back:hover { color: #00f2fe; }
+        
+        .content { max-width: 800px; margin: 60px auto; padding: 0 20px; flex: 1; }
+        h1 { font-size: 32px; margin-bottom: 30px; color: var(--text-main); }
+        .article-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 30px; margin-bottom: 20px; transition: 0.3s; text-decoration: none; display: block; color: inherit; }
+        .article-card:hover { border-color: var(--accent-color); transform: translateY(-2px); }
+        .article-card h2 { font-size: 22px; color: var(--accent-color); margin-bottom: 10px; }
+        .article-card p { color: var(--text-muted); font-size: 15px; }
+        footer { background-color: var(--header-bg); padding: 20px; text-align: center; color: #d1d5db; font-size: 15px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; }
+        footer a { color: #00f2fe; text-decoration: none; font-weight: 600; margin: 0 5px; }
+        footer a:hover { color: #ffffff; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" class="logo"><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="12" rx="2" stroke="url(#paint0_linear)" stroke-width="2"/><path d="M6 10H18" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><path d="M6 14H14" stroke="url(#paint0_linear)" stroke-width="2" stroke-linecap="round"/><defs><linearGradient id="paint0_linear" x1="2" y1="6" x2="22" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#00f2fe"/><stop offset="1" stop-color="#4facfe"/></linearGradient></defs></svg>Subtitle<span>AI</span></a>
+        <a href="/" class="btn-back" id="back-btn">← Voltar ao Início</a>
+    </header>
+    <div class="content">
+        <h1 id="page-title">Artigos e Tutoriais</h1>
+        
+        <a href="artigo-srt.html" class="article-card">
+            <h2 id="card1-title">O que é um arquivo .SRT e como ele funciona?</h2>
+            <p id="card1-desc">Descubra o que está por trás do formato de legenda mais usado do mundo e como ele sincroniza o texto com o vídeo.</p>
+        </a>
+        
+        <a href="artigo-anime.html" class="article-card">
+            <h2 id="card2-title">Como traduzir legendas de animes rapidamente</h2>
+            <p id="card2-desc">Um guia passo a passo para fãs de anime que querem assistir aos episódios mais recentes sem esperar pela legenda oficial.</p>
+        </a>
+    </div>
+    <footer><p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a> | <a href="/artigos.html">Artigos</a></p></footer>
+
+    <script>
+        const textos = {
+            pt: { title: "Artigos e Tutoriais", back: "← Voltar ao Início", c1_t: "O que é um arquivo .SRT e como ele funciona?", c1_d: "Descubra o que está por trás do formato de legenda mais usado do mundo e como ele sincroniza o texto com o vídeo.", c2_t: "Como traduzir legendas de animes rapidamente", c2_d: "Um guia passo a passo para fãs de anime que querem assistir aos episódios mais recentes sem esperar pela legenda oficial.", footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/artigos.html'>Artigos</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>" },
+            en: { title: "Articles and Tutorials", back: "← Back to Home", c1_t: "What is an .SRT file and how does it work?", c1_d: "Discover what's behind the world's most used subtitle format and how it syncs text with video.", c2_t: "How to translate anime subtitles quickly", c2_d: "A step-by-step guide for anime fans who want to watch the latest episodes without waiting for official subtitles.", footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/artigos.html?lang=en'>Articles</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>" },
+            es: { title: "Artículos y Tutoriales", back: "← Volver al Inicio", c1_t: "¿Qué es un archivo .SRT y cómo funciona?", c1_d: "Descubre qué hay detrás del formato de subtítulos más usado del mundo y cómo sincroniza el texto con el video.", c2_t: "Cómo traducir subtítulos de anime rápidamente", c2_d: "Una guía paso a paso para fans de anime que quieren ver los episodios más recientes sin esperar los subtítulos oficiales.", footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/artigos.html?lang=es'>Artículos</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>" }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'pt';
+        if (!textos[lang]) lang = 'pt';
+
+        const t = textos[lang];
+        document.getElementById('page-title').innerText = t.title;
+        document.getElementById('back-btn').innerText = t.back;
+        document.getElementById('card1-title').innerText = t.c1_t;
+        document.getElementById('card1-desc').innerText = t.c1_d;
+        document.getElementById('card2-title').innerText = t.c2_t;
+        document.getElementById('card2-desc').innerText = t.c2_d;
+        document.getElementById('footer-text').innerHTML = t.footer;
+    </script>
+</body>
+</html>
