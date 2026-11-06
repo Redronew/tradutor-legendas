@@ -251,16 +251,14 @@
             else { rootElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); themeToggleBtn.innerText = '☀️'; }
         });
 
-        // --- LÓGICA DO BANNER DE DOAÇÃO ---
-        // Mostra o banner imediatamente
-        if (!localStorage.getItem('banner_doacao_fechado')) {
-            const banner = document.getElementById('banner-doacao');
-            if(banner) banner.style.display = 'block';
-        }
+               // --- LÓGICA DO BANNER DE DOAÇÃO ---
+        // Mostra o banner sempre que a página carregar
+        const banner = document.getElementById('banner-doacao');
+        if(banner) banner.style.display = 'block';
 
         function fecharBanner() {
+            // Apenas esconde o banner na tela, sem salvar no navegador
             document.getElementById('banner-doacao').style.display = 'none';
-            localStorage.setItem('banner_doacao_fechado', 'true'); 
         }
 
         // --- SISTEMA DE IDIOMAS ---
