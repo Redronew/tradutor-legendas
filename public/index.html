@@ -58,13 +58,9 @@
         .lang-selector select option { color: #000; }
         .main-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; flex: 1; width: 100%; }
         h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s; }
-               .subtitle { 
-            color: var(--text-main); /* Mesma cor do título principal */
-            font-size: 16px; /* Tamanho maior (mas menor que o H1 que é 42px) */
-            font-weight: 800; /* Negrito */
-            margin-bottom: 50px; 
-            transition: color 0.3s; 
-        }
+        
+        .subtitle { color: var(--text-main); font-size: 16px; font-weight: 800; margin-bottom: 50px; transition: color 0.3s; }
+        
         .wizard-box { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 24px; padding: 60px 40px; position: relative; min-height: 450px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 40px var(--shadow); display: flex; flex-direction: column; justify-content: center; transition: all 0.3s; }
         .steps { position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 12px; font-weight: 600; }
         .step { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.3s; }
@@ -141,7 +137,6 @@
                 <h2 id="t1-title">Comece por aqui</h2>
                 <p id="t1-desc">Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.</p>
                 <label for="file-upload" class="btn-primary" style="cursor:pointer;" id="btn-upload-label">⬆ Selecionar Arquivo</label>
-                <!-- ALTERADO AQUI PARA ACEITAR OS NOVOS FORMATOS -->
                 <input id="file-upload" type="file" accept=".srt, .vtt, .ass" />
             </div>
 
@@ -215,7 +210,38 @@
         <p id="footer-text">Desenvolvido por Fabio &copy; 2026. <a href="#">Apoie o projeto</a> | <a href="/artigos.html">Artigos</a> | <a href="/privacidade.html">Privacidade</a> | <a href="/sobre.html">Sobre</a></p>
     </footer>
 
+    <!-- BANNER DE META DE DOAÇÕES -->
+    <div id="banner-doacao" style="display: none; position: fixed; bottom: 20px; right: 20px; background: #0f172a; border: 1px solid #00f2fe; padding: 25px; border-radius: 16px; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.6); width: 380px; max-width: 90%; text-align: left;">
+        <button onclick="fecharBanner()" style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: #8b8b9e; font-size: 20px; cursor: pointer; transition: 0.2s;">X</button>
+        
+        <h3 id="donation-title" style="color: #ffffff; font-size: 20px; margin-bottom: 12px; font-weight: 800;">Meta Mensal de Doações</h3>
+        
+        <p id="donation-text" style="color: #8b8b9e; font-size: 15px; margin-bottom: 15px; line-height: 1.6;">
+            Caros usuários,<br><br>
+            Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações. Sua contribuição irá diretamente para a manutenção e melhoria de nossos serviços.
+        </p>
+        
+        <p id="donation-thanks" style="color: #ffffff; font-size: 14px; margin-bottom: 15px; font-weight: 600;">
+            Obrigado por fazer parte da nossa comunidade!
+        </p>
+
+        <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: #ffffff; font-weight: bold;">
+            <span id="donation-raised-label">Arrecadado</span>
+            <span id="donation-values">US$ 0 / US$ 200</span>
+        </div>
+        
+        <!-- Barra de Progresso -->
+        <div style="background: rgba(255,255,255,0.1); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <div style="background: var(--gradient-primary); width: 1%; height: 10px; border-radius: 5px;"></div>
+        </div>
+        
+        <a href="SEU_LINK_DE_DOACAO_AQUI" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #000; text-decoration: none; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 16px; transition: 0.3s;">
+            ☕ Apoiar o Projeto
+        </a>
+    </div>
+
     <script>
+        // --- LÓGICA DO TEMA ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const rootElement = document.documentElement;
         const savedTheme = localStorage.getItem('theme');
@@ -225,6 +251,19 @@
             else { rootElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); themeToggleBtn.innerText = '☀️'; }
         });
 
+        // --- LÓGICA DO BANNER DE DOAÇÃO ---
+        // Mostra o banner imediatamente
+        if (!localStorage.getItem('banner_doacao_fechado')) {
+            const banner = document.getElementById('banner-doacao');
+            if(banner) banner.style.display = 'block';
+        }
+
+        function fecharBanner() {
+            document.getElementById('banner-doacao').style.display = 'none';
+            localStorage.setItem('banner_doacao_fechado', 'true'); 
+        }
+
+        // --- SISTEMA DE IDIOMAS ---
         const textos = {
             pt: { 
                 title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.",
@@ -244,6 +283,12 @@
                 faq1q: "O serviço é realmente gratuito?", faq1a: "Sim! A ferramenta é 100% gratuita. Você pode traduzir quantos arquivos quiser sem pagar nada.",
                 faq2q: "Quais formatos de arquivo posso enviar?", faq2a: "Você pode enviar arquivos nos formatos .srt, .vtt (WebVTT) e .ass (Advanced SubStation Alpha).",
                 faq3q: "Meus arquivos ficam salvos no servidor de vocês?", faq3a: "Não. O arquivo é processado em tempo real e descartado imediatamente após a tradução. Nós não armazenamos o conteúdo das suas legendas.",
+                banner_title: "Meta Mensal de Doações",
+                banner_text: "Caros usuários,<br><br>Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações. Sua contribuição irá diretamente para a manutenção e melhoria de nossos serviços.",
+                banner_thanks: "Obrigado por fazer parte da nossa comunidade!",
+                banner_raised: "Arrecadado",
+                banner_values: "US$ 0 / US$ 200",
+                banner_btn: "☕ Apoiar o Projeto",
                 footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/artigos.html'>Artigos</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>"
             },
             en: { 
@@ -264,6 +309,12 @@
                 faq1q: "Is the service really free?", faq1a: "Yes! The tool is 100% free. You can translate as many files as you want without paying anything.",
                 faq2q: "Which file formats can I upload?", faq2a: "You can upload files in .srt, .vtt (WebVTT), and .ass (Advanced SubStation Alpha) formats.",
                 faq3q: "Are my files saved on your server?", faq3a: "No. The file is processed in real-time and discarded immediately after translation. We do not store the content of your subtitles.",
+                banner_title: "Monthly Donation Goal",
+                banner_text: "Dear users,<br><br>To ensure the continuous operation and improvement of our website, we are introducing a monthly donation goal. Your contribution will go directly to the maintenance and improvement of our services.",
+                banner_thanks: "Thank you for being part of our community!",
+                banner_raised: "Raised",
+                banner_values: "US$ 0 / US$ 200",
+                banner_btn: "☕ Support the Project",
                 footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/artigos.html?lang=en'>Articles</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>"
             },
             es: { 
@@ -284,6 +335,12 @@
                 faq1q: "¿El servicio es realmente gratuito?", faq1a: "¡Sí! La herramienta es 100% gratuita. Puedes traducir tantos archivos como quieras sin pagar nada.",
                 faq2q: "¿Qué formatos de archivo puedo subir?", faq2a: "Puedes subir archivos en formatos .srt, .vtt (WebVTT) y .ass (Advanced SubStation Alpha).",
                 faq3q: "¿Mis archivos se guardan en su servidor?", faq3a: "No. El archivo se procesa en tiempo real y se descarta inmediatamente después de la traducción. No almacenamos el contenido de tus subtítulos.",
+                banner_title: "Meta Mensual de Donaciones",
+                banner_text: "Estimados usuarios,<br><br>Para garantizar el funcionamiento continuo y la mejora de nuestro sitio web, estamos introduciendo una meta mensual de donaciones. Su contribución irá directamente al mantenimiento y mejora de nuestros servicios.",
+                banner_thanks: "¡Gracias por ser parte de nuestra comunidad!",
+                banner_raised: "Recaudado",
+                banner_values: "US$ 0 / US$ 200",
+                banner_btn: "☕ Apoyar el Proyecto",
                 footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/artigos.html?lang=es'>Artículos</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>"
             }
         };
@@ -315,6 +372,14 @@
             const btnArticles = document.getElementById('btn-see-articles'); if(btnArticles) btnArticles.innerText = t.btnArticles;
             const btnDown = document.querySelector('.btn-download'); if(btnDown) btnDown.innerText = t.btnDownload;
             const btnNew = document.getElementById('btn-new-translation'); if(btnNew) btnNew.innerText = t.btnNew;
+
+            // TRADUÇÃO DO BANNER
+            document.getElementById('donation-title').innerText = t.banner_title;
+            document.getElementById('donation-text').innerHTML = t.banner_text;
+            document.getElementById('donation-thanks').innerText = t.banner_thanks;
+            document.getElementById('donation-raised-label').innerText = t.banner_raised;
+            document.getElementById('donation-values').innerText = t.banner_values;
+            document.getElementById('donation-btn').innerText = t.banner_btn;
         }
 
         const idiomaSalvo = localStorage.getItem('lang');
