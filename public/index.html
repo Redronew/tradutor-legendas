@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subtitle AI - Tradutor de Legendas Grátis e Rápido</title>
+    <title>Subtitle AI - Tradutor de Legendas Grátis (SRT, VTT, ASS)</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Traduza seus arquivos de legenda (.srt) para mais de 50 idiomas de forma gratuita, rápida e sem cadastro. A melhor ferramenta de tradução de legendas com Inteligência Artificial.">
-    <meta name="keywords" content="traduzir legenda, tradutor de srt, traduzir srt, legenda online, tradutor de legendas grátis, subtitle translator">
+    <meta name="description" content="Traduza seus arquivos de legenda (SRT, VTT, ASS) para mais de 50 idiomas de forma gratuita, rápida e sem cadastro. A melhor ferramenta de tradução de legendas com Inteligência Artificial.">
+    <meta name="keywords" content="traduzir legenda, tradutor de srt, traduzir srt, traduzir vtt, traduzir ass, legenda online, tradutor de legendas grátis">
     
-    <!-- Dados Estruturados (Schema) para o Google -->
+    <!-- Dados Estruturados (Schema) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -18,7 +18,7 @@
       "url": "https://tradutor-legendas.onrender.com/",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Web",
-      "description": "Ferramenta online gratuita para traduzir arquivos de legenda (.srt) usando Inteligência Artificial.",
+      "description": "Ferramenta online gratuita para traduzir arquivos de legenda (.srt, .vtt, .ass) usando Inteligência Artificial.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -31,7 +31,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIÁVEIS DE TEMA --- */
         :root {
             --bg-base: #0a0a0f; --bg-panel: rgba(25, 25, 35, 0.7); --text-main: #ffffff; --text-muted: #8b8b9e;
             --border-color: rgba(255, 255, 255, 0.1); --input-bg: rgba(0, 0, 0, 0.3); --header-bg: #0f172a; 
@@ -56,7 +55,13 @@
         .lang-selector select option { color: #000; }
         .main-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; flex: 1; width: 100%; }
         h1 { font-size: 42px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s; }
-        .subtitle { color: var(--text-muted); font-size: 18px; margin-bottom: 50px; font-weight: 300; transition: color 0.3s; }
+               .subtitle { 
+            color: var(--text-main); /* Mesma cor do título principal */
+            font-size: 16px; /* Tamanho maior (mas menor que o H1 que é 42px) */
+            font-weight: 800; /* Negrito */
+            margin-bottom: 50px; 
+            transition: color 0.3s; 
+        }
         .wizard-box { background: var(--bg-panel); border: 1px solid var(--border-color); border-radius: 24px; padding: 60px 40px; position: relative; min-height: 450px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 20px 40px var(--shadow); display: flex; flex-direction: column; justify-content: center; transition: all 0.3s; }
         .steps { position: absolute; top: 30px; right: 30px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); font-size: 12px; font-weight: 600; }
         .step { display: flex; flex-direction: column; align-items: center; gap: 5px; transition: 0.3s; }
@@ -86,7 +91,6 @@
         .btn-download { display: inline-block; padding: 16px 40px; background: var(--gradient-secondary); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; margin-top: 20px; transition: 0.3s; }
         .btn-download:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3); }
         
-        /* --- ESTILOS PARA SEÇÃO DE CONTEÚDO (SEO E FAQ) --- */
         .seo-content { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: left; color: var(--text-muted); }
         .seo-content h2 { color: var(--accent-color); font-size: 24px; margin-bottom: 15px; margin-top: 30px; }
         .seo-content p { font-size: 16px; line-height: 1.8; margin-bottom: 20px; }
@@ -121,7 +125,7 @@
 
     <main class="main-content">
         <h1 id="title">Tradução de Legendas com IA</h1>
-        <p class="subtitle" id="subtitle">Rápido, preciso e direto ao ponto. Sem complicações.</p>
+        <p class="subtitle" id="subtitle">Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.</p>
 
         <div class="wizard-box">
             <div class="steps">
@@ -132,9 +136,10 @@
 
             <div class="screen active" id="screen-1">
                 <h2 id="t1-title">Comece por aqui</h2>
-                <p id="t1-desc">Selecione o seu arquivo .srt para iniciar o processamento.</p>
+                <p id="t1-desc">Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.</p>
                 <label for="file-upload" class="btn-primary" style="cursor:pointer;" id="btn-upload-label">⬆ Selecionar Arquivo</label>
-                <input id="file-upload" type="file" accept=".srt" />
+                <!-- ALTERADO AQUI PARA ACEITAR OS NOVOS FORMATOS -->
+                <input id="file-upload" type="file" accept=".srt, .vtt, .ass" />
             </div>
 
             <div class="screen" id="screen-3">
@@ -163,10 +168,10 @@
 
         <section class="seo-content">
             <h2 id="seo-title-1">Sobre a Ferramenta de Tradução</h2>
-            <p id="seo-desc-1">A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.</p>
+            <p id="seo-desc-1">A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt, .vtt e .ass</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.</p>
 
-            <h2 id="seo-title-2">Como funciona?</h2>
-            <p id="seo-desc-2">O processo é dividido em três passos simples. Primeiro, você seleciona o arquivo <strong>.srt</strong> que deseja traduzir. Em seguida, escolhe o idioma de destino (temos suporte para mais de 50 idiomas). Por fim, nossa inteligência artificial processa o texto e gera um novo arquivo traduzido, pronto para ser usado no seu player de vídeo favorito, como VLC, PotPlayer ou em plataformas de streaming.</p>
+            <h2 id="seo-title-2">Quais formatos são suportados?</h2>
+            <p id="seo-desc-2">Nossa ferramenta suporta os três formatos mais populares do mundo: <strong>.srt</strong> (SubRip, o mais comum em players de vídeo), <strong>.vtt</strong> (WebVTT, usado no YouTube e sites de streaming) e <strong>.ass</strong> (Advanced SubStation Alpha, o padrão da maioria dos animes e fansubs).</p>
 
             <h2 id="seo-title-3">Por que traduzir suas legendas?</h2>
             <p id="seo-desc-3">Se você produz vídeos para a internet, traduzir as legendas é a forma mais eficaz de alcançar um público global. Um vídeo em português pode ser assistido por pessoas na Europa, Ásia ou América Latina, desde que tenha legendas no idioma local. Para quem consome conteúdo, a tradução permite assistir a filmes, séries, animes e documentários de qualquer país sem depender de legendas oficiais ou de terceiros.</p>
@@ -179,8 +184,8 @@
             </details>
 
             <details class="faq-item">
-                <summary id="faq2-q">Preciso criar uma conta ou fazer cadastro?</summary>
-                <p id="faq2-a">Não. A privacidade é uma prioridade. Você não precisa fornecer e-mail, senha ou qualquer dado pessoal para usar o tradutor.</p>
+                <summary id="faq2-q">Quais formatos de arquivo posso enviar?</summary>
+                <p id="faq2-a">Você pode enviar arquivos nos formatos .srt, .vtt (WebVTT) e .ass (Advanced SubStation Alpha).</p>
             </details>
 
             <details class="faq-item">
@@ -208,7 +213,6 @@
     </footer>
 
     <script>
-        // --- LÓGICA DO TEMA ---
         const themeToggleBtn = document.getElementById('theme-toggle');
         const rootElement = document.documentElement;
         const savedTheme = localStorage.getItem('theme');
@@ -218,65 +222,64 @@
             else { rootElement.setAttribute('data-theme', 'light'); localStorage.setItem('theme', 'light'); themeToggleBtn.innerText = '☀️'; }
         });
 
-        // --- SISTEMA DE IDIOMAS ---
         const textos = {
             pt: { 
-                title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Sem complicações.",
+                title: "Tradução de Legendas com IA", subtitle: "Rápido, preciso e direto ao ponto. Aceita .srt, .vtt e .ass.",
                 step1: "Upload", step2: "Config", step3: "Download",
-                t1: "Comece por aqui", d1: "Selecione o seu arquivo .srt para iniciar o processamento.", btnUpload: "⬆ Selecionar Arquivo",
+                t1: "Comece por aqui", d1: "Selecione o seu arquivo .srt, .vtt ou .ass para iniciar o processamento.", btnUpload: "⬆ Selecionar Arquivo",
                 t2: "Configurar Tradução", d2: "Escolha o idioma de destino. Nossa IA processará a legenda mantendo o sincronismo.", btnBack: "← Voltar", btnStart: "Iniciar Tradução",
                 t3: "Processamento Concluído", d3: "A IA finalizou a tradução com sucesso. O arquivo está pronto.", btnNew: "← Traduzir outro arquivo",
                 loadingTitle: "Processando Dados...", loadingDesc: "Analisando contexto e traduzindo blocos.",
                 btnDownload: "⬇️ Baixar Legenda Traduzida", btnArticles: "📚 Ver Tutoriais e Artigos",
                 seoTitle1: "Sobre a Ferramenta de Tradução",
-                seoDesc1: "A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.",
-                seoTitle2: "Como funciona?",
-                seoDesc2: "O processo é dividido em três passos simples. Primeiro, você seleciona o arquivo <strong>.srt</strong> que deseja traduzir. Em seguida, escolhe o idioma de destino (temos suporte para mais de 50 idiomas). Por fim, nossa inteligência artificial processa o texto e gera um novo arquivo traduzido, pronto para ser usado no seu player de vídeo favorito, como VLC, PotPlayer ou em plataformas de streaming.",
+                seoDesc1: "A ferramenta do <strong>Subtitle AI</strong> foi criada para resolver um problema comum de quem consome conteúdo internacional: a barreira do idioma. Com ela, você pode traduzir arquivos de legenda <strong>.srt, .vtt e .ass</strong> de forma rápida, gratuita e sem precisar instalar nenhum programa no seu computador. Basta enviar o arquivo, escolher o idioma e baixar a legenda traduzida com os tempos perfeitamente sincronizados.",
+                seoTitle2: "Quais formatos são suportados?",
+                seoDesc2: "Nossa ferramenta suporta os três formatos mais populares do mundo: <strong>.srt</strong> (SubRip, o mais comum em players de vídeo), <strong>.vtt</strong> (WebVTT, usado no YouTube e sites de streaming) e <strong>.ass</strong> (Advanced SubStation Alpha, o padrão da maioria dos animes e fansubs).",
                 seoTitle3: "Por que traduzir suas legendas?",
                 seoDesc3: "Se você produz vídeos para a internet, traduzir as legendas é a forma mais eficaz de alcançar um público global. Um vídeo em português pode ser assistido por pessoas na Europa, Ásia ou América Latina, desde que tenha legendas no idioma local. Para quem consome conteúdo, a tradução permite assistir a filmes, séries, animes e documentários de qualquer país sem depender de legendas oficiais ou de terceiros.",
                 faqTitle: "Perguntas Frequentes",
                 faq1q: "O serviço é realmente gratuito?", faq1a: "Sim! A ferramenta é 100% gratuita. Você pode traduzir quantos arquivos quiser sem pagar nada.",
-                faq2q: "Preciso criar uma conta ou fazer cadastro?", faq2a: "Não. A privacidade é uma prioridade. Você não precisa fornecer e-mail, senha ou qualquer dado pessoal para usar o tradutor.",
+                faq2q: "Quais formatos de arquivo posso enviar?", faq2a: "Você pode enviar arquivos nos formatos .srt, .vtt (WebVTT) e .ass (Advanced SubStation Alpha).",
                 faq3q: "Meus arquivos ficam salvos no servidor de vocês?", faq3a: "Não. O arquivo é processado em tempo real e descartado imediatamente após a tradução. Nós não armazenamos o conteúdo das suas legendas.",
                 footer: "Desenvolvido por Fabio &copy; 2026. <a href='#'>Apoie o projeto</a> | <a href='/artigos.html'>Artigos</a> | <a href='/privacidade.html'>Privacidade</a> | <a href='/sobre.html'>Sobre</a>"
             },
             en: { 
-                title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. No hassle.",
+                title: "AI-Powered Subtitle Translation", subtitle: "Fast, accurate, and straight to the point. Supports .srt, .vtt and .ass.",
                 step1: "Upload", step2: "Config", step3: "Download",
-                t1: "Start here", d1: "Select your .srt file to start processing.", btnUpload: "⬆ Select File",
+                t1: "Start here", d1: "Select your .srt, .vtt, or .ass file to start processing.", btnUpload: "⬆ Select File",
                 t2: "Configure Translation", d2: "Choose the target language. Our AI will process the subtitle while maintaining sync.", btnBack: "← Back", btnStart: "Start Translation",
                 t3: "Processing Complete", d3: "The AI has finished the translation successfully. The file is ready.", btnNew: "← Translate another file",
                 loadingTitle: "Processing Data...", loadingDesc: "Analyzing context and translating blocks.",
                 btnDownload: "⬇️ Download Translated Subtitle", btnArticles: "📚 View Tutorials and Articles",
                 seoTitle1: "About the Translation Tool",
-                seoDesc1: "The <strong>Subtitle AI</strong> tool was created to solve a common problem for consumers of international content: the language barrier. With it, you can translate <strong>.srt</strong> subtitle files quickly, for free, and without installing any software on your computer. Just upload the file, choose the language, and download the translated subtitle with perfectly synchronized timings.",
-                seoTitle2: "How does it work?",
-                seoDesc2: "The process is divided into three simple steps. First, you select the <strong>.srt</strong> file you want to translate. Then, you choose the target language (we support over 50 languages). Finally, our AI processes the text and generates a new translated file, ready to be used in your favorite video player, such as VLC, PotPlayer, or streaming platforms.",
+                seoDesc1: "The <strong>Subtitle AI</strong> tool was created to solve a common problem for consumers of international content: the language barrier. With it, you can translate <strong>.srt, .vtt, and .ass</strong> subtitle files quickly, for free, and without installing any software on your computer. Just upload the file, choose the language, and download the translated subtitle with perfectly synchronized timings.",
+                seoTitle2: "Which formats are supported?",
+                seoDesc2: "Our tool supports the three most popular formats in the world: <strong>.srt</strong> (SubRip, the most common in video players), <strong>.vtt</strong> (WebVTT, used on YouTube and streaming sites), and <strong>.ass</strong> (Advanced SubStation Alpha, the standard for most anime and fansubs).",
                 seoTitle3: "Why translate your subtitles?",
                 seoDesc3: "If you produce videos for the internet, translating subtitles is the most effective way to reach a global audience. A video in Portuguese can be watched by people in Europe, Asia, or Latin America, as long as it has subtitles in the local language. For content consumers, translation allows you to watch movies, series, anime, and documentaries from any country without relying on official or third-party subtitles.",
                 faqTitle: "Frequently Asked Questions",
                 faq1q: "Is the service really free?", faq1a: "Yes! The tool is 100% free. You can translate as many files as you want without paying anything.",
-                faq2q: "Do I need to create an account or sign up?", faq2a: "No. Privacy is a priority. You don't need to provide an email, password, or any personal data to use the translator.",
+                faq2q: "Which file formats can I upload?", faq2a: "You can upload files in .srt, .vtt (WebVTT), and .ass (Advanced SubStation Alpha) formats.",
                 faq3q: "Are my files saved on your server?", faq3a: "No. The file is processed in real-time and discarded immediately after translation. We do not store the content of your subtitles.",
                 footer: "Developed by Fabio &copy; 2026. <a href='#'>Support the project</a> | <a href='/artigos.html?lang=en'>Articles</a> | <a href='/privacidade.html?lang=en'>Privacy</a> | <a href='/sobre.html?lang=en'>About</a>"
             },
             es: { 
-                title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Sin complicaciones.",
+                title: "Traducción de Subtítulos con IA", subtitle: "Rápido, preciso y directo al grano. Admite .srt, .vtt y .ass.",
                 step1: "Subir", step2: "Config", step3: "Descarga",
-                t1: "Empieza aquí", d1: "Selecciona tu archivo .srt para comenzar el procesamiento.", btnUpload: "⬆ Seleccionar Archivo",
+                t1: "Empieza aquí", d1: "Selecciona tu archivo .srt, .vtt o .ass para comenzar el procesamiento.", btnUpload: "⬆ Seleccionar Archivo",
                 t2: "Configurar Traducción", d2: "Elige el idioma de destino. Nuestra IA procesará el subtítulo manteniendo la sincronización.", btnBack: "← Volver", btnStart: "Iniciar Traducción",
                 t3: "Procesamiento Completado", d3: "La IA ha finalizado la traducción con éxito. El archivo está listo.", btnNew: "← Traducir otro archivo",
                 loadingTitle: "Procesando Datos...", loadingDesc: "Analizando contexto y traduciendo bloques.",
                 btnDownload: "⬇️ Descargar Subtítulo Traducido", btnArticles: "📚 Ver Tutoriales y Artículos",
                 seoTitle1: "Sobre la Herramienta de Traducción",
-                seoDesc1: "La herramienta <strong>Subtitle AI</strong> fue creada para resolver un problema común de quienes consumen contenido internacional: la barrera del idioma. Con ella, puedes traducir archivos de subtítulos <strong>.srt</strong> de forma rápida, gratuita y sin necesidad de instalar ningún programa en tu computadora. Solo tienes que subir el archivo, elegir el idioma y descargar el subtítulo traducido con los tiempos perfectamente sincronizados.",
-                seoTitle2: "¿Cómo funciona?",
-                seoDesc2: "El proceso se divide en tres sencillos pasos. Primero, seleccionas el archivo <strong>.srt</strong> que deseas traducir. Luego, eliges el idioma de destino (admitimos más de 50 idiomas). Finalmente, nuestra IA procesa el texto y genera un nuevo archivo traducido, listo para ser utilizado en tu reproductor de video favorito, como VLC, PotPlayer o plataformas de streaming.",
+                seoDesc1: "La herramienta <strong>Subtitle AI</strong> fue creada para resolver un problema común de quienes consumen contenido internacional: la barrera del idioma. Con ella, puedes traducir archivos de subtítulos <strong>.srt, .vtt y .ass</strong> de forma rápida, gratuita y sin necesidad de instalar ningún programa en tu computadora. Solo tienes que subir el archivo, elegir el idioma y descargar el subtítulo traducido con los tiempos perfectamente sincronizados.",
+                seoTitle2: "¿Qué formatos son compatibles?",
+                seoDesc2: "Nuestra herramienta admite los tres formatos más populares del mundo: <strong>.srt</strong> (SubRip, el más común en reproductores de video), <strong>.vtt</strong> (WebVTT, utilizado en YouTube y sitios de streaming) y <strong>.ass</strong> (Advanced SubStation Alpha, el estándar de la mayoría de los animes y fansubs).",
                 seoTitle3: "¿Por qué traducir tus subtítulos?",
                 seoDesc3: "Si produces videos para internet, traducir los subtítulos es la forma más eficaz de llegar a un público global. Un video en portugués puede ser visto por personas en Europa, Asia o América Latina, siempre que tenga subtítulos en el idioma local. Para los consumidores de contenido, la traducción permite ver películas, series, anime y documentales de cualquier país sin depender de subtítulos oficiales o de terceros.",
                 faqTitle: "Preguntas Frecuentes",
                 faq1q: "¿El servicio es realmente gratuito?", faq1a: "¡Sí! La herramienta es 100% gratuita. Puedes traducir tantos archivos como quieras sin pagar nada.",
-                faq2q: "¿Necesito crear una cuenta o registrarme?", faq2a: "No. La privacidad es una prioridad. No necesitas proporcionar correo electrónico, contraseña ni ningún dato personal para usar el traductor.",
+                faq2q: "¿Qué formatos de archivo puedo subir?", faq2a: "Puedes subir archivos en formatos .srt, .vtt (WebVTT) y .ass (Advanced SubStation Alpha).",
                 faq3q: "¿Mis archivos se guardan en su servidor?", faq3a: "No. El archivo se procesa en tiempo real y se descarta inmediatamente después de la traducción. No almacenamos el contenido de tus subtítulos.",
                 footer: "Desarrollado por Fabio &copy; 2026. <a href='#'>Apoya el proyecto</a> | <a href='/artigos.html?lang=es'>Artículos</a> | <a href='/privacidade.html?lang=es'>Privacidad</a> | <a href='/sobre.html?lang=es'>Sobre</a>"
             }
@@ -297,12 +300,10 @@
             document.getElementById('loading-title').innerText = t.loadingTitle; document.getElementById('loading-desc').innerText = t.loadingDesc;
             document.getElementById('footer-text').innerHTML = t.footer;
             
-            // Atualiza textos do SEO
             document.getElementById('seo-title-1').innerText = t.seoTitle1; document.getElementById('seo-desc-1').innerHTML = t.seoDesc1;
             document.getElementById('seo-title-2').innerText = t.seoTitle2; document.getElementById('seo-desc-2').innerHTML = t.seoDesc2;
             document.getElementById('seo-title-3').innerText = t.seoTitle3; document.getElementById('seo-desc-3').innerHTML = t.seoDesc3;
             
-            // Atualiza FAQ
             document.getElementById('faq-title').innerText = t.faqTitle;
             document.getElementById('faq1-q').innerText = t.faq1q; document.getElementById('faq1-a').innerText = t.faq1a;
             document.getElementById('faq2-q').innerText = t.faq2q; document.getElementById('faq2-a').innerText = t.faq2a;
@@ -313,7 +314,6 @@
             const btnNew = document.getElementById('btn-new-translation'); if(btnNew) btnNew.innerText = t.btnNew;
         }
 
-        // --- DETECÇÃO AUTOMÁTICA DE IDIOMA ---
         const idiomaSalvo = localStorage.getItem('lang');
         if (idiomaSalvo && textos[idiomaSalvo]) {
             document.getElementById('ui-lang').value = idiomaSalvo; mudarIdioma(idiomaSalvo);
@@ -325,7 +325,6 @@
             else { document.getElementById('ui-lang').value = 'en'; mudarIdioma('en'); }
         }
 
-        // --- CONTROLE DE TELAS ---
         function mudarTela(numero) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             const telaId = numero === 2 ? 'screen-3' : (numero === 3 ? 'screen-4' : 'screen-1');
@@ -361,7 +360,7 @@
                 if (!resposta.ok) throw new Error(dados.erro || "Erro no servidor");
                 srtTraduzidoGlobal = dados.srtTraduzido; document.getElementById('loading-overlay').classList.remove('active');
                 const blob = new Blob([srtTraduzidoGlobal], { type: 'text/plain;charset=utf-8' }); const url = URL.createObjectURL(blob);
-                const link = document.createElement('a'); link.href = url; link.download = 'legenda-traduzida.srt'; link.innerText = textos[idiomaAtual].btnDownload; link.className = 'btn-download';
+                const link = document.createElement('a'); link.href = url; link.download = 'legenda-traduzida' + arquivoSelecionado.name.substring(arquivoSelecionado.name.lastIndexOf('.')); link.innerText = textos[idiomaAtual].btnDownload; link.className = 'btn-download';
                 const container = document.getElementById('download-container'); container.innerHTML = ""; container.appendChild(link); mudarTela(3); 
             } catch (erro) { document.getElementById('loading-overlay').classList.remove('active'); alert("Erro: " + erro.message); }
         }
