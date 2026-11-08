@@ -37,8 +37,38 @@ header {
     background-color: var(--header-bg); padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; 
     border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); 
 }
-.logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; background: var(--gradient-primary); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
-.logo span { font-weight: 300; color: var(--text-muted); -webkit-text-fill-color: var(--text-muted); }
+.logo { 
+    font-size: 24px; 
+    font-weight: 800; 
+    letter-spacing: -0.5px; 
+    background: var(--gradient-primary); 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    
+    /* ADICIONADO PARA NÃO CORTAR AS LETRAS MAIÚSCULAS */
+    line-height: 1.2;
+    padding-bottom: 2px;
+}
+
+/* MANTÉM O TEXTO JUNTO E SEM ESPAÇO */
+.texto-logo {
+    display: flex;
+    align-items: center;
+}
+
+/* CLASSE PARA DEIXAR O "AI-" CINZA E SEM NEGRITO */
+.texto-ai {
+    color: var(--text-muted) !important; 
+    -webkit-text-fill-color: var(--text-muted) !important; 
+    font-weight: 400 !important; 
+}
+
 .btn-back { color: var(--text-main); text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
 .btn-back:hover { color: var(--accent-color); }
 .lang-selector select { padding: 6px 12px; border-radius: 50px; border: 1px solid var(--border-color); background: var(--bg-panel); color: var(--text-main); cursor: pointer; outline: none; font-weight: 600; font-size: 14px; transition: 0.3s; }
