@@ -1,9 +1,11 @@
 const express = require('express');
 const multer = require('multer');
 const { translate } = require('@vitalets/google-translate-api');
-const path = require('path'); // Importante para pegar a extensão do arquivo
+const path = require('path'); 
+const wokeDyno = require('woke-dyno'); // <-- Importando a biblioteca
+
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // <-- Ajuste para o Render usar a porta correta
 
 app.use(express.static('public'));
 
@@ -126,6 +128,13 @@ app.post('/traduzir', upload.single('legenda'), async (req, res) => {
     }
 });
 
+// --- INICIALIZAÇÃO DO SERVIDOR E DO WAKE-DYNO ---
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`Servidor rodando na porta ${port}`);
+    
+    // Inicia o ping para manter o Render acordado
+    const SELF_URL = "https://www.ai-subtitle.com"; // URL do seu site
+    const dynoWaker = wokeDyno(SELF_URL);
+    dynoWaker.start();
+    console.log("Woke-Dyno iniciado para evitar que o Render durma.");
 });
