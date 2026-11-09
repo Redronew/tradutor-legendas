@@ -116,8 +116,13 @@ app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (re
         const certResponse = await fetch(certUrl);
         const cert = await certResponse.text();
         
-        const verifier = crypto.createVerify(authAlgo);
-        verifier.update(message);
+        // const verifier = crypto.createVerify(authAlgo);
+        // O PayPal envia "SHA256withRSA", mas o Node espera "RSA-SHA256"
+        const algoritmoNode = authAlgo === 'SHA256withRSA' ? 'RSA-SHA256' : authAlgo;
+        const verifier = crypto.createVerify(algoritmoNode);
+       
+       
+       verifier.update(message);
         const isValid = verifier.verify(cert, transmissionSig, 'base64');
 
         if (!isValid) {
