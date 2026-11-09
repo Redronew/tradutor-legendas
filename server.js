@@ -16,7 +16,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 // Variáveis do PayPal
 const PAYPAL_WEBHOOK_ID = process.env.PAYPAL_WEBHOOK_ID;
-const PAYPAL_API = 'https://api-m.paypal.com'; // Use 'https://api-m.sandbox.paypal.com' para testes reais
+const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; // Use 'https://api-m.sandbox.paypal.com' para testes reais
 
 // =====================================================================
 // 1. ROTA DO WEBHOOK DO PAYPAL (DEVE SER A PRIMEIRA ROTA!)

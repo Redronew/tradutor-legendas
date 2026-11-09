@@ -95,7 +95,8 @@
                 <h3 id="cta-title">Apoie o AI Subtitle</h3>
                 <p id="cta-desc">Nossa ferramenta é 100% gratuita e sem anúncios chatos. Se ela te ajudou, considere fazer uma doação para mantermos os servidores no ar!</p>
             </div>
-            <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" id="cta-btn" class="btn-white">☕ Apoiar o Projeto</a>
+            <!-- LINK SANDBOX ALTERADO AQUI -->
+            <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" id="cta-btn" class="btn-white">☕ Apoiar o Projeto</a>
         </div>
 
         <section style="max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: left; color: var(--text-muted);">
@@ -138,7 +139,8 @@
                 <a href="/artigos.html" id="f-link-artigos">Artigos</a>
                 <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
                 <a href="/sobre.html" id="f-link-sobre">Sobre</a>
-                <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
+                <!-- LINK SANDBOX ALTERADO AQUI -->
+                <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
             </div>
         </div>
     </footer>
@@ -148,13 +150,20 @@
         <h3 id="donation-title" style="color: var(--text-main); font-size: 20px; margin-bottom: 12px; font-weight: 800;">Meta Mensal de Doações</h3>
         <p id="donation-text" style="color: var(--text-muted); font-size: 15px; margin-bottom: 15px; line-height: 1.6;">Caros usuários,<br><br>Para garantir a operação contínua e o aprimoramento do nosso site, estamos introduzindo uma meta mensal de doações.</p>
         <p id="donation-thanks" style="color: var(--text-main); font-size: 14px; margin-bottom: 15px; font-weight: 600;">Obrigado por fazer parte da nossa comunidade!</p>
-        <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: var(--text-main); font-weight: bold;"><span id="donation-raised-label">Arrecadado</span><span id="donation-values">US$ 0 / US$ 200</span></div>
-        <div style="background: var(--border-color); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;"><div style="background: var(--gradient-primary); width: 1%; height: 10px; border-radius: 5px;"></div></div>
-        <a href="https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
+        <div style="margin-bottom: 8px; display: flex; justify-content: space-between; font-size: 14px; color: var(--text-main); font-weight: bold;">
+            <span id="donation-raised-label">Arrecadado</span>
+            <span id="donation-values">Carregando...</span>
+        </div>
+        <div style="background: var(--border-color); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <div id="donation-progress-bar" style="background: var(--gradient-primary); width: 0%; height: 10px; border-radius: 5px; transition: width 0.5s;"></div>
+        </div>
+        <!-- LINK SANDBOX ALTERADO AQUI -->
+        <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.&currency_code=USD" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
     </div>
 
     <script>
-        const basePayPalLink = "https://www.paypal.com/donate/?business=BKKQLKR7QLCUY&no_recurring=0&item_name=";
+        // LINK SANDBOX ALTERADO AQUI
+        const basePayPalLink = "https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=";
         const moeda = "&currency_code=USD";
         const mensagens = {
             pt: "Ajude+a+manter+o+site+no+ar%21+Sua+doa%C3%A7%C3%A3o+paga+os+servidores+e+mant%C3%A9m+a+ferramenta+gratuita+para+todos.",
@@ -277,6 +286,26 @@
             let width = 0; const fill = document.getElementById('progress-fill'); const text = document.getElementById('progress-text'); fill.style.width = '0%'; text.innerText = '0%';
             const interval = setInterval(() => { if (width >= 90) clearInterval(interval); else { width += Math.random() * 15; if (width > 90) width = 90; fill.style.width = `${width}%`; text.innerText = `${Math.round(width)}%`; } }, 200);
         }
+
+        // SCRIPT PARA ATUALIZAR A BARRA DE DOAÇÕES
+        async function atualizarBarraDoacao() {
+            try {
+                const response = await fetch('/api/total-doado');
+                const data = await response.json();
+                
+                const total = data.total || 0;
+                const meta = data.meta || 200;
+                const porcentagem = Math.min((total / meta) * 100, 100);
+                
+                document.getElementById('donation-values').innerText = `US$ ${total.toFixed(2)} / US$ ${meta.toFixed(2)}`;
+                document.getElementById('donation-progress-bar').style.width = `${porcentagem}%`;
+            } catch (error) {
+                console.error('Erro ao buscar total de doações:', error);
+                document.getElementById('donation-values').innerText = 'US$ 0 / US$ 200';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', atualizarBarraDoacao);
     </script>
 </body>
 </html>
