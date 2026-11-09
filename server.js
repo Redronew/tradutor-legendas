@@ -16,58 +16,66 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 // Variáveis do PayPal
 const PAYPAL_WEBHOOK_ID = process.env.PAYPAL_WEBHOOK_ID;
-const PAYPAL_API = 'https://api-m.paypal.com'; // Use 'https://api-m.sandbox.paypal.com' para testes
+const PAYPAL_API = 'https://api-m.paypal.com'; // Use 'https://api-m.sandbox.paypal.com' para testes reais
 
 // =====================================================================
-// 1. ROTA DO WEBHOOK DO PAYPAL (DEVE SER A PRIMEIRA!)
-// O express.raw garante que o corpo chegue intacto para a verificação
+// 1. ROTA DO WEBHOOK DO PAYPAL (DEVE SER A PRIMEIRA ROTA!)
 // =====================================================================
 app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (req, res) => {
     try {
-        const rawBody = req.body.toString('utf8');
-        const headers = req.headers;
+        // O corpo precisa ser o Buffer bruto para o cálculo do CRC32
+        const rawBodyBuffer = req.body; 
         
-        // Verificação de segurança (Assinatura)
+        if (!PAYPAL_WEBHOOK_ID) {
+            console.error('PAYPAL_WEBHOOK_ID não configurado no Render.');
+            return res.status(500).send('Configuração interna ausente');
+        }
+
+        const headers = req.headers;
         const transmissionId = headers['paypal-transmission-id'];
         const transmissionTime = headers['paypal-transmission-time'];
         const certUrl = headers['paypal-cert-url'];
         const transmissionSig = headers['paypal-transmission-sig'];
         const authAlgo = headers['paypal-auth-algo'];
 
-        if (!transmissionId) {
-            console.error('Cabeçalhos ausentes no webhook.');
+        if (!transmissionId || !transmissionSig || !certUrl) {
+            console.error('Cabeçalhos obrigatórios ausentes.');
             return res.status(400).send('Cabeçalhos ausentes');
         }
 
-        const bodyCrc = crc32.unsigned(rawBody);
+        // Calcular o CRC32 diretamente do Buffer
+        const bodyCrc = crc32.unsigned(rawBodyBuffer);
+        
+        // Montar a string exata que o PayPal espera
         const message = `${transmissionId}|${transmissionTime}|${PAYPAL_WEBHOOK_ID}|${bodyCrc}`;
 
+        // Baixar o certificado do PayPal
         const certResponse = await fetch(certUrl);
+        if (!certResponse.ok) throw new Error('Falha ao baixar certificado do PayPal');
         const cert = await certResponse.text();
         
-        // Tradução do algoritmo do PayPal para o Node.js
+        // Verificar a assinatura
         const algoritmoNode = authAlgo === 'SHA256withRSA' ? 'RSA-SHA256' : authAlgo;
         const verifier = crypto.createVerify(algoritmoNode);
         verifier.update(message);
         const isValid = verifier.verify(cert, transmissionSig, 'base64');
 
         if (!isValid) {
-            console.error('Assinatura do webhook inválida.');
+            console.error('Assinatura inválida. Verifique o PAYPAL_WEBHOOK_ID e se está usando o ambiente correto (Sandbox/Live).');
             return res.status(400).send('Assinatura inválida');
         }
 
-        // Processar a doação se a assinatura for válida
-        const event = JSON.parse(rawBody);
+        // Se a assinatura for válida, processa o evento
+        const event = JSON.parse(rawBodyBuffer.toString('utf8'));
+        
         if (event.event_type === 'PAYMENT.CAPTURE.COMPLETED') {
             const amount = parseFloat(event.resource.amount.value);
+            console.log(`Doação recebida via PayPal: ${amount} ${event.resource.amount.currency_code}`);
             
-            console.log(`Doação recebida via PayPal: ${amount}`);
-            
-            // Pega o total atual do Supabase
+            // Atualiza o Supabase
             const { data, error } = await supabase.from('doacoes').select('total').eq('id', 1).single();
             if (error) throw error;
             
-            // Atualiza o total
             const novoTotal = (data.total || 0) + amount;
             const { error: updateError } = await supabase.from('doacoes').update({ total: novoTotal, atualizado_em: new Date() }).eq('id', 1);
             if (updateError) throw updateError;
@@ -77,13 +85,13 @@ app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (re
 
         res.status(200).send('OK');
     } catch (error) {
-        console.error('Erro no processamento do webhook:', error);
+        console.error('Erro no processamento do webhook:', error.message);
         res.status(500).send('Erro interno');
     }
 });
 
 // =====================================================================
-// 2. MIDDLEWARES E OUTRAS ROTAS
+// 2. OUTRAS CONFIGURAÇÕES E ROTAS
 // =====================================================================
 app.use(express.static('public'));
 
@@ -94,7 +102,7 @@ app.get('/app', (req, res) => {
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Rota de tradução
+// Rota de tradução de legendas
 app.post('/traduzir', upload.single('legenda'), async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ erro: 'Nenhum arquivo enviado.' });
