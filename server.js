@@ -1,3 +1,5 @@
+require('dotenv').config(); // <-- Adicionado para ler o arquivo .env no seu Mac
+
 const express = require('express');
 const multer = require('multer');
 const { translate } = require('@vitalets/google-translate-api');
@@ -16,18 +18,17 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 // Variáveis do PayPal
 const PAYPAL_WEBHOOK_ID = process.env.PAYPAL_WEBHOOK_ID;
-const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; // Use 'https://api-m.sandbox.paypal.com' para testes reais
+const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; // <-- MANTIDO EM SANDBOX PARA TESTES
 
 // =====================================================================
 // 1. ROTA DO WEBHOOK DO PAYPAL (DEVE SER A PRIMEIRA ROTA!)
 // =====================================================================
 app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (req, res) => {
     try {
-        // O corpo precisa ser o Buffer bruto para o cálculo do CRC32
         const rawBodyBuffer = req.body; 
         
         if (!PAYPAL_WEBHOOK_ID) {
-            console.error('PAYPAL_WEBHOOK_ID não configurado no Render.');
+            console.error('PAYPAL_WEBHOOK_ID não configurado.');
             return res.status(500).send('Configuração interna ausente');
         }
 
@@ -43,36 +44,29 @@ app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (re
             return res.status(400).send('Cabeçalhos ausentes');
         }
 
-        // Calcular o CRC32 diretamente do Buffer
         const bodyCrc = crc32.unsigned(rawBodyBuffer);
-        
-        // Montar a string exata que o PayPal espera
         const message = `${transmissionId}|${transmissionTime}|${PAYPAL_WEBHOOK_ID}|${bodyCrc}`;
 
-        // Baixar o certificado do PayPal
         const certResponse = await fetch(certUrl);
         if (!certResponse.ok) throw new Error('Falha ao baixar certificado do PayPal');
         const cert = await certResponse.text();
         
-        // Verificar a assinatura
         const algoritmoNode = authAlgo === 'SHA256withRSA' ? 'RSA-SHA256' : authAlgo;
         const verifier = crypto.createVerify(algoritmoNode);
         verifier.update(message);
         const isValid = verifier.verify(cert, transmissionSig, 'base64');
 
         if (!isValid) {
-            console.error('Assinatura inválida. Verifique o PAYPAL_WEBHOOK_ID e se está usando o ambiente correto (Sandbox/Live).');
+            console.error('Assinatura inválida.');
             return res.status(400).send('Assinatura inválida');
         }
 
-        // Se a assinatura for válida, processa o evento
         const event = JSON.parse(rawBodyBuffer.toString('utf8'));
         
         if (event.event_type === 'PAYMENT.CAPTURE.COMPLETED') {
             const amount = parseFloat(event.resource.amount.value);
             console.log(`Doação recebida via PayPal: ${amount} ${event.resource.amount.currency_code}`);
             
-            // Atualiza o Supabase
             const { data, error } = await supabase.from('doacoes').select('total').eq('id', 1).single();
             if (error) throw error;
             
@@ -95,14 +89,12 @@ app.post('/webhook-paypal', express.raw({ type: 'application/json' }), async (re
 // =====================================================================
 app.use(express.static('public'));
 
-// Rota para o protótipo do app
 app.get('/app', (req, res) => {
     res.sendFile(__dirname + '/public/app.html');
 });
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Rota de tradução de legendas
 app.post('/traduzir', upload.single('legenda'), async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ erro: 'Nenhum arquivo enviado.' });
@@ -170,7 +162,6 @@ app.post('/traduzir', upload.single('legenda'), async (req, res) => {
     }
 });
 
-// Rota para o frontend consultar o total
 app.get('/api/total-doado', async (req, res) => {
     try {
         const { data, error } = await supabase.from('doacoes').select('total').eq('id', 1).single();

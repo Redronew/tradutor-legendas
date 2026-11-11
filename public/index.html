@@ -11,7 +11,7 @@
     <meta name="keywords" content="traduzir legenda, tradutor de srt, traduzir vtt, traduzir ass, legenda online, tradutor de legendas grátis">
     
     <script type="application/ld+json">
-    { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AI Subtitle", "url": "https://www.ai-subtitle.com/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "BRL"} }
+    { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AI Subtitle", "url": "https://www.ai-subtitle.com/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"} }
     </script>
 
     <link rel="icon" href="/favicon.png" type="image/png">
@@ -95,8 +95,8 @@
                 <h3 id="cta-title">Apoie o AI Subtitle</h3>
                 <p id="cta-desc">Nossa ferramenta é 100% gratuita e sem anúncios chatos. Se ela te ajudou, considere fazer uma doação para mantermos os servidores no ar!</p>
             </div>
-            <!-- LINK ALTERADO PARA BRL E SANDBOX -->
-            <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=BRL" target="_blank" id="cta-btn" class="btn-white">☕ Apoiar o Projeto</a>
+            <!-- LINK ALTERADO PARA USD E SANDBOX -->
+            <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=USD" target="_blank" id="cta-btn" class="btn-white">☕ Apoiar o Projeto</a>
         </div>
 
         <section style="max-width: 800px; margin: 40px auto; padding: 0 20px; text-align: left; color: var(--text-muted);">
@@ -139,8 +139,8 @@
                 <a href="/artigos.html" id="f-link-artigos">Artigos</a>
                 <a href="/privacidade.html" id="f-link-privacidade">Privacidade</a>
                 <a href="/sobre.html" id="f-link-sobre">Sobre</a>
-                <!-- LINK ALTERADO PARA BRL E SANDBOX -->
-                <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=BRL" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
+                <!-- LINK ALTERADO PARA USD E SANDBOX -->
+                <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=USD" target="_blank" rel="noopener" id="f-link-doar">Apoie o projeto</a>
             </div>
         </div>
     </footer>
@@ -157,14 +157,14 @@
         <div style="background: var(--border-color); width: 100%; height: 10px; border-radius: 5px; margin-bottom: 20px;">
             <div id="donation-progress-bar" style="background: var(--gradient-primary); width: 0%; height: 10px; border-radius: 5px; transition: width 0.5s;"></div>
         </div>
-        <!-- LINK ALTERADO PARA BRL E SANDBOX -->
-        <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=BRL" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
+        <!-- LINK ALTERADO PARA USD E SANDBOX -->
+        <a href="https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=Help+keep+the+site+online%21&currency_code=USD" target="_blank" id="donation-btn" style="display: block; text-align: center; background: var(--gradient-primary); color: #fff; text-decoration: none; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">☕ Apoiar o Projeto</a>
     </div>
 
     <script>
-        // LINK ALTERADO PARA BRL E SANDBOX
+        // LINK ALTERADO PARA USD E SANDBOX
         const basePayPalLink = "https://www.sandbox.paypal.com/donate/?business=sb-f51dk53806499@business.example.com&no_recurring=0&item_name=";
-        const moeda = "&currency_code=BRL";
+        const moeda = "&currency_code=USD";
         const mensagens = {
             pt: "Ajude+a+manter+o+site+no+ar%21+Sua+doa%C3%A7%C3%A3o+paga+os+servidores+e+mant%C3%A9m+a+ferramenta+gratuita+para+todos.",
             en: "Help+keep+the+site+online%21+Your+donation+pays+for+servers+and+keeps+the+tool+free+for+everyone.",
@@ -298,8 +298,8 @@
                 const porcentagem = Math.min((total / meta) * 100, 100);
                 
                 // Formata para Real (R$)
-                const valorFormatado = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-                const metaFormatada = meta.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                const valorFormatado = total.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' });
+                const metaFormatada = meta.toLocaleString('pt-BR', { style: 'currency', currency: 'USD' });
 
                 document.getElementById('donation-values').innerText = `${valorFormatado} / ${metaFormatada}`;
                 document.getElementById('donation-progress-bar').style.width = `${porcentagem}%`;
